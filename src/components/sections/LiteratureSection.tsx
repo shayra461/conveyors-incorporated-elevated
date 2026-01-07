@@ -69,17 +69,20 @@ function LiteratureCard({ item, index }: { item: typeof literatureItems[0]; inde
           />
 
           {/* Hover Overlay with Button */}
-          <motion.div
-            className="absolute inset-0 bg-primary/90 flex items-center justify-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: isHovered ? 1 : 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <Button variant="heroOutline" size="default">
-              <Download className="w-4 h-4 mr-2" />
-              View Resources
-            </Button>
-          </motion.div>
+          {isHovered && (
+            <motion.div
+              className="absolute inset-0 bg-primary/95 flex items-center justify-center z-20"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <Button variant="heroOutline" size="default">
+                <Download className="w-4 h-4 mr-2" />
+                View Resources
+              </Button>
+            </motion.div>
+          )}
         </div>
 
         {/* Content */}
