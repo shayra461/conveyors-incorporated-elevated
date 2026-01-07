@@ -131,7 +131,7 @@ export function HeroSection() {
 
       {/* Floating 45 Years Badge */}
       <motion.div
-        className="absolute bottom-8 left-6 md:left-12 z-20"
+        className="absolute bottom-8 right-6 md:right-12 z-20"
         initial={{ opacity: 0, scale: 0.8, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 1 }}
