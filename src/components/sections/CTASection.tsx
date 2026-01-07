@@ -8,7 +8,7 @@ export function CTASection() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section className="py-24 lg:py-32 bg-background relative overflow-hidden" ref={ref}>
+    <section className="py-20 lg:py-28 bg-background relative overflow-hidden" ref={ref}>
       {/* Background Pattern */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-accent/5" />

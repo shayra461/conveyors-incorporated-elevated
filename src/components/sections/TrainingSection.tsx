@@ -31,7 +31,7 @@ export function TrainingSection() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section className="py-24 lg:py-32 bg-gradient-dark relative overflow-hidden" ref={ref}>
+    <section className="py-20 lg:py-28 bg-gradient-dark relative overflow-hidden" ref={ref}>
       {/* Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-accent/10 to-transparent" />
