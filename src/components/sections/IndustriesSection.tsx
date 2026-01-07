@@ -126,7 +126,7 @@ export function IndustriesSection() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section className="py-24 lg:py-32 bg-background" ref={ref}>
+    <section className="py-20 lg:py-28 bg-background" ref={ref}>
       <div className="container mx-auto px-6">
         {/* Header */}
         <motion.div

@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Play } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import heroBg from '@/assets/hero-bg.jpg';
+import badge45Years from '@/assets/45-years-badge.png';
 
 export function HeroSection() {
   return (
@@ -128,11 +129,38 @@ export function HeroSection() {
         </div>
       </div>
 
+      {/* Floating 45 Years Badge */}
+      <motion.div
+        className="absolute bottom-8 left-6 md:left-12 z-20"
+        initial={{ opacity: 0, scale: 0.8, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 1 }}
+      >
+        <motion.img
+          src={badge45Years}
+          alt="45 Years - Moving The World - 1974-2019"
+          className="w-24 md:w-32 lg:w-36 h-auto drop-shadow-2xl"
+          animate={{ 
+            y: [0, -8, 0],
+          }}
+          transition={{ 
+            duration: 4, 
+            repeat: Infinity, 
+            ease: 'easeInOut' 
+          }}
+          whileHover={{ scale: 1.05 }}
+        />
+      </motion.div>
+
       {/* Scroll Indicator */}
       <motion.div
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, y: [0, 10, 0] }}
+        transition={{ 
+          opacity: { delay: 1.2, duration: 0.5 },
+          y: { duration: 2, repeat: Infinity, delay: 1.2 }
+        }}
       >
         <div className="w-6 h-10 rounded-full border-2 border-primary-foreground/30 flex items-start justify-center p-2">
           <motion.div

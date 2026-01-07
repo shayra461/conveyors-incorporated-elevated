@@ -34,7 +34,7 @@ export function WhyChooseUsSection() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section className="py-24 lg:py-32 bg-muted" ref={ref}>
+    <section className="py-20 lg:py-28 bg-muted" ref={ref}>
       <div className="container mx-auto px-6">
         {/* Header */}
         <motion.div
