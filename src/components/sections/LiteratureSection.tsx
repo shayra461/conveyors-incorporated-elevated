@@ -41,13 +41,13 @@ function LiteratureCard({ item, index }: { item: typeof literatureItems[0]; inde
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.15 }}
-      className="group relative"
+      className="group"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="relative bg-card rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 border border-border">
+      <div className="bg-card rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 border border-border">
         {/* Book Image Container */}
-        <div className="relative h-64 bg-gradient-to-br from-muted to-secondary flex items-center justify-center p-8">
+        <div className="relative h-64 bg-gradient-to-br from-muted to-secondary flex items-center justify-center p-8 overflow-hidden">
           {/* Background Pattern */}
           <div className="absolute inset-0 opacity-10">
             <div className="absolute inset-0" style={{
@@ -67,20 +67,20 @@ function LiteratureCard({ item, index }: { item: typeof literatureItems[0]; inde
             }}
             transition={{ duration: 0.4, ease: 'easeOut' }}
           />
-        </div>
 
-        {/* Hover Button - positioned below the image area */}
-        <motion.div
-          className="absolute left-0 right-0 bottom-[120px] flex justify-center z-20 pointer-events-none"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 10 }}
-          transition={{ duration: 0.3 }}
-        >
-          <Button variant="hero" size="default" className="pointer-events-auto shadow-xl">
-            <Download className="w-4 h-4 mr-2" />
-            View Resources
-          </Button>
-        </motion.div>
+          {/* Hover Overlay with Button */}
+          <motion.div
+            className="absolute inset-0 bg-primary/90 flex items-center justify-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: isHovered ? 1 : 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <Button variant="heroOutline" size="default">
+              <Download className="w-4 h-4 mr-2" />
+              View Resources
+            </Button>
+          </motion.div>
+        </div>
 
         {/* Content */}
         <div className="p-6">
