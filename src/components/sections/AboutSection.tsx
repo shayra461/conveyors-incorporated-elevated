@@ -17,12 +17,32 @@ const stats = [
   { icon: Users, value: '500+', label: 'Team Members' },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6 },
+  },
+};
+
 export function AboutSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section className="py-20 lg:py-28 bg-background relative overflow-hidden" ref={ref}>
+    <section className="py-24 lg:py-32 bg-background relative overflow-hidden" ref={ref}>
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -31,76 +51,127 @@ export function AboutSection() {
         }} />
       </div>
 
+      {/* Animated Background Elements */}
+      <motion.div
+        className="absolute top-20 right-10 w-72 h-72 rounded-full bg-accent/5 blur-3xl"
+        animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
+        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <motion.div
+        className="absolute bottom-20 left-10 w-96 h-96 rounded-full bg-primary/5 blur-3xl"
+        animate={{ scale: [1.2, 1, 1.2], opacity: [0.3, 0.5, 0.3] }}
+        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+      />
+
       <div className="container mx-auto px-6 relative">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Content */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8 }}
+            variants={containerVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
           >
             {/* Eyebrow */}
-            <div className="flex items-center gap-3 mb-4">
-              <span className="h-px w-12 bg-accent" />
+            <motion.div variants={itemVariants} className="flex items-center gap-3 mb-4">
+              <motion.span 
+                className="h-px w-12 bg-accent"
+                initial={{ width: 0 }}
+                animate={isInView ? { width: 48 } : { width: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+              />
               <span className="text-accent font-medium uppercase tracking-widest text-sm">
                 Who We Are
               </span>
-            </div>
+            </motion.div>
 
-            <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground leading-tight mb-6">
+            <motion.h2 
+              variants={itemVariants}
+              className="font-heading text-4xl md:text-5xl font-bold text-foreground leading-tight mb-6"
+            >
               Built on a Foundation of{' '}
               <span className="text-accent">Engineering Excellence</span>
-            </h2>
+            </motion.h2>
 
-            <p className="text-muted-foreground text-lg leading-relaxed mb-8">
+            <motion.p 
+              variants={itemVariants}
+              className="text-muted-foreground text-lg leading-relaxed mb-8"
+            >
               For over four decades, Conveyors Incorporated has been at the forefront of bulk 
               material handling innovation. Our commitment to quality, precision, and customer 
               success has made us the trusted partner for industries worldwide.
-            </p>
+            </motion.p>
 
             {/* Feature List */}
-            <ul className="space-y-4 mb-10">
+            <motion.ul variants={containerVariants} className="space-y-4 mb-10">
               {features.map((feature, index) => (
                 <motion.li
                   key={feature}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                  className="flex items-center gap-3"
+                  variants={itemVariants}
+                  className="flex items-center gap-3 group"
+                  whileHover={{ x: 5 }}
+                  transition={{ duration: 0.2 }}
                 >
-                  <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
-                  <span className="text-foreground font-medium">{feature}</span>
+                  <motion.div
+                    whileHover={{ scale: 1.2, rotate: 360 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
+                  </motion.div>
+                  <span className="text-foreground font-medium group-hover:text-accent transition-colors duration-300">{feature}</span>
                 </motion.li>
               ))}
-            </ul>
+            </motion.ul>
 
-            <Button variant="default" size="lg">
-              Learn More About Us
-            </Button>
+            <motion.div variants={itemVariants}>
+              <Button variant="default" size="lg" className="group">
+                Learn More About Us
+                <motion.span
+                  className="inline-block ml-2"
+                  animate={{ x: [0, 5, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                >
+                  →
+                </motion.span>
+              </Button>
+            </motion.div>
           </motion.div>
 
           {/* Stats Cards */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
             className="grid gap-6"
           >
             {stats.map((stat, index) => (
               <motion.div
                 key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.4 + index * 0.15 }}
-                className="bg-card rounded-lg p-8 shadow-lg hover-lift flex items-center gap-6 border border-border"
+                initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+                transition={{ duration: 0.6, delay: 0.5 + index * 0.15 }}
+                whileHover={{ 
+                  scale: 1.02, 
+                  y: -5,
+                  boxShadow: '0 20px 40px -15px hsl(var(--accent) / 0.2)'
+                }}
+                className="bg-card rounded-lg p-8 shadow-lg flex items-center gap-6 border border-border cursor-pointer transition-colors duration-300 hover:border-accent/50"
               >
-                <div className="w-16 h-16 rounded bg-accent/10 flex items-center justify-center flex-shrink-0">
+                <motion.div 
+                  className="w-16 h-16 rounded bg-accent/10 flex items-center justify-center flex-shrink-0"
+                  whileHover={{ rotate: 10, scale: 1.1 }}
+                  transition={{ duration: 0.3 }}
+                >
                   <stat.icon className="w-8 h-8 text-accent" />
-                </div>
+                </motion.div>
                 <div>
-                  <div className="font-heading text-3xl font-bold text-foreground">
+                  <motion.div 
+                    className="font-heading text-3xl font-bold text-foreground"
+                    initial={{ opacity: 0 }}
+                    animate={isInView ? { opacity: 1 } : {}}
+                    transition={{ duration: 0.5, delay: 0.7 + index * 0.15 }}
+                  >
                     {stat.value}
-                  </div>
+                  </motion.div>
                   <div className="text-muted-foreground uppercase tracking-wider text-sm">
                     {stat.label}
                   </div>
