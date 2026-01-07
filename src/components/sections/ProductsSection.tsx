@@ -72,18 +72,41 @@ const products = [
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 40, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.5 },
+  },
+};
+
 function ProductCard({ product, index }: { product: typeof products[0]; index: number }) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group relative bg-card rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-500 border border-border"
+      variants={cardVariants}
+      className="group relative bg-card rounded-lg overflow-hidden shadow-md border border-border"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      whileHover={{ 
+        y: -8,
+        boxShadow: '0 25px 50px -12px hsl(var(--accent) / 0.15)'
+      }}
+      transition={{ duration: 0.3 }}
     >
       {/* Image Container */}
       <div className="relative aspect-square bg-gradient-steel p-8 overflow-hidden">
@@ -92,18 +115,24 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
           alt={product.name}
           className="w-full h-full object-contain"
           animate={{ 
-            scale: isHovered ? 1.1 : 1,
+            scale: isHovered ? 1.15 : 1,
             y: isHovered ? -10 : 0,
+            rotate: isHovered ? 2 : 0,
           }}
-          transition={{ duration: 0.4 }}
+          transition={{ duration: 0.4, ease: 'easeOut' }}
         />
         
         {/* Category Badge */}
-        <div className="absolute top-4 left-4">
+        <motion.div 
+          className="absolute top-4 left-4"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: index * 0.05 + 0.3 }}
+        >
           <span className="px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold uppercase tracking-wider rounded">
             {product.category}
           </span>
-        </div>
+        </motion.div>
 
         {/* Hover Overlay */}
         <motion.div
@@ -113,16 +142,21 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
           transition={{ duration: 0.3 }}
         >
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 20 }}
+            initial={{ opacity: 0, y: 20, scale: 0.9 }}
+            animate={{ 
+              opacity: isHovered ? 1 : 0, 
+              y: isHovered ? 0 : 20,
+              scale: isHovered ? 1 : 0.9
+            }}
             transition={{ duration: 0.3, delay: 0.1 }}
             className="text-center p-6"
           >
             <p className="text-primary-foreground/80 text-sm mb-4">
               {product.description}
             </p>
-            <Button variant="heroOutline" size="sm">
+            <Button variant="heroOutline" size="sm" className="group/btn">
               View Details
+              <ArrowRight className="w-4 h-4 ml-1 group-hover/btn:translate-x-1 transition-transform" />
             </Button>
           </motion.div>
         </motion.div>
@@ -130,7 +164,7 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
 
       {/* Content */}
       <div className="p-5">
-        <h3 className="font-heading text-lg font-bold text-foreground group-hover:text-accent transition-colors">
+        <h3 className="font-heading text-lg font-bold text-foreground group-hover:text-accent transition-colors duration-300">
           {product.name}
         </h3>
       </div>
@@ -143,8 +177,15 @@ export function ProductsSection() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section className="py-20 lg:py-28 bg-muted" ref={ref}>
-      <div className="container mx-auto px-6">
+    <section className="py-24 lg:py-32 bg-muted relative overflow-hidden" ref={ref}>
+      {/* Background decoration */}
+      <motion.div
+        className="absolute top-0 left-1/4 w-96 h-96 rounded-full bg-accent/5 blur-3xl"
+        animate={{ y: [0, 30, 0], opacity: [0.3, 0.5, 0.3] }}
+        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+      />
+
+      <div className="container mx-auto px-6 relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -153,39 +194,64 @@ export function ProductsSection() {
           className="text-center max-w-3xl mx-auto mb-16"
         >
           <div className="flex items-center justify-center gap-3 mb-4">
-            <span className="h-px w-12 bg-accent" />
+            <motion.span 
+              className="h-px bg-accent"
+              initial={{ width: 0 }}
+              animate={isInView ? { width: 48 } : { width: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            />
             <span className="text-accent font-medium uppercase tracking-widest text-sm">
               Our Products
             </span>
-            <span className="h-px w-12 bg-accent" />
+            <motion.span 
+              className="h-px bg-accent"
+              initial={{ width: 0 }}
+              animate={isInView ? { width: 48 } : { width: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            />
           </div>
-          <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-6">
+          <motion.h2 
+            className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
             Precision-Engineered <span className="text-accent">Components</span>
-          </h2>
-          <p className="text-muted-foreground text-lg">
+          </motion.h2>
+          <motion.p 
+            className="text-muted-foreground text-lg"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             From individual components to complete conveyor systems, we deliver 
             quality that keeps your operations running smoothly.
-          </p>
+          </motion.p>
         </motion.div>
 
         {/* Products Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <motion.div 
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
           {products.map((product, index) => (
             <ProductCard key={product.id} product={product} index={index} />
           ))}
-        </div>
+        </motion.div>
 
         {/* CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          className="text-center mt-12"
+          transition={{ duration: 0.5, delay: 0.6 }}
+          className="text-center mt-16"
         >
           <Button variant="default" size="lg" className="group">
             View All Products
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
           </Button>
         </motion.div>
       </div>

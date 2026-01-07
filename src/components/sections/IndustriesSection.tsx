@@ -3,7 +3,6 @@ import { useRef, useState } from 'react';
 import { 
   Factory, 
   Wheat, 
-  Mountain, 
   Fuel, 
   Package, 
   Recycle,
@@ -61,24 +60,44 @@ function Mining({ className }: { className?: string }) {
   );
 }
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 30, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.5 },
+  },
+};
+
 function IndustryCard({ industry, index }: { industry: typeof industries[0]; index: number }) {
   const [isHovered, setIsHovered] = useState(false);
   const Icon = industry.icon;
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      variants={cardVariants}
       className="group relative"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      whileHover={{ y: -8 }}
+      transition={{ duration: 0.3 }}
     >
       <div className="relative bg-card rounded-lg p-8 h-full border border-border overflow-hidden transition-all duration-500 hover:border-accent hover:shadow-xl">
         {/* Background Glow on Hover */}
         <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent"
+          className="absolute inset-0 bg-gradient-to-br from-accent/10 to-transparent"
           initial={{ opacity: 0 }}
           animate={{ opacity: isHovered ? 1 : 0 }}
           transition={{ duration: 0.3 }}
@@ -89,8 +108,9 @@ function IndustryCard({ industry, index }: { industry: typeof industries[0]; ind
           <motion.div
             className="w-16 h-16 rounded bg-primary flex items-center justify-center mb-6"
             animate={{ 
-              scale: isHovered ? 1.05 : 1,
-              backgroundColor: isHovered ? 'hsl(var(--accent))' : 'hsl(var(--primary))'
+              scale: isHovered ? 1.1 : 1,
+              backgroundColor: isHovered ? 'hsl(var(--accent))' : 'hsl(var(--primary))',
+              rotate: isHovered ? 5 : 0,
             }}
             transition={{ duration: 0.3 }}
           >
@@ -98,7 +118,7 @@ function IndustryCard({ industry, index }: { industry: typeof industries[0]; ind
           </motion.div>
 
           {/* Content */}
-          <h3 className="font-heading text-xl font-bold text-foreground mb-3 group-hover:text-accent transition-colors">
+          <h3 className="font-heading text-xl font-bold text-foreground mb-3 group-hover:text-accent transition-colors duration-300">
             {industry.name}
           </h3>
           <p className="text-muted-foreground text-sm leading-relaxed mb-4">
@@ -113,7 +133,12 @@ function IndustryCard({ industry, index }: { industry: typeof industries[0]; ind
             transition={{ duration: 0.3 }}
           >
             Learn More
-            <ArrowRight className="w-4 h-4" />
+            <motion.div
+              animate={{ x: isHovered ? [0, 5, 0] : 0 }}
+              transition={{ duration: 0.8, repeat: isHovered ? Infinity : 0 }}
+            >
+              <ArrowRight className="w-4 h-4" />
+            </motion.div>
           </motion.div>
         </div>
       </div>
@@ -126,8 +151,15 @@ export function IndustriesSection() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section className="py-20 lg:py-28 bg-background" ref={ref}>
-      <div className="container mx-auto px-6">
+    <section className="py-24 lg:py-32 bg-background relative overflow-hidden" ref={ref}>
+      {/* Background Elements */}
+      <motion.div
+        className="absolute top-1/2 -right-20 w-80 h-80 rounded-full bg-accent/5 blur-3xl"
+        animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.5, 0.3] }}
+        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+      />
+
+      <div className="container mx-auto px-6 relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -136,27 +168,52 @@ export function IndustriesSection() {
           className="text-center max-w-3xl mx-auto mb-16"
         >
           <div className="flex items-center justify-center gap-3 mb-4">
-            <span className="h-px w-12 bg-accent" />
+            <motion.span 
+              className="h-px bg-accent"
+              initial={{ width: 0 }}
+              animate={isInView ? { width: 48 } : { width: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            />
             <span className="text-accent font-medium uppercase tracking-widest text-sm">
               Industries We Serve
             </span>
-            <span className="h-px w-12 bg-accent" />
+            <motion.span 
+              className="h-px bg-accent"
+              initial={{ width: 0 }}
+              animate={isInView ? { width: 48 } : { width: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            />
           </div>
-          <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-6">
+          <motion.h2 
+            className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
             Solutions for <span className="text-accent">Every Industry</span>
-          </h2>
-          <p className="text-muted-foreground text-lg">
+          </motion.h2>
+          <motion.p 
+            className="text-muted-foreground text-lg"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             From mining to manufacturing, our conveyor systems power operations 
             across diverse industries worldwide.
-          </p>
+          </motion.p>
         </motion.div>
 
         {/* Industries Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
           {industries.map((industry, index) => (
             <IndustryCard key={industry.id} industry={industry} index={index} />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
