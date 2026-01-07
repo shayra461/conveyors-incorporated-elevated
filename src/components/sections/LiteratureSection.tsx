@@ -47,7 +47,7 @@ function LiteratureCard({ item, index }: { item: typeof literatureItems[0]; inde
     >
       <div className="relative bg-card rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 border border-border">
         {/* Book Image Container */}
-        <div className="relative h-64 bg-gradient-to-br from-muted to-secondary flex items-center justify-center p-8 overflow-hidden">
+        <div className="relative h-64 bg-gradient-to-br from-muted to-secondary flex items-center justify-center p-8">
           {/* Background Pattern */}
           <div className="absolute inset-0 opacity-10">
             <div className="absolute inset-0" style={{
@@ -62,34 +62,25 @@ function LiteratureCard({ item, index }: { item: typeof literatureItems[0]; inde
             alt={item.title}
             className="h-48 w-auto object-contain relative z-10 drop-shadow-2xl"
             animate={{ 
-              scale: isHovered ? 1.08 : 1,
-              rotateY: isHovered ? -5 : 0,
-              y: isHovered ? -8 : 0,
+              scale: isHovered ? 1.05 : 1,
+              y: isHovered ? -5 : 0,
             }}
             transition={{ duration: 0.4, ease: 'easeOut' }}
           />
-
-          {/* Hover Overlay */}
-          <motion.div
-            className="absolute inset-0 bg-gradient-hero flex items-center justify-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: isHovered ? 0.95 : 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: isHovered ? 1 : 0, scale: isHovered ? 1 : 0.9 }}
-              transition={{ duration: 0.3, delay: 0.1 }}
-              className="text-center"
-            >
-              <Button variant="heroOutline" size="default" className="group/btn">
-                <Download className="w-4 h-4 mr-2" />
-                View Resources
-                <ExternalLink className="w-4 h-4 ml-2 opacity-0 group-hover/btn:opacity-100 transition-opacity" />
-              </Button>
-            </motion.div>
-          </motion.div>
         </div>
+
+        {/* Hover Button - positioned below the image area */}
+        <motion.div
+          className="absolute left-0 right-0 bottom-[120px] flex justify-center z-20 pointer-events-none"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 10 }}
+          transition={{ duration: 0.3 }}
+        >
+          <Button variant="hero" size="default" className="pointer-events-auto shadow-xl">
+            <Download className="w-4 h-4 mr-2" />
+            View Resources
+          </Button>
+        </motion.div>
 
         {/* Content */}
         <div className="p-6">
