@@ -1,0 +1,147 @@
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { Phone, Mail, MapPin, Linkedin, Facebook, Twitter, Youtube, ArrowRight } from 'lucide-react';
+import logo from '@/assets/logo.png';
+
+const quickLinks = [
+  { label: 'About Us', path: '/about' },
+  { label: 'Products', path: '/products' },
+  { label: 'Industries', path: '/industries' },
+  { label: 'Training', path: '/training' },
+  { label: 'Contact', path: '/contact' },
+];
+
+const productLinks = [
+  { label: 'Screw Conveyors', path: '/products' },
+  { label: 'Belt Conveyors', path: '/products' },
+  { label: 'Bucket Elevators', path: '/products' },
+  { label: 'Custom Solutions', path: '/products' },
+];
+
+const socialLinks = [
+  { icon: Linkedin, href: '#', label: 'LinkedIn' },
+  { icon: Facebook, href: '#', label: 'Facebook' },
+  { icon: Twitter, href: '#', label: 'Twitter' },
+  { icon: Youtube, href: '#', label: 'YouTube' },
+];
+
+export function Footer() {
+  return (
+    <footer className="bg-gradient-dark text-primary-foreground">
+      {/* Main Footer */}
+      <div className="container mx-auto px-6 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          {/* Company Info */}
+          <div className="space-y-6">
+            <img src={logo} alt="Conveyors Incorporated" className="h-12 w-auto" />
+            <p className="text-primary-foreground/70 text-sm leading-relaxed">
+              Industry leaders in bulk material handling and conveyor systems manufacturing. 
+              Engineering excellence since 1977.
+            </p>
+            <div className="flex gap-3">
+              {socialLinks.map((social) => (
+                <motion.a
+                  key={social.label}
+                  href={social.href}
+                  aria-label={social.label}
+                  className="w-10 h-10 rounded bg-primary-foreground/10 flex items-center justify-center hover:bg-accent transition-colors duration-300"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <social.icon className="w-5 h-5" />
+                </motion.a>
+              ))}
+            </div>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h4 className="font-heading text-lg font-bold mb-6 uppercase tracking-wider">Quick Links</h4>
+            <ul className="space-y-3">
+              {quickLinks.map((link) => (
+                <li key={link.path}>
+                  <Link
+                    to={link.path}
+                    className="text-primary-foreground/70 hover:text-accent transition-colors duration-300 text-sm flex items-center gap-2 group"
+                  >
+                    <ArrowRight className="w-4 h-4 opacity-0 -ml-6 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300" />
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Products */}
+          <div>
+            <h4 className="font-heading text-lg font-bold mb-6 uppercase tracking-wider">Products</h4>
+            <ul className="space-y-3">
+              {productLinks.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    to={link.path}
+                    className="text-primary-foreground/70 hover:text-accent transition-colors duration-300 text-sm flex items-center gap-2 group"
+                  >
+                    <ArrowRight className="w-4 h-4 opacity-0 -ml-6 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300" />
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact Info */}
+          <div>
+            <h4 className="font-heading text-lg font-bold mb-6 uppercase tracking-wider">Contact Us</h4>
+            <ul className="space-y-4">
+              <li>
+                <a
+                  href="tel:+18005551234"
+                  className="flex items-start gap-3 text-primary-foreground/70 hover:text-accent transition-colors duration-300 text-sm"
+                >
+                  <Phone className="w-5 h-5 mt-0.5 text-accent" />
+                  <span>1-800-555-1234</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="mailto:info@conveyorsinc.com"
+                  className="flex items-start gap-3 text-primary-foreground/70 hover:text-accent transition-colors duration-300 text-sm"
+                >
+                  <Mail className="w-5 h-5 mt-0.5 text-accent" />
+                  <span>info@conveyorsinc.com</span>
+                </a>
+              </li>
+              <li>
+                <div className="flex items-start gap-3 text-primary-foreground/70 text-sm">
+                  <MapPin className="w-5 h-5 mt-0.5 text-accent flex-shrink-0" />
+                  <span>
+                    123 Industrial Parkway<br />
+                    Manufacturing City, TX 75001
+                  </span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="border-t border-primary-foreground/10">
+        <div className="container mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-primary-foreground/50 text-sm">
+            © {new Date().getFullYear()} Conveyors Incorporated. All rights reserved.
+          </p>
+          <div className="flex gap-6 text-sm">
+            <a href="#" className="text-primary-foreground/50 hover:text-accent transition-colors">
+              Privacy Policy
+            </a>
+            <a href="#" className="text-primary-foreground/50 hover:text-accent transition-colors">
+              Terms of Service
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
