@@ -33,7 +33,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Company Info */}
           <div className="space-y-6">
-            <img src={logo} alt="Conveyors Incorporated" className="h-12 w-auto" />
+            <img src={logo} alt="Conveyors Incorporated" className="h-16 w-auto" />
             <p className="text-primary-foreground/70 text-sm leading-relaxed">
               Industry leaders in bulk material handling and conveyor systems manufacturing. 
               Engineering excellence since 1977.

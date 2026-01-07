@@ -41,7 +41,7 @@ export function Header() {
           <motion.img
             src={logo}
             alt="Conveyors Incorporated"
-            className="h-12 md:h-14 w-auto"
+            className="h-14 md:h-16 lg:h-18 w-auto"
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.2 }}
           />
