@@ -3,71 +3,71 @@ import { useRef, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-// Import product images
-import mountingPlate from '@/assets/products/mounting-plate.png';
-import shaftPin from '@/assets/products/shaft-pin.png';
-import bearingBlock from '@/assets/products/bearing-block.png';
-import beltSupport from '@/assets/products/belt-support.png';
-import troughLiner from '@/assets/products/trough-liner.png';
-import screwFlight from '@/assets/products/screw-flight.png';
-import troughSection from '@/assets/products/trough-section.png';
-import couplingBolt from '@/assets/products/coupling-bolt.png';
+// Import product images with correct names
+import screwConveyors from '@/assets/products/screw-conveyors.png';
+import screwFeeders from '@/assets/products/screw-feeders.png';
+import shaftlessConveyors from '@/assets/products/shaftless-conveyors.png';
+import verticalScrew from '@/assets/products/vertical-screw.png';
+import bucketElevators from '@/assets/products/bucket-elevators.png';
+import dragConveyors from '@/assets/products/drag-conveyors.png';
+import cemaComponents from '@/assets/products/cema-components.png';
+import classifierWashers from '@/assets/products/classifier-washers.png';
 
 const products = [
   {
     id: 1,
     name: 'Screw Conveyors',
     category: 'Conveyors',
-    image: troughSection,
+    image: screwConveyors,
     description: 'Archimedes in the 3rd century BC developed the 1st screw conveyor. Today, screw conveyors are used in countless applications.',
   },
   {
     id: 2,
     name: 'Screw Feeders',
     category: 'Feeders',
-    image: shaftPin,
+    image: screwFeeders,
     description: 'Screw Feeders are similar to Screw Conveyors because they both move product from one point to another.',
   },
   {
     id: 3,
     name: 'Shaftless Conveyors',
     category: 'Conveyors',
-    image: screwFlight,
+    image: shaftlessConveyors,
     description: 'Shaftless Screw Conveyors are a specialized alternative to the standard Shafted Screw Conveyor.',
   },
   {
     id: 4,
     name: 'Vertical Screw',
     category: 'Conveyors',
-    image: troughLiner,
+    image: verticalScrew,
     description: 'A specialized screw feeder capable of conveying materials where a very steep incline is required.',
   },
   {
     id: 5,
     name: 'Bucket Elevators',
     category: 'Elevators',
-    image: beltSupport,
+    image: bucketElevators,
     description: 'Bucket elevators are one of the most efficient ways of conveying bulk materials vertically.',
   },
   {
     id: 6,
     name: 'Drag Conveyors',
     category: 'Conveyors',
-    image: bearingBlock,
+    image: dragConveyors,
     description: 'Drag Conveyors are one of the most energy efficient ways to convey bulk materials over distances.',
   },
   {
     id: 7,
     name: 'CEMA Components',
     category: 'Components',
-    image: mountingPlate,
+    image: cemaComponents,
     description: 'CEMA Screw components consist of standard components for screw conveyors and bucket elevators.',
   },
   {
     id: 8,
     name: 'Classifier & Washers',
     category: 'Equipment',
-    image: couplingBolt,
+    image: classifierWashers,
     description: 'Classifiers and Washers are used to separate sand or grit from a liquid slurry or sludge.',
   },
 ];
