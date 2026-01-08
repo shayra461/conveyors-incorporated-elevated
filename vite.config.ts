@@ -5,7 +5,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: "/", // 👈 Set to root for GitHub Pages deployment
+  base: "/conveyors-incorporated-elevated/", // 👈 Must match repository name
 
   server: {
     host: "::",
