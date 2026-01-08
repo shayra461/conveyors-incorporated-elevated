@@ -69,7 +69,7 @@ function LiteratureCard({ item, index }: { item: typeof literatureItems[0]; inde
         {/* Book Image Container */}
         <div className="relative h-64 bg-gradient-to-br from-muted to-secondary flex items-center justify-center p-8 overflow-hidden">
           {/* Background Pattern */}
-          <motion.div 
+          <motion.div
             className="absolute inset-0 opacity-10"
             animate={{ opacity: isHovered ? 0.2 : 0.1 }}
             transition={{ duration: 0.3 }}
@@ -79,13 +79,13 @@ function LiteratureCard({ item, index }: { item: typeof literatureItems[0]; inde
               backgroundSize: '20px 20px',
             }} />
           </motion.div>
-          
+
           {/* Book Image */}
           <motion.img
             src={item.image}
             alt={item.title}
             className="h-48 w-auto object-contain relative z-10 drop-shadow-2xl"
-            animate={{ 
+            animate={{
               scale: isHovered ? 1.1 : 1,
               y: isHovered ? -8 : 0,
               rotate: isHovered ? 3 : 0,
@@ -115,7 +115,7 @@ function LiteratureCard({ item, index }: { item: typeof literatureItems[0]; inde
 
         {/* Content */}
         <div className="p-6">
-          <motion.div 
+          <motion.div
             className="flex items-center gap-2 mb-3"
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
@@ -143,14 +143,14 @@ export function LiteratureSection() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section className="py-24 lg:py-32 bg-background relative overflow-hidden" ref={ref}>
+    <section className="pt-12 pb-24 lg:pb-32 bg-background relative overflow-hidden" ref={ref}>
       {/* Background Decorations */}
-      <motion.div 
+      <motion.div
         className="absolute top-0 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl"
         animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
         transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
       />
-      <motion.div 
+      <motion.div
         className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"
         animate={{ scale: [1.2, 1, 1.2], opacity: [0.3, 0.5, 0.3] }}
         transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
@@ -165,7 +165,7 @@ export function LiteratureSection() {
           className="text-center max-w-3xl mx-auto mb-16"
         >
           <div className="flex items-center justify-center gap-3 mb-4">
-            <motion.span 
+            <motion.span
               className="h-px bg-accent"
               initial={{ width: 0 }}
               animate={isInView ? { width: 48 } : { width: 0 }}
@@ -174,14 +174,14 @@ export function LiteratureSection() {
             <span className="text-accent font-medium uppercase tracking-widest text-sm">
               Resources
             </span>
-            <motion.span 
+            <motion.span
               className="h-px bg-accent"
               initial={{ width: 0 }}
               animate={isInView ? { width: 48 } : { width: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             />
           </div>
-          <motion.h2 
+          <motion.h2
             className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -189,19 +189,19 @@ export function LiteratureSection() {
           >
             Technical <span className="text-accent">Literature</span>
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-muted-foreground text-lg"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Access our collection of engineering guides, product brochures, and design worksheets 
+            Access our collection of engineering guides, product brochures, and design worksheets
             for bulk material handling equipment.
           </motion.p>
         </motion.div>
 
         {/* Literature Grid */}
-        <motion.div 
+        <motion.div
           className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto"
           variants={containerVariants}
           initial="hidden"

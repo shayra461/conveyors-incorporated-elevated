@@ -29,11 +29,10 @@ export function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled
-          ? 'bg-card/95 backdrop-blur-md shadow-lg py-3'
-          : 'bg-transparent py-5'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
+        ? 'bg-slate-950/90 backdrop-blur-md shadow-2xl py-2' // Removed border-b to fix "white line" flash
+        : 'bg-gradient-to-b from-black/60 to-transparent py-4'
+        }`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
@@ -41,8 +40,8 @@ export function Header() {
           <motion.img
             src={logo}
             alt="Conveyors Incorporated"
-            className="h-14 md:h-16 lg:h-18 w-auto"
-            whileHover={{ scale: 1.02 }}
+            className="h-20 md:h-24 lg:h-32 w-auto min-w-[180px] object-contain"
+            whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.2 }}
           />
         </Link>
@@ -53,23 +52,16 @@ export function Header() {
             <Link
               key={item.path}
               to={item.path}
-              className={`px-4 py-2 text-sm font-medium uppercase tracking-wider transition-all duration-300 relative group ${
-                location.pathname === item.path
-                  ? 'text-accent'
-                  : isScrolled
-                  ? 'text-foreground hover:text-accent'
-                  : 'text-primary-foreground hover:text-accent'
-              }`}
+              className={`px-4 py-2 text-sm font-bold uppercase tracking-widest transition-all duration-300 relative group text-white/90 hover:text-white`}
             >
               {item.label}
               <span
-                className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-accent transition-all duration-300 ${
-                  location.pathname === item.path ? 'w-full' : 'w-0 group-hover:w-full'
-                }`}
+                className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-accent transition-all duration-300 ${location.pathname === item.path ? 'w-full' : 'w-0 group-hover:w-full'
+                  }`}
               />
             </Link>
           ))}
-          <Button variant="hero" size="sm" className="ml-4">
+          <Button variant="accent" size="sm" className="ml-4 font-bold shadow-[0_0_20px_rgba(234,179,8,0.3)] hover:shadow-[0_0_30px_rgba(234,179,8,0.5)] transition-shadow">
             Get Quote
           </Button>
         </nav>
@@ -81,9 +73,9 @@ export function Header() {
           aria-label="Toggle menu"
         >
           {isMobileMenuOpen ? (
-            <X className={`w-6 h-6 ${isScrolled ? 'text-foreground' : 'text-primary-foreground'}`} />
+            <X className="w-8 h-8 text-white" />
           ) : (
-            <Menu className={`w-6 h-6 ${isScrolled ? 'text-foreground' : 'text-primary-foreground'}`} />
+            <Menu className="w-8 h-8 text-white" />
           )}
         </button>
 
@@ -108,11 +100,10 @@ export function Header() {
                     <Link
                       to={item.path}
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className={`block px-4 py-3 text-base font-medium uppercase tracking-wider transition-colors ${
-                        location.pathname === item.path
-                          ? 'text-accent bg-muted'
-                          : 'text-foreground hover:text-accent hover:bg-muted'
-                      }`}
+                      className={`block px-4 py-3 text-base font-medium uppercase tracking-wider transition-colors ${location.pathname === item.path
+                        ? 'text-accent bg-muted'
+                        : 'text-foreground hover:text-accent hover:bg-muted'
+                        }`}
                     >
                       {item.label}
                     </Link>

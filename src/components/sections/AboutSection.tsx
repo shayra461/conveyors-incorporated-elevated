@@ -1,185 +1,154 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { CheckCircle, Award, Users, Factory } from 'lucide-react';
+import { CheckCircle, Award, Users, Factory, ArrowRight, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-
-const features = [
-  'Precision-engineered components',
-  'Custom solutions for every application',
-  'Industry-leading durability',
-  'Expert technical support',
-];
-
-const stats = [
-  { icon: Factory, value: '200,000+', label: 'Sq. Ft. Manufacturing' },
-  { icon: Award, value: '50+', label: 'Patents Held' },
-  { icon: Users, value: '500+', label: 'Team Members' },
-];
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.2,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6 },
-  },
-};
+import manufacturingImg from '@/assets/industries/manufacturing.png'; // Reusing for "Since 1974" visual
+import miningImg from '@/assets/industries/mining.png';
 
 export function AboutSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, scale: 0.95, y: 20 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      transition: { duration: 0.5, stiffness: 50 }
+    }
+  };
+
   return (
-    <section className="py-24 lg:py-32 bg-background relative overflow-hidden" ref={ref}>
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `repeating-linear-gradient(90deg, hsl(var(--foreground)) 0px, hsl(var(--foreground)) 1px, transparent 1px, transparent 100px),
-                            repeating-linear-gradient(0deg, hsl(var(--foreground)) 0px, hsl(var(--foreground)) 1px, transparent 1px, transparent 100px)`,
-        }} />
-      </div>
+    <section className="py-24 bg-slate-950 text-white relative overflow-hidden" ref={ref}>
+      <div className="container mx-auto px-4">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          className="mb-16 text-center max-w-2xl mx-auto"
+        >
+          <span className="text-accent font-bold tracking-widest uppercase text-sm mb-4 block">Who We Are</span>
+          <h2 className="font-heading text-4xl md:text-5xl font-bold mb-6">
+            Redefining <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-red-400">Excellence</span>
+          </h2>
+        </motion.div>
 
-      {/* Animated Background Elements */}
-      <motion.div
-        className="absolute top-20 right-10 w-72 h-72 rounded-full bg-accent/5 blur-3xl"
-        animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-      />
-      <motion.div
-        className="absolute bottom-20 left-10 w-96 h-96 rounded-full bg-primary/5 blur-3xl"
-        animate={{ scale: [1.2, 1, 1.2], opacity: [0.3, 0.5, 0.3] }}
-        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-      />
+        {/* Bento Grid */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-4 gap-4 md:gap-6 auto-rows-[minmax(180px,auto)]"
+        >
 
-      <div className="container mx-auto px-6 relative">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Content */}
+          {/* Tile 1: Main Story (Large) */}
           <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
+            variants={itemVariants}
+            className="md:col-span-4 lg:col-span-2 md:row-span-2 bg-slate-900 rounded-3xl p-8 md:p-12 flex flex-col justify-between border border-white/5 relative overflow-hidden group"
           >
-            {/* Eyebrow */}
-            <motion.div variants={itemVariants} className="flex items-center gap-3 mb-4">
-              <motion.span 
-                className="h-px w-12 bg-accent"
-                initial={{ width: 0 }}
-                animate={isInView ? { width: 48 } : { width: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-              />
-              <span className="text-accent font-medium uppercase tracking-widest text-sm">
-                Who We Are
-              </span>
-            </motion.div>
+            <div className="absolute top-0 right-0 p-32 bg-accent/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
 
-            <motion.h2 
-              variants={itemVariants}
-              className="font-heading text-4xl md:text-5xl font-bold text-foreground leading-tight mb-6"
-            >
-              Built on a Foundation of{' '}
-              <span className="text-accent">Engineering Excellence</span>
-            </motion.h2>
+            <div>
+              <h3 className="text-3xl font-bold mb-6 leading-tight">
+                Built on a Foundation of <br />
+                <span className="text-white">Engineering Mastery</span>
+              </h3>
+              <p className="text-slate-400 text-lg leading-relaxed mb-8">
+                For over five decades, Conveyors Inc. has led the industry in bulk material handling.
+                We don't just build conveyors; we engineer the lifeline of your operation.
+              </p>
+            </div>
 
-            <motion.p 
-              variants={itemVariants}
-              className="text-muted-foreground text-lg leading-relaxed mb-8"
-            >
-              For over four decades, Conveyors Incorporated has been at the forefront of bulk 
-              material handling innovation. Our commitment to quality, precision, and customer 
-              success has made us the trusted partner for industries worldwide.
-            </motion.p>
-
-            {/* Feature List */}
-            <motion.ul variants={containerVariants} className="space-y-4 mb-10">
-              {features.map((feature, index) => (
-                <motion.li
-                  key={feature}
-                  variants={itemVariants}
-                  className="flex items-center gap-3 group"
-                  whileHover={{ x: 5 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <motion.div
-                    whileHover={{ scale: 1.2, rotate: 360 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
-                  </motion.div>
-                  <span className="text-foreground font-medium group-hover:text-accent transition-colors duration-300">{feature}</span>
-                </motion.li>
-              ))}
-            </motion.ul>
-
-            <motion.div variants={itemVariants}>
-              <Button variant="default" size="lg" className="group">
-                Learn More About Us
-                <motion.span
-                  className="inline-block ml-2"
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                >
-                  →
-                </motion.span>
+            <div className="flex flex-wrap gap-4">
+              <Button className="bg-white text-slate-900 hover:bg-zinc-200 transition-colors rounded-full px-8 py-6 text-base font-bold">
+                Our Story <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
-            </motion.div>
+            </div>
           </motion.div>
 
-          {/* Stats Cards */}
+          {/* Tile 2: Legacy Image (Tall) */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="grid gap-6"
+            variants={itemVariants}
+            className="md:col-span-2 lg:col-span-1 md:row-span-2 relative rounded-3xl overflow-hidden group min-h-[300px]"
           >
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-                transition={{ duration: 0.6, delay: 0.5 + index * 0.15 }}
-                whileHover={{ 
-                  scale: 1.02, 
-                  y: -5,
-                  boxShadow: '0 20px 40px -15px hsl(var(--accent) / 0.2)'
-                }}
-                className="bg-card rounded-lg p-8 shadow-lg flex items-center gap-6 border border-border cursor-pointer transition-colors duration-300 hover:border-accent/50"
-              >
-                <motion.div 
-                  className="w-16 h-16 rounded bg-accent/10 flex items-center justify-center flex-shrink-0"
-                  whileHover={{ rotate: 10, scale: 1.1 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <stat.icon className="w-8 h-8 text-accent" />
-                </motion.div>
-                <div>
-                  <motion.div 
-                    className="font-heading text-3xl font-bold text-foreground"
-                    initial={{ opacity: 0 }}
-                    animate={isInView ? { opacity: 1 } : {}}
-                    transition={{ duration: 0.5, delay: 0.7 + index * 0.15 }}
-                  >
-                    {stat.value}
-                  </motion.div>
-                  <div className="text-muted-foreground uppercase tracking-wider text-sm">
-                    {stat.label}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+            <img
+              src={miningImg}
+              alt="Legacy of heavy industry"
+              className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+            <div className="absolute bottom-0 left-0 p-8">
+              <div className="text-6xl font-heading font-bold text-white/90 mb-2 drop-shadow-lg">1974</div>
+              <div className="text-xl font-bold text-white">Established Legacy</div>
+              <p className="text-slate-300 text-sm mt-2">Texas-born, globally trusted.</p>
+            </div>
           </motion.div>
-        </div>
+
+          {/* Tile 3: Stat 1 (Square) */}
+          <motion.div
+            variants={itemVariants}
+            whileHover={{ y: -5 }}
+            className="md:col-span-2 lg:col-span-1 bg-accent rounded-3xl p-8 flex flex-col justify-center items-center text-center relative overflow-hidden"
+          >
+            <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-black to-transparent" />
+            <Factory className="w-10 h-10 mb-4 text-white/80" />
+            <div className="text-4xl font-bold mb-1">200k+</div>
+            <div className="text-xs font-bold uppercase tracking-widest text-white/60">Sq. Ft. Facility</div>
+          </motion.div>
+
+          {/* Tile 4: Stat 2 (Wide on mobile, square on desk) */}
+          <motion.div
+            variants={itemVariants}
+            whileHover={{ y: -5 }}
+            className="md:col-span-2 lg:col-span-1 bg-slate-900 border border-white/5 rounded-3xl p-8 flex flex-col justify-center items-center text-center hover:bg-slate-800 transition-colors"
+          >
+            <Award className="w-10 h-10 mb-4 text-accent" />
+            <div className="text-4xl font-bold mb-1 text-white">50+</div>
+            <div className="text-xs font-bold uppercase tracking-widest text-slate-500">Patents Held</div>
+          </motion.div>
+
+          {/* Tile 5: Features (Wide list) */}
+          <motion.div
+            variants={itemVariants}
+            className="md:col-span-4 lg:col-span-2 bg-slate-900 border border-white/5 rounded-3xl p-8 md:p-10 flex items-center"
+          >
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 w-full">
+              {[
+                "Precision Components",
+                "Custom Solutions",
+                "Industry Durability",
+                "Expert Support"
+              ].map((feature) => (
+                <div key={feature} className="flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
+                  <span className="font-medium text-slate-300">{feature}</span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Tile 6: Team Stat */}
+          <motion.div
+            variants={itemVariants}
+            whileHover={{ y: -5 }}
+            className="md:col-span-2 lg:col-span-1 bg-white text-slate-950 rounded-3xl p-8 flex flex-col justify-center items-center text-center"
+          >
+            <Users className="w-10 h-10 mb-4 text-accent" />
+            <div className="text-4xl font-bold mb-1">500+</div>
+            <div className="text-xs font-bold uppercase tracking-widest text-slate-500">Team Members</div>
+          </motion.div>
+
+        </motion.div>
       </div>
     </section>
   );

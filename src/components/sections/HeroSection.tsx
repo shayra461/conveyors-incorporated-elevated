@@ -1,23 +1,72 @@
-import { motion } from 'framer-motion';
+import { motion, useInView, useSpring, useMotionValue } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import heroBg from '@/assets/hero-bg.jpg';
+import heroVideo from '@/assets/hero-video.mp4';
 import badge45Years from '@/assets/45-years-badge.png';
+import { useEffect, useRef } from 'react';
+
+function Counter({ value, label }: { value: string; label: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const motionValue = useMotionValue(0);
+  const springValue = useSpring(motionValue, { duration: 3000 });
+
+  // Extract number and suffix
+  const numericValue = parseInt(value.replace(/,/g, ''), 10);
+  const suffix = value.replace(/[0-9,]/g, '');
+
+  useEffect(() => {
+    if (inView) {
+      motionValue.set(numericValue);
+    }
+  }, [inView, motionValue, numericValue]);
+
+  return (
+    <div ref={ref}>
+      <div className="font-heading text-4xl md:text-5xl font-bold text-accent flex items-center">
+        <DisplayValue value={springValue} />
+        {suffix}
+      </div>
+      <div className="text-white text-sm uppercase tracking-wider mt-1 font-bold drop-shadow-md">
+        {label}
+      </div>
+    </div>
+  );
+}
+
+function DisplayValue({ value }: { value: import("framer-motion").MotionValue<number> }) {
+  const ref = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    return value.on("change", (latest) => {
+      if (ref.current) {
+        ref.current.textContent = Math.floor(latest).toLocaleString();
+      }
+    });
+  }, [value]);
+
+  return <span ref={ref}>0</span>;
+}
 
 export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
-      <div className="absolute inset-0">
-        <img
-          src={heroBg}
-          alt="Industrial conveyor systems"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-hero opacity-90" />
+      <div className="absolute inset-0 z-0 overflow-hidden flex items-center justify-center bg-slate-900">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute min-w-[100vh] min-h-[100vw] w-auto h-auto object-cover transform -rotate-90"
+        >
+          <source src={heroVideo} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <div className="absolute inset-0 bg-gradient-hero opacity-75 z-10" />
         {/* Animated gradient overlay */}
         <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-primary/20 to-transparent"
+          className="absolute inset-0 bg-gradient-to-r from-primary/20 to-transparent z-10"
           animate={{
             opacity: [0.3, 0.5, 0.3],
           }}
@@ -53,8 +102,8 @@ export function HeroSection() {
             transition={{ duration: 0.6 }}
             className="flex items-center gap-3 mb-6"
           >
-            <span className="h-px w-12 bg-accent" />
-            <span className="text-accent font-medium uppercase tracking-widest text-sm">
+            <span className="h-px w-12 bg-yellow-400/80 shadow-[0_0_10px_rgba(250,204,21,0.5)]" />
+            <span className="text-yellow-400 font-bold uppercase tracking-widest text-sm drop-shadow-md">
               Industry Leaders Since 1977
             </span>
           </motion.div>
@@ -79,7 +128,7 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-xl md:text-2xl text-primary-foreground/80 leading-relaxed mb-10 max-w-2xl"
           >
-            Premium conveyor systems designed and manufactured to move your 
+            Premium conveyor systems designed and manufactured to move your
             business forward. Trusted by industry leaders worldwide.
           </motion.p>
 
@@ -104,7 +153,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="flex flex-wrap gap-8 md:gap-16 mt-16 pt-16 border-t border-primary-foreground/10"
+            className="flex flex-wrap gap-8 md:gap-16 mt-16 p-8 bg-slate-950/40 backdrop-blur-md rounded-2xl border border-white/10"
           >
             {[
               { value: '45+', label: 'Years Experience' },
@@ -117,12 +166,7 @@ export function HeroSection() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
               >
-                <div className="font-heading text-4xl md:text-5xl font-bold text-accent">
-                  {stat.value}
-                </div>
-                <div className="text-primary-foreground/60 text-sm uppercase tracking-wider mt-1">
-                  {stat.label}
-                </div>
+                <Counter value={stat.value} label={stat.label} />
               </motion.div>
             ))}
           </motion.div>
@@ -140,13 +184,13 @@ export function HeroSection() {
           src={badge45Years}
           alt="45 Years - Moving The World - 1974-2019"
           className="w-24 md:w-32 lg:w-36 h-auto drop-shadow-2xl"
-          animate={{ 
+          animate={{
             y: [0, -8, 0],
           }}
-          transition={{ 
-            duration: 4, 
-            repeat: Infinity, 
-            ease: 'easeInOut' 
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: 'easeInOut'
           }}
           whileHover={{ scale: 1.05 }}
         />
@@ -157,7 +201,7 @@ export function HeroSection() {
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, y: [0, 10, 0] }}
-        transition={{ 
+        transition={{
           opacity: { delay: 1.2, duration: 0.5 },
           y: { duration: 2, repeat: Infinity, delay: 1.2 }
         }}
