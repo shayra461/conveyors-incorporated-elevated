@@ -28,8 +28,8 @@
     --muted: 220 10% 94%;
     --muted-foreground: 220 15% 45%;
 
-    /* Deep Crimson Accent */
-    --accent: 345 65% 33%;
+    /* Deep Red Accent */
+    --accent: 3 87% 34%;
     --accent-foreground: 40 20% 97%;
 
     --destructive: 0 84.2% 60.2%;
@@ -44,8 +44,8 @@
     /* Custom Industrial Colors */
     --navy: 220 45% 18%;
     --navy-light: 220 35% 28%;
-    --crimson: 345 65% 33%;
-    --crimson-dark: 345 70% 25%;
+    --crimson: 3 87% 34%;
+    --crimson-dark: 3 87% 25%;
     --steel: 220 10% 45%;
     --steel-light: 220 8% 65%;
     --charcoal: 220 25% 18%;
@@ -53,17 +53,17 @@
     --cream-dark: 40 15% 92%;
 
     /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(220 45% 12%) 0%, hsl(220 35% 22%) 50%, hsl(345 65% 25%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(220 45% 12%) 0%, hsl(220 35% 22%) 50%, hsl(3 87% 34%) 100%);
     --gradient-dark: linear-gradient(180deg, hsl(220 45% 15%) 0%, hsl(220 45% 10%) 100%);
     --gradient-steel: linear-gradient(135deg, hsl(220 10% 85%) 0%, hsl(220 8% 75%) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(345 65% 38%) 0%, hsl(345 70% 28%) 100%);
+    --gradient-accent: linear-gradient(135deg, #f46760 0%, #a2120b 100%);
 
     /* Shadows */
     --shadow-sm: 0 1px 2px 0 hsl(220 25% 18% / 0.05);
     --shadow-md: 0 4px 6px -1px hsl(220 25% 18% / 0.1), 0 2px 4px -2px hsl(220 25% 18% / 0.1);
     --shadow-lg: 0 10px 15px -3px hsl(220 25% 18% / 0.1), 0 4px 6px -4px hsl(220 25% 18% / 0.1);
     --shadow-xl: 0 20px 25px -5px hsl(220 25% 18% / 0.15), 0 8px 10px -6px hsl(220 25% 18% / 0.1);
-    --shadow-glow: 0 0 40px hsl(345 65% 33% / 0.15);
+    --shadow-glow: 0 0 40px hsl(3 87% 34% / 0.15);
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -94,7 +94,7 @@
     --muted: 220 30% 18%;
     --muted-foreground: 220 15% 65%;
 
-    --accent: 345 65% 45%;
+    --accent: 3 87% 67%;
     --accent-foreground: 40 20% 97%;
 
     --destructive: 0 62.8% 30.6%;
@@ -124,7 +124,12 @@
     @apply bg-background text-foreground font-sans antialiased;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-heading font-bold tracking-tight;
   }
 }
@@ -186,6 +191,7 @@
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -196,6 +202,7 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -206,6 +213,7 @@
     opacity: 0;
     transform: translateX(-20px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);

@@ -76,13 +76,13 @@ export function TrainingSection() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
-            <motion.div 
+            <motion.div
               className="flex items-center gap-3 mb-4"
               initial={{ opacity: 0, x: -20 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              <motion.span 
+              <motion.span
                 className="h-px bg-accent"
                 initial={{ width: 0 }}
                 animate={isInView ? { width: 48 } : { width: 0 }}
@@ -93,7 +93,7 @@ export function TrainingSection() {
               </span>
             </motion.div>
 
-            <motion.h2 
+            <motion.h2
               className="font-heading text-4xl md:text-5xl font-bold text-primary-foreground leading-tight mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -103,18 +103,18 @@ export function TrainingSection() {
               <span className="text-accent">Technical Training</span>
             </motion.h2>
 
-            <motion.p 
+            <motion.p
               className="text-primary-foreground/70 text-lg leading-relaxed mb-8"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              Our comprehensive training program offers hands-on experience with 
-              life-size, operational equipment. Develop the skills you need to 
+              Our comprehensive training program offers hands-on experience with
+              life-size, operational equipment. Develop the skills you need to
               optimize conveyor system performance and maintenance.
             </motion.p>
 
-            <motion.div 
+            <motion.div
               className="flex flex-wrap gap-4"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -145,14 +145,14 @@ export function TrainingSection() {
               <motion.div
                 key={feature.title}
                 variants={itemVariants}
-                whileHover={{ 
-                  y: -8, 
+                whileHover={{
+                  y: -8,
                   scale: 1.02,
                   boxShadow: '0 20px 40px -15px hsl(var(--accent) / 0.3)'
                 }}
-                className="bg-primary-foreground/5 backdrop-blur-sm rounded-lg p-6 border border-primary-foreground/10 hover:border-accent/50 transition-colors duration-300 cursor-pointer"
+                className="bg-primary-foreground/5 backdrop-blur-sm rounded-lg p-6 border border-primary-foreground/10 hover:border-accent/50 hover:bg-accent/10 transition-colors duration-300 cursor-pointer"
               >
-                <motion.div 
+                <motion.div
                   className="w-12 h-12 rounded bg-accent/20 flex items-center justify-center mb-4"
                   whileHover={{ rotate: 10, scale: 1.1 }}
                   transition={{ duration: 0.3 }}

@@ -34,13 +34,13 @@ export function Header() {
         : 'bg-gradient-to-b from-black/60 to-transparent py-4'
         }`}
     >
-      <div className="container mx-auto px-6 flex items-center justify-between">
+      <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="relative z-10">
           <motion.img
             src={logo}
             alt="Conveyors Incorporated"
-            className="h-20 md:h-24 lg:h-32 w-auto min-w-[180px] object-contain"
+            className="h-16 sm:h-20 md:h-22 lg:h-24 xl:h-28 2xl:h-32 w-auto min-w-[140px] sm:min-w-[160px] md:min-w-[180px] object-contain"
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.2 }}
           />

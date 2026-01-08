@@ -99,80 +99,84 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
   return (
     <motion.div
       variants={cardVariants}
-      className="group relative bg-card rounded-lg overflow-hidden shadow-md border border-border h-[400px] flex flex-col"
+      className="group relative min-h-[350px] md:min-h-[400px] rounded-lg" // Removed overflow-hidden from root
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      whileHover={{
-        y: -8,
-        boxShadow: '0 25px 50px -12px hsl(var(--accent) / 0.15)'
-      }}
-      transition={{ duration: 0.3 }}
+      style={{ zIndex: isHovered ? 50 : 1 }} // Ensure pop-out overlaps neighbors
     >
-      {/* Category Badge */}
-      <motion.div
-        className="absolute top-4 left-4 z-20"
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: index * 0.05 + 0.3 }}
-      >
-        <span className="px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold uppercase tracking-wider rounded shadow-sm">
-          {product.category}
-        </span>
-      </motion.div>
+      {/* Clipped Card Base (Background + Text + SlideUp) */}
+      <div className="absolute inset-0 flex flex-col bg-card rounded-lg overflow-hidden shadow-md border border-border transition-shadow duration-300 group-hover:shadow-2xl">
 
-      {/* Image Container */}
-      {/* Dynamic Background */}
-      <motion.div
-        className="absolute inset-0 bg-slate-50 z-0"
-        animate={{
-          background: isHovered
-            ? 'linear-gradient(135deg, hsl(var(--accent) / 0.05), #ffffff)'
-            : '#f8fafc'
-        }}
-        transition={{ duration: 0.5 }}
-      />
+        {/* Dynamic Background */}
+        <motion.div
+          className="absolute inset-0 bg-slate-50 z-0"
+          animate={{
+            background: isHovered
+              ? 'linear-gradient(135deg, hsl(var(--accent) / 0.1), #ffffff)'
+              : '#f8fafc'
+          }}
+          transition={{ duration: 0.5 }}
+        />
 
-      <div className="relative flex-1 flex items-center justify-center p-8 overflow-visible z-10">
+        {/* Category Badge */}
+        <motion.div
+          className="absolute top-3 left-3 md:top-4 md:left-4 z-10"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: index * 0.05 + 0.3 }}
+        >
+          <span className="px-2 py-1 md:px-3 md:py-1 bg-primary text-primary-foreground text-xs font-semibold uppercase tracking-wider rounded shadow-sm">
+            {product.category}
+          </span>
+        </motion.div>
+
+        {/* Spacer to push content down (Image sits here visibly but logically outside) */}
+        <div className="flex-1" />
+
+        {/* Content & Hidden Overlay */}
+        <div className="relative z-20 bg-card p-3 md:p-4 border-t border-border/50">
+          <h3 className="font-heading text-base md:text-lg font-bold text-foreground text-center mb-1 group-hover:text-accent transition-colors duration-300">
+            {product.name}
+          </h3>
+
+          {/* Slide-up Details Panel */}
+          <motion.div
+            className="absolute bottom-0 left-0 right-0 bg-card border-t border-accent/20 p-4 md:p-6 flex flex-col items-center text-center shadow-[0_-10px_40px_-15px_rgba(0,0,0,0.1)]"
+            initial={{ y: "100%", opacity: 0 }}
+            animate={{ y: isHovered ? 0 : "100%", opacity: isHovered ? 1 : 0 }}
+            transition={{ type: "spring", stiffness: 400, damping: 30 }}
+          >
+            <p className="text-muted-foreground text-xs md:text-sm mb-3 md:mb-4 line-clamp-3">
+              {product.description}
+            </p>
+            <Button variant="default" size="sm" className="w-full group/btn bg-accent hover:bg-accent/90 text-white text-xs md:text-sm">
+              View Details
+              <ArrowRight className="w-3 h-3 md:w-4 md:h-4 ml-1 group-hover/btn:translate-x-1 transition-transform" />
+            </Button>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Pop-out Image Layer (Unclipped) */}
+      <div className="absolute inset-0 flex items-center justify-center pb-12 md:pb-16 pointer-events-none z-30">
         <motion.img
           src={product.image}
           alt={product.name}
-          className="w-48 h-48 object-contain drop-shadow-lg"
+          className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 object-contain"
           animate={{
-            scale: isHovered ? 1.3 : 1,
-            y: isHovered ? -50 : 0,
-            rotate: isHovered ? -5 : 0,
-            filter: isHovered ? 'drop-shadow(0 20px 20px rgba(0,0,0,0.2))' : 'drop-shadow(0 4px 6px rgba(0,0,0,0.1))'
+            scale: isHovered ? 1.8 : 1, // Huge 3D Zoom
+            y: isHovered ? -40 : 0, // Popping UP
+            rotate: isHovered ? -12 : 0, // Tilt
+            filter: isHovered
+              ? 'drop-shadow(0 30px 40px rgba(0,0,0,0.35))' // Deep shadow for height
+              : 'drop-shadow(0 4px 6px rgba(0,0,0,0.1))'
           }}
           transition={{
             type: "spring",
-            stiffness: 300,
+            stiffness: 260,
             damping: 20
           }}
         />
-      </div>
-
-      {/* Content & Hidden Overlay */}
-      <div className="relative z-20 bg-card p-4 border-t border-border/50">
-        <h3 className="font-heading text-lg font-bold text-foreground text-center mb-1 group-hover:text-accent transition-colors duration-300">
-          {product.name}
-        </h3>
-
-        {/* Slide-up Details Panel */}
-        <motion.div
-          className="absolute bottom-0 left-0 right-0 bg-card border-t border-accent/20 p-6 flex flex-col items-center text-center shadow-[0_-10px_40px_-15px_rgba(0,0,0,0.1)]"
-          initial={{ y: "100%", opacity: 0 }}
-          animate={{ y: isHovered ? 0 : "100%", opacity: isHovered ? 1 : 0 }}
-          transition={{ type: "spring", stiffness: 400, damping: 30 }}
-        >
-          {/* Duplicate Title for visual continuity or just show description */}
-          <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
-            {product.description}
-          </p>
-          <Button variant="default" size="sm" className="w-full group/btn bg-accent hover:bg-accent/90 text-white">
-            View Details
-            <ArrowRight className="w-4 h-4 ml-1 group-hover/btn:translate-x-1 transition-transform" />
-          </Button>
-        </motion.div>
       </div>
     </motion.div>
   );
@@ -258,16 +262,16 @@ export function ProductsSection() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section className="py-24 lg:py-32 relative overflow-hidden bg-white" ref={ref}>
+    <section className="py-12 md:py-20 lg:py-32 relative overflow-hidden bg-white" ref={ref}>
       <WavyBackground />
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-16"
+          className="text-center max-w-3xl mx-auto mb-12 md:mb-16"
         >
           <div className="flex items-center justify-center gap-3 mb-4">
             <motion.span
@@ -276,7 +280,7 @@ export function ProductsSection() {
               animate={isInView ? { width: 48 } : { width: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             />
-            <span className="text-accent font-medium uppercase tracking-widest text-sm">
+            <span className="text-accent font-medium uppercase tracking-widest text-xs sm:text-sm">
               Our Products
             </span>
             <motion.span
@@ -287,7 +291,7 @@ export function ProductsSection() {
             />
           </div>
           <motion.h2
-            className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-6"
+            className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 md:mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
@@ -295,7 +299,7 @@ export function ProductsSection() {
             Precision-Engineered <span className="text-accent">Components</span>
           </motion.h2>
           <motion.p
-            className="text-muted-foreground text-lg"
+            className="text-muted-foreground text-base md:text-lg"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -307,7 +311,7 @@ export function ProductsSection() {
 
         {/* Products Grid */}
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 lg:gap-8"
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -323,7 +327,7 @@ export function ProductsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.6 }}
-          className="text-center mt-16"
+          className="text-center mt-12 md:mt-16"
         >
           <Button variant="default" size="lg" className="group shadow-xl shadow-accent/20">
             View All Products
