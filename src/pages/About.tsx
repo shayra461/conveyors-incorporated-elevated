@@ -23,7 +23,7 @@ const values = [
 ];
 
 const timeline = [
-  { year: '1977', event: 'Founded in Texas as a small conveyor component supplier' },
+  { year: '1974', event: 'Founded in Texas as a small conveyor component supplier' },
   { year: '1985', event: 'Expanded manufacturing capabilities with new 50,000 sq ft facility' },
   { year: '1995', event: 'Achieved ISO 9001 certification' },
   { year: '2005', event: 'Launched comprehensive training program' },
@@ -52,7 +52,7 @@ const About = () => {
                 </span>
               </div>
               <h1 className="font-heading text-5xl md:text-6xl font-bold text-primary-foreground leading-tight mb-6">
-                Engineering Excellence Since 1977
+                Engineering Excellence Since 1974
               </h1>
               <p className="text-primary-foreground/70 text-xl">
                 Four decades of innovation, quality, and customer success in bulk material handling.
@@ -75,13 +75,13 @@ const About = () => {
                   Our <span className="text-accent">Story</span>
                 </h2>
                 <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                  Conveyors Incorporated was founded with a simple mission: to engineer the most 
-                  reliable and efficient bulk material handling solutions in the industry. What 
-                  started as a small operation has grown into a leading manufacturer trusted by 
+                  Conveyors Incorporated was founded with a simple mission: to engineer the most
+                  reliable and efficient bulk material handling solutions in the industry. What
+                  started as a small operation has grown into a leading manufacturer trusted by
                   industries worldwide.
                 </p>
                 <p className="text-muted-foreground text-lg leading-relaxed mb-8">
-                  Today, we continue to push the boundaries of innovation while maintaining our 
+                  Today, we continue to push the boundaries of innovation while maintaining our
                   commitment to quality craftsmanship and exceptional customer service.
                 </p>
                 <Button variant="default" size="lg">

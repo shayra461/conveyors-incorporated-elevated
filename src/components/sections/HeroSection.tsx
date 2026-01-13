@@ -104,7 +104,7 @@ export function HeroSection() {
           >
             <span className="h-px w-8 md:w-12 bg-yellow-400/80 shadow-[0_0_10px_rgba(250,204,21,0.5)]" />
             <span className="text-yellow-400 font-bold uppercase tracking-widest text-xs md:text-sm drop-shadow-md">
-              Industry Leaders Since 1977
+              Industry Leaders Since 1974
             </span>
           </motion.div>
 
