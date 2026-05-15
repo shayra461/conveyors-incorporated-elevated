@@ -57,7 +57,7 @@ const Contact = () => {
       <Header />
       <main>
         {/* Hero */}
-        <section className="pt-32 pb-20 bg-gradient-dark">
+        <section className="pt-44 pb-20 bg-gradient-dark">
           <div className="container mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 30 }}

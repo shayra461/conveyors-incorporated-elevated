@@ -2,6 +2,7 @@ import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { ArrowRight, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 export function CTASection() {
   const ref = useRef(null);
@@ -73,10 +74,12 @@ export function CTASection() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
             >
-              <Button variant="hero" size="xl" className="group">
-                Get a Free Quote
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
+              <Link to="/quote">
+                <Button variant="hero" size="xl" className="group w-full sm:w-auto">
+                  Get a Free Quote
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
             </motion.div>
             <motion.div
               whileHover={{ scale: 1.05 }}

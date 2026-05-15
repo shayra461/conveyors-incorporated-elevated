@@ -1,74 +1,67 @@
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 // Import product images with correct names
-import screwConveyors from '@/assets/products/screw-conveyors.png';
-import screwFeeders from '@/assets/products/screw-feeders.png';
+import beltConveyor from '@/assets/products/belt-conveyor.png';
+import bucketElevatorNew from '@/assets/products/bucket-elevator-new.png';
+import cemaComponentsNew from '@/assets/products/cema-components-new.png';
+import dragConveyorNew from '@/assets/products/drag-conveyor-new.png';
+import fabricatedBucket from '@/assets/products/fabricated-bucket.png';
+import screwConveyorNew from '@/assets/products/screw-conveyor-new.png';
+import verticalScrewNew from '@/assets/products/vertical-screw-new.png';
 import shaftlessConveyors from '@/assets/products/shaftless-conveyors.png';
-import verticalScrew from '@/assets/products/vertical-screw.png';
-import bucketElevators from '@/assets/products/bucket-elevators.png';
-import dragConveyors from '@/assets/products/drag-conveyors.png';
-import cemaComponents from '@/assets/products/cema-components.png';
-import classifierWashers from '@/assets/products/classifier-washers.png';
 
 const products = [
   {
     id: 1,
-    name: 'Screw Conveyors',
+    name: 'Belt Conveyor',
     category: 'Conveyors',
-    image: screwConveyors,
-    description: 'Archimedes in the 3rd century BC developed the 1st screw conveyor. Today, screw conveyors are used in countless applications.',
+    image: beltConveyor,
+    description: 'High-performance belt conveyor systems designed for efficient and reliable transport of bulk materials over long distances.',
   },
   {
     id: 2,
-    name: 'Screw Feeders',
-    category: 'Feeders',
-    image: screwFeeders,
-    description: 'Screw Feeders are similar to Screw Conveyors because they both move product from one point to another.',
+    name: 'Bucket Elevator',
+    category: 'Elevators',
+    image: bucketElevatorNew,
+    description: 'Centrifugal and continuous bucket elevators designed for vertical transport of bulk materials in demanding industrial environments.',
   },
   {
     id: 3,
-    name: 'Shaftless Conveyors',
-    category: 'Conveyors',
-    image: shaftlessConveyors,
-    description: 'Shaftless Screw Conveyors are a specialized alternative to the standard Shafted Screw Conveyor.',
+    name: 'CEMA Components',
+    category: 'Components',
+    image: cemaComponentsNew,
+    description: 'High-quality CEMA standard components including idlers, pulleys, and specialized hardware for conveyor systems.',
   },
   {
     id: 4,
-    name: 'Vertical Screw',
+    name: 'Drag Conveyors',
     category: 'Conveyors',
-    image: verticalScrew,
-    description: 'A specialized screw feeder capable of conveying materials where a very steep incline is required.',
+    image: dragConveyorNew,
+    description: 'En-masse drag conveyors provide efficient, high-volume material transport with minimal degradation and low power consumption.',
   },
   {
     id: 5,
-    name: 'Bucket Elevators',
-    category: 'Elevators',
-    image: bucketElevators,
-    description: 'Bucket elevators are one of the most efficient ways of conveying bulk materials vertically.',
+    name: 'Metal Fabricated Bucket',
+    category: 'Components',
+    image: fabricatedBucket,
+    description: 'Custom-designed, heavy-duty metal buckets fabricated to exact specifications for maximum durability in high-capacity elevators.',
   },
   {
     id: 6,
-    name: 'Drag Conveyors',
+    name: 'Screw Conveyor',
     category: 'Conveyors',
-    image: dragConveyors,
-    description: 'Drag Conveyors are one of the most energy efficient ways to convey bulk materials over distances.',
+    image: screwConveyorNew,
+    description: 'Custom-engineered screw conveyors designed for efficient bulk material handling, featuring modular construction and precision-flighting.',
   },
   {
     id: 7,
-    name: 'CEMA Components',
-    category: 'Components',
-    image: cemaComponents,
-    description: 'CEMA Screw components consist of standard components for screw conveyors and bucket elevators.',
-  },
-  {
-    id: 8,
-    name: 'Classifier & Washers',
-    category: 'Equipment',
-    image: classifierWashers,
-    description: 'Classifiers and Washers are used to separate sand or grit from a liquid slurry or sludge.',
+    name: 'Vertical Screw',
+    category: 'Conveyors',
+    image: verticalScrewNew,
+    description: 'High-efficiency vertical screw conveyors designed for elevated material transport in space-constrained industrial environments.',
   },
 ];
 
@@ -95,80 +88,66 @@ const cardVariants = {
 
 function ProductCard({ product, index }: { product: typeof products[0]; index: number }) {
   const [isHovered, setIsHovered] = useState(false);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [15, -15]), { stiffness: 300, damping: 30 });
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-15, 15]), { stiffness: 300, damping: 30 });
+
+  function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseXFromCenter = e.clientX - rect.left - width / 2;
+    const mouseYFromCenter = e.clientY - rect.top - height / 2;
+    mouseX.set(mouseXFromCenter / width);
+    mouseY.set(mouseYFromCenter / height);
+  }
+
+  function handleMouseLeave() {
+    setIsHovered(false);
+    mouseX.set(0);
+    mouseY.set(0);
+  }
 
   return (
     <motion.div
       variants={cardVariants}
-      className="group relative min-h-[350px] md:min-h-[400px] rounded-lg" // Removed overflow-hidden from root
+      className="group relative h-full flex flex-col bg-card rounded-2xl border border-border shadow-md transition-shadow duration-500 hover:shadow-2xl cursor-pointer"
+      onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      style={{ zIndex: isHovered ? 50 : 1 }} // Ensure pop-out overlaps neighbors
+      onMouseLeave={handleMouseLeave}
+      whileHover={{ 
+        y: -10,
+        zIndex: 50,
+        transition: { duration: 0.3 }
+      }}
+      style={{
+        perspective: 1000,
+        rotateX: rotateX,
+        rotateY: rotateY,
+        transformStyle: "preserve-3d",
+      }}
     >
-      {/* Clipped Card Base (Background + Text + SlideUp) */}
-      <div className="absolute inset-0 flex flex-col bg-card rounded-lg overflow-hidden shadow-md border border-border transition-shadow duration-300 group-hover:shadow-2xl">
-
-        {/* Dynamic Background */}
+      {/* Image Container */}
+      <div 
+        className="relative h-48 md:h-56 lg:h-64 bg-slate-50 flex items-center justify-center p-8 rounded-t-2xl overflow-visible"
+        style={{ transformStyle: "preserve-3d" }}
+      >
         <motion.div
-          className="absolute inset-0 bg-slate-50 z-0"
-          animate={{
-            background: isHovered
-              ? 'linear-gradient(135deg, hsl(var(--accent) / 0.1), #ffffff)'
-              : '#f8fafc'
-          }}
-          transition={{ duration: 0.5 }}
+          className="absolute inset-0 bg-accent/5 rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+          style={{ transform: "translateZ(-20px)" }}
         />
-
-        {/* Category Badge */}
-        <motion.div
-          className="absolute top-3 left-3 md:top-4 md:left-4 z-10"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: index * 0.05 + 0.3 }}
-        >
-          <span className="px-2 py-1 md:px-3 md:py-1 bg-primary text-primary-foreground text-xs font-semibold uppercase tracking-wider rounded shadow-sm">
-            {product.category}
-          </span>
-        </motion.div>
-
-        {/* Spacer to push content down (Image sits here visibly but logically outside) */}
-        <div className="flex-1" />
-
-        {/* Content & Hidden Overlay */}
-        <div className="relative z-20 bg-card p-3 md:p-4 border-t border-border/50">
-          <h3 className="font-heading text-base md:text-lg font-bold text-foreground text-center mb-1 group-hover:text-accent transition-colors duration-300">
-            {product.name}
-          </h3>
-
-          {/* Slide-up Details Panel */}
-          <motion.div
-            className="absolute bottom-0 left-0 right-0 bg-card border-t border-accent/20 p-4 md:p-6 flex flex-col items-center text-center shadow-[0_-10px_40px_-15px_rgba(0,0,0,0.1)]"
-            initial={{ y: "100%", opacity: 0 }}
-            animate={{ y: isHovered ? 0 : "100%", opacity: isHovered ? 1 : 0 }}
-            transition={{ type: "spring", stiffness: 400, damping: 30 }}
-          >
-            <p className="text-muted-foreground text-xs md:text-sm mb-3 md:mb-4 line-clamp-3">
-              {product.description}
-            </p>
-            <Button variant="default" size="sm" className="w-full group/btn bg-accent hover:bg-accent/90 text-white text-xs md:text-sm">
-              View Details
-              <ArrowRight className="w-3 h-3 md:w-4 md:h-4 ml-1 group-hover/btn:translate-x-1 transition-transform" />
-            </Button>
-          </motion.div>
-        </div>
-      </div>
-
-      {/* Pop-out Image Layer (Unclipped) */}
-      <div className="absolute inset-0 flex items-center justify-center pb-12 md:pb-16 pointer-events-none z-30">
+        
         <motion.img
           src={product.image}
           alt={product.name}
-          className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 object-contain"
+          className="w-full h-full object-contain relative z-30"
           animate={{
-            scale: isHovered ? 1.8 : 1, // Huge 3D Zoom
-            y: isHovered ? -40 : 0, // Popping UP
-            rotate: isHovered ? -12 : 0, // Tilt
-            filter: isHovered
-              ? 'drop-shadow(0 30px 40px rgba(0,0,0,0.35))' // Deep shadow for height
+            scale: isHovered ? 1.35 : 1,
+            y: isHovered ? -20 : 0,
+            filter: isHovered 
+              ? 'drop-shadow(0 30px 40px rgba(0,0,0,0.25))' 
               : 'drop-shadow(0 4px 6px rgba(0,0,0,0.1))'
           }}
           transition={{
@@ -177,7 +156,44 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
             damping: 20
           }}
         />
+        
+        <div 
+          className="absolute top-4 left-4 z-40"
+          style={{ transform: "translateZ(40px)" }}
+        >
+          <span className="px-3 py-1 bg-primary text-primary-foreground text-[10px] font-bold uppercase tracking-wider rounded-md shadow-lg">
+            {product.category}
+          </span>
+        </div>
       </div>
+
+      {/* Content Section */}
+      <div 
+        className="flex-1 p-6 md:p-8 flex flex-col relative z-20 bg-card rounded-b-2xl border-t border-border/50"
+        style={{ transform: "translateZ(30px)" }}
+      >
+        <h3 className="font-heading text-xl md:text-2xl font-bold text-foreground mb-3 group-hover:text-accent transition-colors duration-300">
+          {product.name}
+        </h3>
+        
+        <p className="text-muted-foreground text-sm leading-relaxed mb-8 flex-1">
+          {product.description}
+        </p>
+
+        <Button 
+          variant="default" 
+          className="w-full group/btn bg-primary hover:bg-accent text-white transition-all duration-300 shadow-xl shadow-primary/10 hover:shadow-accent/30 overflow-hidden"
+        >
+          <span className="font-bold uppercase tracking-widest text-xs">Explore Product</span>
+          <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
+        </Button>
+      </div>
+
+      {/* Glossy Overlay */}
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        style={{ transform: "translateZ(50px)" }}
+      />
     </motion.div>
   );
 }
@@ -207,7 +223,7 @@ const WavyBackground = () => {
             x: ["0%", "-50%"],
           }}
           transition={{
-            duration: 20 - i * 5,
+            duration: 100 - i * 20,
             repeat: Infinity,
             ease: "linear",
           }}
@@ -230,7 +246,7 @@ const WavyBackground = () => {
             ]
           }}
           transition={{
-            duration: 8,
+            duration: 40,
             repeat: Infinity,
             ease: "easeInOut"
           }}
@@ -247,7 +263,7 @@ const WavyBackground = () => {
             ]
           }}
           transition={{
-            duration: 9, // Slightly different speed for parallax feel
+            duration: 50, // Slightly different speed for parallax feel
             repeat: Infinity,
             ease: "easeInOut"
           }}
@@ -309,17 +325,17 @@ export function ProductsSection() {
           </motion.p>
         </motion.div>
 
-        {/* Products Grid */}
-        <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 lg:gap-8"
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-        >
+        {/* Products Grid - 4 on top, 3 centered below */}
+        <div className="flex flex-wrap justify-center gap-6 md:gap-8 lg:gap-10">
           {products.map((product, index) => (
-            <ProductCard key={product.id} product={product} index={index} />
+            <div 
+              key={product.id} 
+              className="w-full sm:w-[calc(50%-1.5rem)] lg:w-[calc(25%-2rem)] min-w-[280px] max-w-[350px] flex"
+            >
+              <ProductCard product={product} index={index} />
+            </div>
           ))}
-        </motion.div>
+        </div>
 
         {/* CTA */}
         <motion.div

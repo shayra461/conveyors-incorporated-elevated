@@ -6,12 +6,20 @@ import {
   Fuel,
   Package,
   Recycle,
-  ArrowRight
+  ArrowRight,
+  FlaskConical,
+  Utensils,
+  Zap,
+  Droplets
 } from 'lucide-react';
 
 // Import existing images
-import miningImg from '@/assets/industries/mining-real.jpg';
+import grainHandlingImg from '@/assets/industries/grain-handling.png';
 import agricultureImg from '@/assets/industries/agriculture-real.jpg';
+import chemicalImg from '@/assets/industries/chemical-industry.png';
+import foodImg from '@/assets/industries/food-industry.png';
+import powerImg from '@/assets/industries/power-industry.png';
+import oilGasImg from '@/assets/industries/oil-and-gas.png';
 import manufacturingImg from '@/assets/industries/manufacturing.png'; // Keeping original for now
 import energyImg from '@/assets/industries/energy-real.jpg';
 import warehousingImg from '@/assets/industries/warehousing-real.jpg';
@@ -20,43 +28,43 @@ import recyclingImg from '@/assets/industries/recycling-real.jpg';
 const industries = [
   {
     id: 1,
-    icon: Mining,
-    name: 'Mining & Aggregates',
-    description: 'Heavy-duty systems for mining operations. Built to withstand the harshest environments with impact-resistant technology.',
-    image: miningImg,
-    overlay: 'bg-slate-900/40 mix-blend-multiply'
-  },
-  {
-    id: 2,
     icon: Wheat,
-    name: 'Agriculture & Grain',
+    name: 'Agriculture and Grain',
     description: 'Efficient grain handling solutions using food-grade materials and gentle handling mechanisms.',
-    image: agricultureImg,
+    image: grainHandlingImg,
     overlay: 'bg-stone-900/40 mix-blend-multiply'
   },
   {
+    id: 2,
+    icon: FlaskConical,
+    name: 'Chemicals',
+    description: 'Specializes in designing and manufacturing equipment for the harsh and dangerous chemical industry environment.',
+    image: chemicalImg,
+    overlay: 'bg-teal-900/40 mix-blend-multiply'
+  },
+  {
     id: 3,
-    icon: Factory,
-    name: 'Manufacturing',
-    description: 'Custom conveyor systems for assembly lines. Optimized for precision, modularity, and automated routing.',
-    image: manufacturingImg,
-    overlay: 'bg-blue-900/40 mix-blend-multiply'
+    icon: Utensils,
+    name: 'Food Products',
+    description: 'Designs and manufactures highly polished stainless steel equipment specially designed for the food industry.',
+    image: foodImg,
+    overlay: 'bg-orange-900/40 mix-blend-multiply'
   },
   {
     id: 4,
-    icon: Fuel,
-    name: 'Energy & Power',
-    description: 'Reliable systems for coal handling and biomass. Designed for continuous critical operation in power plants.',
-    image: energyImg,
-    overlay: 'bg-yellow-900/60 mix-blend-multiply'
+    icon: Zap,
+    name: 'Power',
+    description: 'Designed and manufactured equipment for conveying and processing coal, petroleum coke and every form of alternative fuel.',
+    image: powerImg,
+    overlay: 'bg-yellow-900/40 mix-blend-multiply'
   },
   {
     id: 5,
-    icon: Package,
-    name: 'Warehousing',
-    description: 'Smart sorting and efficient material flow solutions for modern automated distribution centers.',
-    image: warehousingImg,
-    overlay: 'bg-blue-900/60 mix-blend-multiply'
+    icon: Droplets,
+    name: 'Oil and Gas',
+    description: 'Exploration and production of oil and natural gas requires the use of many different types of bulk material handling providing and processing equipments.',
+    image: oilGasImg,
+    overlay: 'bg-indigo-900/40 mix-blend-multiply'
   },
   {
     id: 6,

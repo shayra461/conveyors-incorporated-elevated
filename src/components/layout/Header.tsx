@@ -40,7 +40,7 @@ export function Header() {
           <motion.img
             src={logo}
             alt="Conveyors Incorporated"
-            className="h-16 sm:h-20 md:h-22 lg:h-24 xl:h-28 2xl:h-32 w-auto min-w-[140px] sm:min-w-[160px] md:min-w-[180px] object-contain"
+            className="h-12 sm:h-16 md:h-18 lg:h-20 xl:h-24 2xl:h-28 w-auto min-w-[120px] sm:min-w-[140px] md:min-w-[160px] object-contain"
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.2 }}
           />
@@ -61,9 +61,11 @@ export function Header() {
               />
             </Link>
           ))}
-          <Button variant="accent" size="sm" className="ml-4 font-bold shadow-[0_0_20px_rgba(234,179,8,0.3)] hover:shadow-[0_0_30px_rgba(234,179,8,0.5)] transition-shadow">
-            Get Quote
-          </Button>
+          <Link to="/quote">
+            <Button variant="accent" size="sm" className="ml-4 font-bold shadow-[0_0_20px_rgba(234,179,8,0.3)] hover:shadow-[0_0_30px_rgba(234,179,8,0.5)] transition-shadow">
+              Get Quote
+            </Button>
+          </Link>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -115,9 +117,11 @@ export function Header() {
                   transition={{ delay: navItems.length * 0.05 }}
                   className="pt-4"
                 >
-                  <Button variant="hero" className="w-full">
-                    Get Quote
-                  </Button>
+                  <Link to="/quote" onClick={() => setIsMobileMenuOpen(false)}>
+                    <Button variant="hero" className="w-full">
+                      Get Quote
+                    </Button>
+                  </Link>
                 </motion.div>
               </nav>
             </motion.div>

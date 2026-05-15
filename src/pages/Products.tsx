@@ -3,6 +3,7 @@ import { Footer } from '@/components/layout/Footer';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 // Import product images
 import mountingPlate from '@/assets/products/mounting-plate.png';
@@ -43,7 +44,7 @@ const Products = () => {
       <Header />
       <main>
         {/* Hero */}
-        <section className="pt-32 pb-20 bg-gradient-dark">
+        <section className="pt-44 pb-20 bg-gradient-dark">
           <div className="container mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -121,10 +122,12 @@ const Products = () => {
             <p className="text-primary-foreground/70 text-lg mb-8 max-w-2xl mx-auto">
               Our engineering team can design custom components and systems tailored to your specific requirements.
             </p>
-            <Button variant="hero" size="lg" className="group">
-              Request Custom Quote
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
+            <Link to="/quote">
+              <Button variant="hero" size="lg" className="group">
+                Request Custom Quote
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </Link>
           </div>
         </section>
       </main>

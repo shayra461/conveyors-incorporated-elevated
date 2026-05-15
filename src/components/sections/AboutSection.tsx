@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { CheckCircle, Award, Users, Factory, ArrowRight, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import manufacturingImg from '@/assets/industries/manufacturing.png'; // Reusing for "Since 1974" visual
@@ -64,15 +65,16 @@ export function AboutSection() {
                 <span className="text-white">Engineering Mastery</span>
               </h3>
               <p className="text-slate-400 text-base md:text-lg leading-relaxed mb-6 md:mb-8">
-                For over five decades, Conveyors Inc. has led the industry in bulk material handling.
-                We don't just build conveyors; we engineer the lifeline of your operation.
+                Conveyors Inc. was founded in 1974, born out of a need for a reliable and trustworthy partner in the conveyor industry.
               </p>
             </div>
 
             <div className="flex flex-wrap gap-3 md:gap-4">
-              <Button className="bg-white text-slate-900 hover:bg-zinc-200 transition-colors rounded-full px-6 md:px-8 py-4 md:py-6 text-sm md:text-base font-bold">
-                Our Story <ArrowRight className="ml-2 w-4 h-4" />
-              </Button>
+              <Link to="/about">
+                <Button className="bg-white text-slate-900 hover:bg-zinc-200 transition-colors rounded-full px-6 md:px-8 py-4 md:py-6 text-sm md:text-base font-bold group/btn">
+                  Our Story <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
             </div>
           </motion.div>
 

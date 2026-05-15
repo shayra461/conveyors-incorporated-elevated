@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
-        heading: ["Oswald", "system-ui", "sans-serif"],
+        sans: ["Oswald", "sans-serif"],
+        heading: ["Oswald", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
