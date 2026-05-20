@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import heroVideo from '@/assets/hero-video.mp4';
 import badge45Years from '@/assets/45-years-badge.png';
 import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 function Counter({ value, label }: { value: string; label: string }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -139,12 +140,16 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="flex flex-col sm:flex-row flex-wrap gap-3 md:gap-4"
           >
-            <Button variant="hero" size="xl" className="group w-full sm:w-auto">
-              Explore Products
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            <Button asChild variant="hero" size="xl" className="group w-full sm:w-auto">
+              <Link to="/products">
+                Explore Products
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
             </Button>
-            <Button variant="heroOutline" size="xl" className="group w-full sm:w-auto">
-              Industries We Serve
+            <Button asChild variant="heroOutline" size="xl" className="group w-full sm:w-auto">
+              <Link to="/quote">
+                Get A Quote
+              </Link>
             </Button>
           </motion.div>
 

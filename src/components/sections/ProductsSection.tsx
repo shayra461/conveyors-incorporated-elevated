@@ -2,6 +2,7 @@ import { motion, useInView, useMotionValue, useSpring, useTransform } from 'fram
 import { useRef, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useNavigate, Link } from 'react-router-dom';
 
 // Import product images with correct names
 import beltConveyor from '@/assets/products/belt-conveyor.png';
@@ -15,53 +16,60 @@ import shaftlessConveyors from '@/assets/products/shaftless-conveyors.png';
 
 const products = [
   {
-    id: 1,
+    id: 'belt-conveyors',
     name: 'Belt Conveyor',
     category: 'Conveyors',
     image: beltConveyor,
     description: 'High-performance belt conveyor systems designed for efficient and reliable transport of bulk materials over long distances.',
   },
   {
-    id: 2,
+    id: 'bucket-elevators',
     name: 'Bucket Elevator',
     category: 'Elevators',
     image: bucketElevatorNew,
     description: 'Centrifugal and continuous bucket elevators designed for vertical transport of bulk materials in demanding industrial environments.',
   },
   {
-    id: 3,
+    id: 'cema-components',
     name: 'CEMA Components',
     category: 'Components',
     image: cemaComponentsNew,
     description: 'High-quality CEMA standard components including idlers, pulleys, and specialized hardware for conveyor systems.',
   },
   {
-    id: 4,
+    id: 'drag-conveyors',
     name: 'Drag Conveyors',
     category: 'Conveyors',
     image: dragConveyorNew,
     description: 'En-masse drag conveyors provide efficient, high-volume material transport with minimal degradation and low power consumption.',
   },
   {
-    id: 5,
+    id: 'made-to-order-components',
     name: 'Metal Fabricated Bucket',
     category: 'Components',
     image: fabricatedBucket,
     description: 'Custom-designed, heavy-duty metal buckets fabricated to exact specifications for maximum durability in high-capacity elevators.',
   },
   {
-    id: 6,
+    id: 'screw-conveyors',
     name: 'Screw Conveyor',
     category: 'Conveyors',
     image: screwConveyorNew,
     description: 'Custom-engineered screw conveyors designed for efficient bulk material handling, featuring modular construction and precision-flighting.',
   },
   {
-    id: 7,
+    id: 'vertical-screw-conveyors',
     name: 'Vertical Screw',
     category: 'Conveyors',
     image: verticalScrewNew,
     description: 'High-efficiency vertical screw conveyors designed for elevated material transport in space-constrained industrial environments.',
+  },
+  {
+    id: 'shaftless-conveyors',
+    name: 'Shaftless Conveyors',
+    category: 'Conveyors',
+    image: shaftlessConveyors,
+    description: 'Specialized screw conveyors without a center shaft, designed to convey wet, sticky, and sluggish bulk materials efficiently.',
   },
 ];
 
@@ -87,6 +95,7 @@ const cardVariants = {
 };
 
 function ProductCard({ product, index }: { product: typeof products[0]; index: number }) {
+  const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -114,6 +123,7 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
     <motion.div
       variants={cardVariants}
       className="group relative h-full flex flex-col bg-card rounded-2xl border border-border shadow-md transition-shadow duration-500 hover:shadow-2xl cursor-pointer"
+      onClick={() => navigate(`/products/${product.id}`)}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={handleMouseLeave}
@@ -181,11 +191,14 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
         </p>
 
         <Button 
+          asChild
           variant="default" 
           className="w-full group/btn bg-primary hover:bg-accent text-white transition-all duration-300 shadow-xl shadow-primary/10 hover:shadow-accent/30 overflow-hidden"
         >
-          <span className="font-bold uppercase tracking-widest text-xs">Explore Product</span>
-          <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
+          <Link to={`/products/${product.id}`}>
+            <span className="font-bold uppercase tracking-widest text-xs">Explore Product</span>
+            <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
+          </Link>
         </Button>
       </div>
 
@@ -345,9 +358,11 @@ export function ProductsSection() {
           transition={{ duration: 0.5, delay: 0.6 }}
           className="text-center mt-12 md:mt-16"
         >
-          <Button variant="default" size="lg" className="group shadow-xl shadow-accent/20">
-            View All Products
-            <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+          <Button asChild variant="default" size="lg" className="group shadow-xl shadow-accent/20">
+            <Link to="/products">
+              View All Products
+              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+            </Link>
           </Button>
         </motion.div>
       </div>
