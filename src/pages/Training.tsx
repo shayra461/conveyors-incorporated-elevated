@@ -41,7 +41,7 @@ const courses = [
     topics: ['Preventive maintenance', 'Component replacement', 'System optimization', 'Performance analysis'],
   },
   {
-    title: 'System Design & Engineering',
+    title: 'System Design & Custom',
     duration: '5 Days',
     level: 'Advanced',
     topics: ['Design principles', 'Material selection', 'Capacity calculations', 'Custom solutions'],

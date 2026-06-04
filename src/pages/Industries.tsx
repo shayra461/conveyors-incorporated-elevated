@@ -98,7 +98,7 @@ const Industries = () => {
               <div className="flex gap-4 p-6 rounded-2xl bg-muted/40 border border-border/50">
                 <ShieldCheck className="w-10 h-10 text-accent flex-shrink-0" />
                 <div>
-                  <h4 className="font-heading text-lg font-bold text-foreground mb-1">Severe Duty Engineering</h4>
+                  <h4 className="font-heading text-lg font-bold text-foreground mb-1">Severe Duty Custom</h4>
                   <p className="text-muted-foreground text-sm">Specialty wear protection, hard-surface alloys, and abrasion-resistant chromium plates protect against downtime.</p>
                 </div>
               </div>

@@ -150,7 +150,7 @@ const IndustryDetail = () => {
                   <div className="flex items-center gap-3 mb-6">
                     <Settings className="w-6 h-6 text-accent" />
                     <h2 className="font-heading text-2xl font-bold text-foreground">
-                      Engineering Standards & Advantages
+                      Custom Standards & Advantages
                     </h2>
                   </div>
                   
@@ -248,7 +248,7 @@ const IndustryDetail = () => {
                 >
                   <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#e11d48_1px,transparent_1px)] [background-size:12px_12px]" />
                   <h3 className="font-heading text-2xl font-bold text-primary-foreground mb-3 relative z-10">
-                    Need Custom Engineering?
+                    Need Custom Solutions?
                   </h3>
                   <p className="text-primary-foreground/70 text-sm mb-6 max-w-sm mx-auto relative z-10">
                     Our team specializes in designing bespoke components matching specific system layouts, high-heat specifications, or wear issues.

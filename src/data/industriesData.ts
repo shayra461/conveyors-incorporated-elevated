@@ -95,8 +95,8 @@ export const industriesData: Industry[] = [
     name: 'Chemicals',
     icon: FlaskConical,
     image: chemicalsImg,
-    shortDescription: 'Highly engineered pressure-tight and corrosion-resistant conveyor systems designed from stainless steel and high-nickel alloys.',
-    description: 'The production of organic acids and salts, inorganic catalyst and chlorides and plastics require the use of conveying and processing equipment. Conveyors, Inc. specializes in designing and manufacturing equipment for the harsh and dangerous chemical industry environment. Conveyors, Inc. has built thousands of conveyors for metering and conveying chemicals such as adipic acid, caustic soda, iron oxide, polyethylene and polypropylene. Our conveyors for the chemical industry are highly engineered and very special in design to meet industry requirements. Stainless steel or high-nickel alloy construction is required to withstand the corrosiveness of the chemicals. Vapors and toxic gases are contained with our pressure-tight designs.',
+    shortDescription: 'Highly custom pressure-tight and corrosion-resistant conveyor systems designed from stainless steel and high-nickel alloys.',
+    description: 'The production of organic acids and salts, inorganic catalyst and chlorides and plastics require the use of conveying and processing equipment. Conveyors, Inc. specializes in designing and manufacturing equipment for the harsh and dangerous chemical industry environment. Conveyors, Inc. has built thousands of conveyors for metering and conveying chemicals such as adipic acid, caustic soda, iron oxide, polyethylene and polypropylene. Our conveyors for the chemical industry are highly custom and very special in design to meet industry requirements. Stainless steel or high-nickel alloy construction is required to withstand the corrosiveness of the chemicals. Vapors and toxic gases are contained with our pressure-tight designs.',
     materials: [
       'Titanium Dioxide',
       'Carbon Black',
@@ -214,7 +214,7 @@ export const industriesData: Industry[] = [
     name: 'Oil & Gas',
     icon: Fuel,
     image: oilGasImg,
-    shortDescription: 'Heavy-duty Continuous Mixers, proppant conveyors, and thermal processors engineered to survive harsh oilfield applications.',
+    shortDescription: 'Heavy-duty Continuous Mixers, proppant conveyors, and thermal processors custom-built to survive harsh oilfield applications.',
     description: 'Exploration and production of oil and natural gas requires the use of many different types of bulk material handling and processing equipment. Conveyors, Inc. provides equipment for conveying and metering frac sand, proppants, drill cuttings, mud additives and chemicals used in the production process. Drill cuttings disposal is a major issue and Conveyors, Inc. has helped develop processes for both thermal and chemical neutralization. Our heavy-duty Continuous Mixers and Thermal Processors are important components of the process. The operating conditions in the oilfield are very harsh and Conveyors, Inc. equipment is designed and built to withstand even the toughest applications.',
     materials: [
       'Frac Sand',

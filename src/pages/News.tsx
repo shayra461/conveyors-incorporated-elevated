@@ -6,28 +6,49 @@ import { Button } from '@/components/ui/button';
 
 const newsArticles = [
   {
-    title: "Conveyors Inc. Announces Expansion of Manufacturing Facility",
-    date: "May 15, 2026",
-    author: "Robert Anderson",
-    category: "Corporate",
-    image: "/conveyors-incorporated-elevated/images/factory-aerial.jpg",
-    excerpt: "We are excited to announce a 50,000 square foot expansion of our Mansfield facility to meet the growing demand for custom bulk material handling solutions."
+    title: "6 Advantages of Heavy-Duty Belt Conveyors for Material Handling",
+    date: "February 5, 2025",
+    author: "IBT Editorial",
+    category: "Bulk Handling",
+    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=1000",
+    excerpt: "Heavy-duty belt conveyors are vital for high-volume bulk material handling in mining, manufacturing, and agriculture. Explore the six key advantages they offer.",
+    url: "https://ibtinc.com/6-advantages-of-heavy-duty-belt-conveyors-for-material-handling/"
   },
   {
-    title: "Innovations in Sustainable Conveyor Design",
-    date: "April 28, 2026",
-    author: "Sarah Miller",
-    category: "Engineering",
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000",
-    excerpt: "Our engineering team has developed a new line of energy-efficient screw conveyors that reduce power consumption by up to 30%."
+    title: "Plastic or Steel? How to Choose the Right Conveyor Bucket",
+    date: "March 21, 2024",
+    author: "IBT Editorial",
+    category: "Product Design",
+    image: "https://images.unsplash.com/photo-1535813547-99c456a41d4a?auto=format&fit=crop&q=80&w=1000",
+    excerpt: "Conveyor buckets are highly versatile components in material handling. Read our guide on selecting between plastic and steel elevator buckets to optimize your bulk handling system.",
+    url: "https://ibtinc.com/plastic-steel-how-to-choose-conveyor-bucket/"
   },
   {
-    title: "Conveyors Inc. Awarded Industry Excellence Award",
-    date: "March 12, 2026",
-    author: "Emily Rodriguez",
-    category: "Awards",
-    image: "https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?auto=format&fit=crop&q=80&w=1000",
-    excerpt: "Recognized for over 50 years of engineering mastery, we are proud to receive the 2026 Material Handling Excellence Award."
+    title: "Unlocking Efficiency: The Core Components of Conveyor Belt Systems",
+    date: "October 6, 2023",
+    author: "IBT Editorial",
+    category: "Technical Guide",
+    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1000",
+    excerpt: "Delve into the fundamental components and functions of conveyor belt systems. Learn how custom configurations and core parts work together to optimize bulk material transport.",
+    url: "https://ibtinc.com/unlocking-efficiency-the-core-components-of-conveyor-belt-systems/"
+  },
+  {
+    title: "Optimize Your Bulk Material Handling with Custom Screw Conveyor Solutions",
+    date: "February 21, 2023",
+    author: "IBT Editorial",
+    category: "Technical Guide",
+    image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=1000",
+    excerpt: "Learn how custom screw conveyor solutions optimize productivity, maximize conveyor component life, and protect your equipment from material wear to reduce unplanned downtime.",
+    url: "https://ibtinc.com/do-you-need-a-screw-conveyor-or-a-feeder-screw/"
+  },
+  {
+    title: "Screw Conveyors: Helicoid Flighting vs. Sectional Flighting",
+    date: "July 25, 2022",
+    author: "IBT Editorial",
+    category: "Technical Guide",
+    image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=1000",
+    excerpt: "Understand the key differences between helicoid and sectional flighting for screw conveyors. Learn when to use continuous rolled vs. segmented plate flighting to maximize system life.",
+    url: "https://ibtinc.com/screw-conveyors-helicoid-flighting-vs-sectional-flighting/"
   }
 ];
 
@@ -65,13 +86,16 @@ const News = () => {
           <div className="container mx-auto px-6">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
               {newsArticles.map((article, index) => (
-                <motion.article
+                <motion.a
+                  href={article.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   key={article.title}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="group flex flex-col h-full bg-card/50 rounded-2xl overflow-hidden border border-border hover:border-accent/30 hover:shadow-2xl transition-all duration-300"
+                  className="group flex flex-col h-full bg-card/50 rounded-2xl overflow-hidden border border-border hover:border-accent/30 hover:shadow-2xl transition-all duration-300 cursor-pointer"
                 >
                   <div className="relative aspect-video overflow-hidden">
                     <img 
@@ -106,12 +130,12 @@ const News = () => {
                       {article.excerpt}
                     </p>
                     
-                    <Button variant="ghost" className="p-0 h-auto hover:bg-transparent hover:text-accent group/link flex items-center gap-2 font-bold text-sm uppercase tracking-wider">
+                    <Button variant="ghost" className="p-0 h-auto hover:bg-transparent hover:text-accent group/link flex items-center gap-2 font-bold text-sm uppercase tracking-wider pointer-events-none">
                       Read Full Article 
                       <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
                     </Button>
                   </div>
-                </motion.article>
+                </motion.a>
               ))}
             </div>
           </div>

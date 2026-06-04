@@ -8,14 +8,15 @@ const quickLinks = [
   { label: 'Products', path: '/products' },
   { label: 'Industries', path: '/industries' },
   { label: 'Training', path: '/training' },
+  { label: 'Find A Rep', path: '/find-a-rep' },
   { label: 'Contact', path: '/contact' },
 ];
 
 const productLinks = [
-  { label: 'Screw Conveyors', path: '/products' },
-  { label: 'Belt Conveyors', path: '/products' },
-  { label: 'Bucket Elevators', path: '/products' },
-  { label: 'Custom Solutions', path: '/products' },
+  { label: 'Screw Conveyor / Feeder', path: '/products' },
+  { label: 'Bucket Elevator & Buckets', path: '/products' },
+  { label: 'Drag Conveyors', path: '/products' },
+  { label: 'Custom Fabrication', path: '/products' },
 ];
 
 const socialLinks = [
@@ -36,7 +37,7 @@ export function Footer() {
             <img src={logo} alt="Conveyors Incorporated" className="h-12 md:h-14 lg:h-16 w-auto" />
             <p className="text-primary-foreground/70 text-xs md:text-sm leading-relaxed">
               Industry leaders in bulk material handling and conveyor systems manufacturing.
-              Engineering excellence since 1974.
+              Custom excellence since 1974.
             </p>
             <div className="flex gap-2 md:gap-3">
               {socialLinks.map((social) => (

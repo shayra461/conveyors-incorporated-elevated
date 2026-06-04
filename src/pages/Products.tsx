@@ -58,7 +58,7 @@ const Products = () => {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="font-heading text-5xl md:text-7xl font-bold text-white tracking-tight leading-none mb-6"
               >
-                Engineering Excellence <br />
+                Custom Excellence <br />
                 <span className="text-gradient">In Bulk Solids Handling</span>
               </motion.h1>
               
@@ -68,7 +68,7 @@ const Products = () => {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="text-primary-foreground/75 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
               >
-                Explore our full line of CEMA-standard industrial conveyors, high-precision feeders, and custom-fabricated hardware components engineered for severe-duty performance.
+                Explore our full line of CEMA-standard industrial conveyors, high-precision feeders, and custom-fabricated hardware components custom-built for severe-duty performance.
               </motion.p>
             </div>
           </div>
@@ -185,7 +185,7 @@ const Products = () => {
                           to={`/products/${product.id}`}
                           className="inline-flex items-center gap-2 text-accent font-semibold text-sm group/btn hover:text-accent-dark transition-colors duration-300 mt-auto"
                         >
-                          <span>Explore Engineering Details</span>
+                          <span>Explore Custom Details</span>
                           <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1.5 transition-transform duration-300" />
                         </Link>
                       </div>
@@ -223,7 +223,7 @@ const Products = () => {
           <div className="container mx-auto px-6 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
               <h2 className="font-heading text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight leading-tight">
-                Need a Custom Engineered System?
+                Need a Custom System?
               </h2>
               <p className="text-primary-foreground/75 text-lg md:text-xl mb-10 leading-relaxed max-w-2xl mx-auto">
                 Conveyors Inc excels at custom, made-to-order solutions. Our veteran design staff utilizes cutting-edge CAD/FEA tools to construct complete, application-specific layouts.
@@ -237,7 +237,7 @@ const Products = () => {
                 </Link>
                 <Link to="/contact">
                   <Button variant="outline" size="lg" className="border-white/20 text-white hover:bg-white/10 w-full sm:w-auto px-8 py-6 text-base font-semibold rounded-lg">
-                    Speak with an Engineer
+                    Speak with a Specialist
                   </Button>
                 </Link>
               </div>

@@ -98,7 +98,7 @@ const Quote = () => {
                 Request a <span className="text-accent">Custom Quote</span>
               </h1>
               <p className="text-primary-foreground/70 text-xl">
-                Tell us about your project requirements and our engineering team will provide a tailored solution.
+                Tell us about your project requirements and our custom team will provide a tailored solution.
               </p>
             </motion.div>
           </div>

@@ -5,7 +5,7 @@ import { Cog, Shield, Lightbulb, HeartHandshake } from 'lucide-react';
 const reasons = [
   {
     icon: Cog,
-    title: 'Engineering Expertise',
+    title: 'Custom Expertise',
     description: 'Our team of engineers brings decades of experience in designing solutions for the most demanding applications.',
     stat: '50+ Patents',
   },

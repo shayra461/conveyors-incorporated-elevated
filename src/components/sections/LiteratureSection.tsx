@@ -11,8 +11,8 @@ import bookDesign from '@/assets/literature/book-design.png';
 const literatureItems = [
   {
     id: 1,
-    title: 'Engineering Guides',
-    description: 'Booklets that contain in-depth details of engineering specifications for Screw Conveyors and Bucket Elevators.',
+    title: 'Custom Guides',
+    description: 'Booklets that contain in-depth details of custom specifications for Screw Conveyors and Bucket Elevators.',
     image: bookEngineering,
     type: 'guide',
   },
@@ -195,7 +195,7 @@ export function LiteratureSection() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Access our collection of engineering guides, product brochures, and design worksheets
+            Access our collection of custom guides, product brochures, and design worksheets
             for bulk material handling equipment.
           </motion.p>
         </motion.div>

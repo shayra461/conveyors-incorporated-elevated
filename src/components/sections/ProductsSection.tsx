@@ -9,32 +9,26 @@ import beltConveyor from '@/assets/products/belt-conveyor.png';
 import bucketElevatorNew from '@/assets/products/bucket-elevator-new.png';
 import cemaComponentsNew from '@/assets/products/cema-components-new.png';
 import dragConveyorNew from '@/assets/products/drag-conveyor-new.png';
-import fabricatedBucket from '@/assets/products/fabricated-bucket.png';
 import screwConveyorNew from '@/assets/products/screw-conveyor-new.png';
 import verticalScrewNew from '@/assets/products/vertical-screw-new.png';
 import shaftlessConveyors from '@/assets/products/shaftless-conveyors.png';
+import mixersBlenders from '@/assets/products/mixers-blenders.png';
+import liveBottomFeeder from '@/assets/products/live-bottom-feeders.png';
 
 const products = [
   {
-    id: 'belt-conveyors',
-    name: 'Belt Conveyor',
+    id: 'screw-conveyor-feeder',
+    name: 'Screw Conveyor / Screw Feeder',
     category: 'Conveyors',
-    image: beltConveyor,
-    description: 'High-performance belt conveyor systems designed for efficient and reliable transport of bulk materials over long distances.',
+    image: screwConveyorNew,
+    description: 'Reliable bulk material transport and regulated, volumetric feeding using rotating helical flighting.',
   },
   {
-    id: 'bucket-elevators',
-    name: 'Bucket Elevator',
-    category: 'Elevators',
+    id: 'bucket-elevator-fabricated-buckets',
+    name: 'Bucket Elevator & Fabricated Buckets',
+    category: 'Conveyors',
     image: bucketElevatorNew,
-    description: 'Centrifugal and continuous bucket elevators designed for vertical transport of bulk materials in demanding industrial environments.',
-  },
-  {
-    id: 'cema-components',
-    name: 'CEMA Components',
-    category: 'Components',
-    image: cemaComponentsNew,
-    description: 'High-quality CEMA standard components including idlers, pulleys, and specialized hardware for conveyor systems.',
+    description: 'Centrifugal and continuous bucket elevators designed for vertical transport of bulk materials combined with heavy-duty custom metal buckets.',
   },
   {
     id: 'drag-conveyors',
@@ -44,25 +38,25 @@ const products = [
     description: 'En-masse drag conveyors provide efficient, high-volume material transport with minimal degradation and low power consumption.',
   },
   {
-    id: 'made-to-order-components',
-    name: 'Metal Fabricated Bucket',
-    category: 'Components',
-    image: fabricatedBucket,
-    description: 'Custom-designed, heavy-duty metal buckets fabricated to exact specifications for maximum durability in high-capacity elevators.',
+    id: 'custom-fabrication',
+    name: 'Custom Fabrication',
+    category: 'Feeders & Mixers',
+    image: mixersBlenders,
+    description: 'Tailored components, double-ribbon blenders, and classifiers built to solve wear, layout, and performance problems.',
   },
   {
-    id: 'screw-conveyors',
-    name: 'Screw Conveyor',
+    id: 'complete-systems',
+    name: 'Complete Systems',
     category: 'Conveyors',
-    image: screwConveyorNew,
-    description: 'Custom-engineered screw conveyors designed for efficient bulk material handling, featuring modular construction and precision-flighting.',
+    image: liveBottomFeeder,
+    description: 'Fully integrated, single-source bulk material handling systems designed for seamless operational flow.',
   },
   {
-    id: 'vertical-screw-conveyors',
-    name: 'Vertical Screw',
+    id: 'belt-conveyors',
+    name: 'Belt Conveyors',
     category: 'Conveyors',
-    image: verticalScrewNew,
-    description: 'High-efficiency vertical screw conveyors designed for elevated material transport in space-constrained industrial environments.',
+    image: beltConveyor,
+    description: 'High-performance belt conveyor systems designed for efficient and reliable transport of bulk materials over long distances.',
   },
   {
     id: 'shaftless-conveyors',
@@ -70,6 +64,13 @@ const products = [
     category: 'Conveyors',
     image: shaftlessConveyors,
     description: 'Specialized screw conveyors without a center shaft, designed to convey wet, sticky, and sluggish bulk materials efficiently.',
+  },
+  {
+    id: 'vertical-screw-conveyors',
+    name: 'Vertical Screw Conveyor',
+    category: 'Conveyors',
+    image: verticalScrewNew,
+    description: 'High-efficiency vertical screw conveyors designed for elevated material transport in space-constrained industrial environments.',
   },
 ];
 
@@ -325,7 +326,7 @@ export function ProductsSection() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            Precision-Engineered <span className="text-accent">Components</span>
+            Precision Custom <span className="text-accent">Components</span>
           </motion.h2>
           <motion.p
             className="text-muted-foreground text-base md:text-lg"

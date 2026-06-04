@@ -62,7 +62,7 @@ export function AboutSection() {
             <div>
               <h3 className="text-2xl sm:text-3xl font-bold mb-4 md:mb-6 leading-tight">
                 Built on a Foundation of <br className="hidden sm:block" />
-                <span className="text-white">Engineering Mastery</span>
+                <span className="text-white">Custom Mastery</span>
               </h3>
               <p className="text-slate-400 text-base md:text-lg leading-relaxed mb-6 md:mb-8">
                 Conveyors Inc. was founded in 1974, born out of a need for a reliable and trustworthy partner in the conveyor industry.

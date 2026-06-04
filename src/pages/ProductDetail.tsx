@@ -16,7 +16,7 @@ import {
 } from 'lucide-react';
 import { productsData } from '@/data/productsData';
 
-type TabType = 'features' | 'specs' | 'applications';
+type TabType = 'features' | 'applications';
 
 const ProductDetail = () => {
   const { productId } = useParams<{ productId: string }>();
@@ -142,7 +142,7 @@ const ProductDetail = () => {
 
                 {/* Tab Controls */}
                 <div className="flex border-b border-border/80 mb-8 relative">
-                  {(['features', 'specs', 'applications'] as TabType[]).map((tab) => (
+                  {(['features', 'applications'] as TabType[]).map((tab) => (
                     <button
                       key={tab}
                       onClick={() => setActiveTab(tab)}
@@ -151,7 +151,6 @@ const ProductDetail = () => {
                       }`}
                     >
                       {tab === 'features' && 'Key Features'}
-                      {tab === 'specs' && 'Technical Specifications'}
                       {tab === 'applications' && 'Applications & Industries'}
                       {activeTab === tab && (
                         <motion.div 
@@ -177,7 +176,7 @@ const ProductDetail = () => {
                       >
                         <h3 className="font-heading text-lg font-bold text-foreground mb-3 flex items-center gap-2">
                           <Wrench className="w-5 h-5 text-accent" />
-                          Engineering & Operational Advantages
+                          Custom & Operational Advantages
                         </h3>
                         <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           {product.features.map((feature, idx) => (
@@ -190,38 +189,6 @@ const ProductDetail = () => {
                       </motion.div>
                     )}
 
-                    {activeTab === 'specs' && (
-                      <motion.div
-                        key="specs"
-                        initial={{ opacity: 0, x: 15 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -15 }}
-                        transition={{ duration: 0.25 }}
-                      >
-                        <h3 className="font-heading text-lg font-bold text-foreground mb-3 flex items-center gap-2">
-                          <Settings className="w-5 h-5 text-accent" />
-                          Component Parameters
-                        </h3>
-                        <div className="overflow-hidden border border-border rounded-xl shadow-sm bg-card">
-                          <table className="w-full text-left border-collapse">
-                            <thead>
-                              <tr className="bg-muted border-b border-border">
-                                <th className="py-3.5 px-5 text-xs font-bold uppercase tracking-wider text-muted-foreground">Parameter</th>
-                                <th className="py-3.5 px-5 text-xs font-bold uppercase tracking-wider text-muted-foreground">Standard Specifications</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {Object.entries(product.specs).map(([key, val], idx) => (
-                                <tr key={idx} className="border-b border-border/50 hover:bg-muted/20 transition-colors">
-                                  <td className="py-3.5 px-5 text-sm font-bold text-foreground bg-muted/10">{key}</td>
-                                  <td className="py-3.5 px-5 text-sm font-semibold text-muted-foreground">{val}</td>
-                                </tr>
-                              ))}
-                            </tbody>
-                          </table>
-                        </div>
-                      </motion.div>
-                    )}
 
                     {activeTab === 'applications' && (
                       <motion.div
@@ -266,7 +233,7 @@ const ProductDetail = () => {
                 <div className="flex flex-col sm:flex-row items-center gap-4 p-6 bg-gradient-dark rounded-xl border border-white/5 shadow-lg">
                   <div className="text-center sm:text-left flex-grow mb-4 sm:mb-0">
                     <h4 className="text-white font-heading text-lg font-bold">Require Pricing or Custom Edits?</h4>
-                    <p className="text-primary-foreground/70 text-xs mt-1">Get custom quotes directly from our engineering panel.</p>
+                    <p className="text-primary-foreground/70 text-xs mt-1">Get custom quotes directly from our custom panel.</p>
                   </div>
                   <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
                     <Link to={`/quote?product=${product.id}`}>
@@ -336,7 +303,7 @@ const ProductDetail = () => {
                       </p>
                     </div>
                     <span className="inline-flex items-center gap-1.5 text-accent font-bold text-xs mt-auto">
-                      <span>View Specifications</span>
+                      <span>View Details</span>
                       <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                     </span>
                   </div>

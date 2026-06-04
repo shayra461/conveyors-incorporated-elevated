@@ -1,7 +1,7 @@
 import { motion, useInView, useSpring, useMotionValue } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import heroVideo from '@/assets/hero-video.mp4';
+import heroVideo from '@/assets/conv-v1.mp4';
 import badge45Years from '@/assets/45-years-badge.png';
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
@@ -116,7 +116,7 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-primary-foreground leading-tight mb-4 md:mb-6"
           >
-            Engineering Excellence in{' '}
+            Custom Excellence in{' '}
             <span className="text-gradient bg-gradient-to-r from-accent to-crimson-dark bg-clip-text text-transparent">
               Bulk Material Handling
             </span>

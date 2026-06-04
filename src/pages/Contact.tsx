@@ -1,9 +1,10 @@
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { motion } from 'framer-motion';
-import { Phone, Mail, MapPin, Clock, Send } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Send, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const contactInfo = [
   {
@@ -107,6 +108,23 @@ const Contact = () => {
                     </div>
                   </div>
                 ))}
+
+                {/* Find A Rep CTA */}
+                <div className="p-5 bg-card border border-border rounded-lg space-y-3 mt-6 shadow-sm">
+                  <h3 className="font-heading font-bold text-foreground text-lg flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-accent animate-pulse" />
+                    Find a Local Rep
+                  </h3>
+                  <p className="text-muted-foreground text-xs md:text-sm leading-relaxed">
+                    We have dedicated sales and support representative teams across the United States, Canada, Mexico, and the Caribbean.
+                  </p>
+                  <Link to="/find-a-rep" className="block w-full">
+                    <Button variant="outline" className="w-full justify-between group hover:bg-accent hover:text-white transition-all duration-300">
+                      <span>Locate Representative</span>
+                      <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  </Link>
+                </div>
               </motion.div>
 
               {/* Form */}

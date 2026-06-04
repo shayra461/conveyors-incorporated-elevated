@@ -12,9 +12,9 @@ const testimonials = [
     },
     {
         id: 2,
-        quote: "It is a masterpiece! A work of art! You guys are very good! You guys are very smart! Most of all you put up with us through engineering changes.",
+        quote: "It is a masterpiece! A work of art! You guys are very good! You guys are very smart! Most of all you put up with us through custom changes.",
         author: "R. Stigen",
-        role: "Engineering Firm",
+        role: "Custom Firm",
         rating: 5
     },
     {

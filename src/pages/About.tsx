@@ -13,7 +13,7 @@ const values = [
   {
     icon: Eye,
     title: 'Vision',
-    description: 'To be the global leader in bulk material handling systems, recognized for engineering excellence and customer success.',
+    description: 'To be the global leader in bulk material handling systems, recognized for custom excellence and customer success.',
   },
   {
     icon: Award,
@@ -40,9 +40,9 @@ const team = [
   },
   {
     name: "Sarah Miller",
-    role: "Head of Engineering",
+    role: "Head of Custom",
     image: "/conveyors-incorporated-elevated/images/hod-engineering.png",
-    bio: "Sarah oversees all engineering projects, ensuring that every system we design meets the highest standards of efficiency."
+    bio: "Sarah oversees all custom projects, ensuring that every system we design meets the highest standards of efficiency."
   },
   {
     name: "Michael Chen",
@@ -79,7 +79,7 @@ const About = () => {
                 </span>
               </div>
               <h1 className="font-heading text-5xl md:text-6xl font-bold text-primary-foreground leading-tight mb-6">
-                Engineering Excellence Since 1974
+                Custom Excellence Since 1974
               </h1>
               <p className="text-primary-foreground/70 text-xl">
                 Four decades of innovation, quality, and customer success in bulk material handling.
@@ -161,7 +161,7 @@ const About = () => {
               </p>
 
               <p className="text-lg text-foreground font-medium leading-relaxed bg-accent/5 p-8 border-l-4 border-accent rounded-r-lg">
-                We specialize in screw conveyors, bucket elevators, drag conveyors, vertical screw lifts, mixers, and blenders, along with complete engineered systems designed for the most demanding applications. Our work spans industries including food processing, grain and feed, wastewater treatment, chemicals, and more—delivering solutions in everything from standard carbon steel to exotic alloys.
+                We specialize in screw conveyor / screw feeder systems, bucket elevators & fabricated buckets, drag conveyors, belt conveyors, shaftless conveyors, vertical screw conveyors, complete custom systems, custom fabrication, and repair/replacement parts designed for the most demanding applications. Our work spans industries including food processing, grain and feed, wastewater treatment, chemicals, and more—delivering solutions in everything from standard carbon steel to exotic alloys.
               </p>
 
               <p className="text-lg text-muted-foreground leading-relaxed">

@@ -13,6 +13,7 @@ import IndustryDetail from "./pages/IndustryDetail";
 import Training from "./pages/Training";
 import Contact from "./pages/Contact";
 import Quote from "./pages/Quote";
+import FindRep from "./pages/FindRep";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/training" element={<Training />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/quote" element={<Quote />} />
+          <Route path="/find-a-rep" element={<FindRep />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
