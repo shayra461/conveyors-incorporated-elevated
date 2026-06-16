@@ -1,7 +1,8 @@
-import joseBautistaImg from '@/assets/managers/jose_bautista.png';
-import carlSimpsonImg from '@/assets/managers/carl_simpson.png';
+import joseBautistaImg from '@/assets/managers/jose_bautista.jpg';
+import carlSimpsonImg from '@/assets/managers/carl_simpson.jpg';
 import wayneSimmons from '@/assets/managers/wayne_simmons.png';
-import masonRoseImg from '@/assets/managers/mason_rose.png';
+import masonRoseImg from '@/assets/managers/mason_rose.jpg';
+
 
 export interface Manager {
   id: string;
