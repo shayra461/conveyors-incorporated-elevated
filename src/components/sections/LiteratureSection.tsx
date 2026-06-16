@@ -2,6 +2,7 @@ import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { Download, ExternalLink, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 // Import book images
 import bookEngineering from '@/assets/literature/book-engineering.png';
@@ -105,10 +106,12 @@ function LiteratureCard({ item, index }: { item: typeof literatureItems[0]; inde
               animate={{ opacity: isHovered ? 1 : 0, scale: isHovered ? 1 : 0.8 }}
               transition={{ duration: 0.3, delay: 0.1 }}
             >
-              <Button variant="heroOutline" size="default" className="group/btn">
-                <Download className="w-4 h-4 mr-2 group-hover/btn:animate-bounce" />
-                View Resources
-              </Button>
+              <Link to="/resources">
+                <Button variant="heroOutline" size="default" className="group/btn">
+                  <Download className="w-4 h-4 mr-2 group-hover/btn:animate-bounce" />
+                  View Resources
+                </Button>
+              </Link>
             </motion.div>
           </motion.div>
         </div>
@@ -221,10 +224,12 @@ export function LiteratureSection() {
           className="text-center mt-16"
         >
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
-            <Button variant="default" size="lg" className="group">
-              View All Literature
-              <ExternalLink className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-            </Button>
+            <Link to="/resources">
+              <Button variant="default" size="lg" className="group">
+                View All Literature
+                <ExternalLink className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </Link>
           </motion.div>
         </motion.div>
       </div>

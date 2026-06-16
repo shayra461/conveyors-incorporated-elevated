@@ -7,6 +7,7 @@ const quickLinks = [
   { label: 'About Us', path: '/about' },
   { label: 'Products', path: '/products' },
   { label: 'Industries', path: '/industries' },
+  { label: 'Resources & Literature', path: '/resources' },
   { label: 'Training', path: '/training' },
   { label: 'Find A Rep', path: '/find-a-rep' },
   { label: 'Contact', path: '/contact' },

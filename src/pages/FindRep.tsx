@@ -26,6 +26,16 @@ const stateNames: Record<string, string> = {
   Canada: 'Canada', Caribbean: 'Caribbean', CentralAmerica: 'Mexico & Central America'
 };
 
+const mapCallouts: Record<string, { centerX: number; centerY: number; labelX: number; labelY: number }> = {
+  MA: { centerX: 854, centerY: 154, labelX: 910, labelY: 145 },
+  RI: { centerX: 862, centerY: 165, labelX: 910, labelY: 170 },
+  CT: { centerX: 848, centerY: 172, labelX: 910, labelY: 195 },
+  NJ: { centerX: 825, centerY: 208, labelX: 875, labelY: 218 },
+  DE: { centerX: 818, centerY: 232, labelX: 875, labelY: 243 },
+  MD: { centerX: 792, centerY: 238, labelX: 875, labelY: 268 },
+  DC: { centerX: 798, centerY: 246, labelX: 875, labelY: 293 }
+};
+
 export default function FindRep() {
   const [selectedRegion, setSelectedRegion] = useState<string>('TX');
   const [hoveredRegion, setHoveredRegion] = useState<string | null>(null);
@@ -233,37 +243,81 @@ export default function FindRep() {
                   </g>
                   <g id="state-labels" className="pointer-events-none">
                     {Object.entries(usMapCenters).map(([stateCode, coords]) => {
-                      // Correctly map sub-region keys back to standard 2-letter postal codes
+                      // Correctly map sub-region keys back to standard 2-letter postal codes,
+                      // and prevent rendering duplicate labels for sub-regions.
                       const getDisplayLabel = (code: string) => {
-                        if (code === 'ILB') return 'IL';
-                        if (code === 'MIL') return 'MI';
-                        if (code === 'LAR') return 'LA';
+                        if (code === 'ILB' || code === 'MIL' || code === 'LAR') return '';
                         return code;
                       };
                       const displayLabel = getDisplayLabel(stateCode);
+                      if (!displayLabel) return null;
+
+                      // Adjust centers for VT and NH directly to prevent overlap
+                      let x = coords.x;
+                      let y = coords.y;
+                      if (stateCode === 'VT') { x = 822; y = 125; }
+                      if (stateCode === 'NH') { x = 852; y = 125; }
+
+                      const callout = mapCallouts[stateCode];
+
+                      if (callout) {
+                        return (
+                          <g key={`group-${stateCode}`}>
+                            <line
+                              x1={callout.centerX}
+                              y1={callout.centerY}
+                              x2={callout.labelX}
+                              y2={callout.labelY}
+                              stroke="#ffffff"
+                              strokeWidth="1.5"
+                              opacity="0.75"
+                              strokeDasharray="2,2"
+                            />
+                            <text
+                              x={callout.labelX + 6}
+                              y={callout.labelY}
+                              fill="#ffffff"
+                              textAnchor="start"
+                              dominantBaseline="central"
+                              fontSize="12"
+                              fontWeight="900"
+                              style={{
+                                fontFamily: "Inter, system-ui, -apple-system, sans-serif",
+                                letterSpacing: "0.03em",
+                                paintOrder: "stroke",
+                                stroke: "rgba(15,23,42,0.85)",
+                                strokeWidth: "3px"
+                              }}
+                              className="select-none pointer-events-none"
+                            >
+                              {displayLabel}
+                            </text>
+                          </g>
+                        );
+                      }
 
                       return (
-                        <text
-                          key={`label-${stateCode}`}
-                          x={coords.x}
-                          y={coords.y}
-                          fill="#1e3a8a"
-                          textAnchor="middle"
-                          dominantBaseline="central"
-                          fontSize="13"
-                          fontWeight="900"
-                          style={{
-                            fontFamily: "Inter, system-ui, -apple-system, sans-serif",
-                            letterSpacing: "0.03em",
-                            paintOrder: "stroke",
-                            stroke: "rgba(255,255,255,0.0)",
-                            strokeWidth: "0"
-                          }}
-                          className="select-none pointer-events-none"
-                        >
-                          {displayLabel}
-                        </text>
-                      );
+                         <text
+                           key={`label-${stateCode}`}
+                           x={x}
+                           y={y}
+                           fill="#ffffff"
+                           textAnchor="middle"
+                           dominantBaseline="central"
+                           fontSize="13"
+                           fontWeight="900"
+                           style={{
+                             fontFamily: "Inter, system-ui, -apple-system, sans-serif",
+                             letterSpacing: "0.03em",
+                             paintOrder: "stroke",
+                             stroke: "rgba(15,23,42,0.85)", // slate-900 with high opacity for contrast
+                             strokeWidth: "3px"
+                           }}
+                           className="select-none pointer-events-none"
+                         >
+                           {displayLabel}
+                         </text>
+                       );
                     })}
                   </g>
                 </svg>
@@ -320,42 +374,50 @@ export default function FindRep() {
                       )}
                     </div>
 
-                    {/* Manager Headshot */}
-                     {selectedRep.managerId && managersMap[selectedRep.managerId] && (() => {
-                       const mgr = managersMap[selectedRep.managerId];
-                       return (
-                         <div className="pt-4 border-t border-border/50">
-                           <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block mb-3">
-                             Your Conveyors Inc. Contact
-                           </span>
-                           <div className="flex items-center gap-4 p-3 rounded-xl bg-muted/40 border border-border/40">
-                             <img
-                               src={mgr.photo}
-                               alt={mgr.name}
-                               className="w-16 h-16 rounded-full object-cover object-top border-2 flex-shrink-0"
-                               style={{ borderColor: selectedRep.color }}
-                             />
-                             <div>
-                               <p className="text-sm font-bold text-foreground leading-tight">{mgr.name}</p>
-                               <p className="text-xs text-muted-foreground mt-0.5">{mgr.role}</p>
-                               <div
-                                 className="inline-block mt-1.5 px-2 py-0.5 rounded-full text-[10px] font-bold text-white"
-                                 style={{ backgroundColor: selectedRep.color }}
-                               >
-                                 Conveyors Inc.
-                               </div>
-                             </div>
-                           </div>
-                         </div>
-                       );
-                     })()}
+                    {/* Manager Headshot (Key Contact) */}
+                      {selectedRep.managerId && managersMap[selectedRep.managerId] && (() => {
+                        const mgr = managersMap[selectedRep.managerId];
+                        return (
+                          <div className="pt-4 border-t border-border/50">
+                            <span className="text-[10px] font-bold text-accent uppercase tracking-wider block mb-3">
+                              Key Contact (Conveyors Inc. Representative)
+                            </span>
+                            <div className="flex items-center gap-4 p-3.5 rounded-xl bg-muted/40 border border-border/40">
+                              <img
+                                src={mgr.photo}
+                                alt={mgr.name}
+                                className="w-20 h-20 rounded-full object-cover object-top border-2 flex-shrink-0"
+                                style={{ borderColor: selectedRep.color }}
+                              />
+                              <div className="space-y-1">
+                                <p className="text-sm font-bold text-foreground leading-tight">{mgr.name}</p>
+                                <p className="text-xs text-muted-foreground font-semibold">{mgr.role}</p>
+                                <a
+                                  href={`tel:${mgr.phone.replace(/[^0-9+]/g, '')}`}
+                                  className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-accent transition-colors"
+                                >
+                                  <Phone className="w-3.5 h-3.5" />
+                                  <span>{mgr.phone}</span>
+                                </a>
+                                <a
+                                  href={`mailto:${mgr.email}`}
+                                  className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-accent transition-colors break-all"
+                                >
+                                  <Mail className="w-3.5 h-3.5" />
+                                  <span>{mgr.email}</span>
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })()}
 
-                    {/* Contact Person Details */}
-                    {selectedRep.contactPerson && (
-                      <div className="pt-4 border-t border-border/50">
-                        <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block mb-2">
-                          Key Contact
-                        </span>
+                     {/* Contact Person Details (Secondary Contact) */}
+                     {selectedRep.contactPerson && (
+                       <div className="pt-4 border-t border-border/50">
+                         <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block mb-2">
+                           Secondary Contact
+                         </span>
                         <div className="space-y-3">
                           <div className="flex items-center gap-3">
                             <div className="w-8 h-8 rounded bg-muted flex items-center justify-center text-muted-foreground">

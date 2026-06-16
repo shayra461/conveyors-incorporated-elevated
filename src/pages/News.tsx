@@ -4,13 +4,20 @@ import { motion } from 'framer-motion';
 import { Calendar, User, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
+// Import local article images
+import heavyDutyBeltImg from '@/assets/news/6 Advantages of Heavy-Duty Belt Conveyors for Material Handling.jpg';
+import conveyorBucketImg from '@/assets/news/Plastic or Steel How to Choose the Right Conveyor Bucket.jpg';
+import coreComponentsImg from '@/assets/news/Unlocking Efficiency The Core Components of Conveyor Belt Systems.png';
+import customScrewImg from '@/assets/news/Optimize Your Bulk Material Handling with Customized Screw Conveyor Solutions from Martin Sprocket.jpg';
+import helicoidSectionalImg from '@/assets/news/Screw Conveyors Helicoid Flighting vs. Sectional Flighting.jpg';
+
 const newsArticles = [
   {
     title: "6 Advantages of Heavy-Duty Belt Conveyors for Material Handling",
     date: "February 5, 2025",
     author: "IBT Editorial",
     category: "Bulk Handling",
-    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=1000",
+    image: heavyDutyBeltImg,
     excerpt: "Heavy-duty belt conveyors are vital for high-volume bulk material handling in mining, manufacturing, and agriculture. Explore the six key advantages they offer.",
     url: "https://ibtinc.com/6-advantages-of-heavy-duty-belt-conveyors-for-material-handling/"
   },
@@ -19,7 +26,7 @@ const newsArticles = [
     date: "March 21, 2024",
     author: "IBT Editorial",
     category: "Product Design",
-    image: "https://images.unsplash.com/photo-1535813547-99c456a41d4a?auto=format&fit=crop&q=80&w=1000",
+    image: conveyorBucketImg,
     excerpt: "Conveyor buckets are highly versatile components in material handling. Read our guide on selecting between plastic and steel elevator buckets to optimize your bulk handling system.",
     url: "https://ibtinc.com/plastic-steel-how-to-choose-conveyor-bucket/"
   },
@@ -28,7 +35,7 @@ const newsArticles = [
     date: "October 6, 2023",
     author: "IBT Editorial",
     category: "Technical Guide",
-    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1000",
+    image: coreComponentsImg,
     excerpt: "Delve into the fundamental components and functions of conveyor belt systems. Learn how custom configurations and core parts work together to optimize bulk material transport.",
     url: "https://ibtinc.com/unlocking-efficiency-the-core-components-of-conveyor-belt-systems/"
   },
@@ -37,7 +44,7 @@ const newsArticles = [
     date: "February 21, 2023",
     author: "IBT Editorial",
     category: "Technical Guide",
-    image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=1000",
+    image: customScrewImg,
     excerpt: "Learn how custom screw conveyor solutions optimize productivity, maximize conveyor component life, and protect your equipment from material wear to reduce unplanned downtime.",
     url: "https://ibtinc.com/do-you-need-a-screw-conveyor-or-a-feeder-screw/"
   },
@@ -46,7 +53,7 @@ const newsArticles = [
     date: "July 25, 2022",
     author: "IBT Editorial",
     category: "Technical Guide",
-    image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=1000",
+    image: helicoidSectionalImg,
     excerpt: "Understand the key differences between helicoid and sectional flighting for screw conveyors. Learn when to use continuous rolled vs. segmented plate flighting to maximize system life.",
     url: "https://ibtinc.com/screw-conveyors-helicoid-flighting-vs-sectional-flighting/"
   }

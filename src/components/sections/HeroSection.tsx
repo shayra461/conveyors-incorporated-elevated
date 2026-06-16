@@ -1,7 +1,7 @@
 import { motion, useInView, useSpring, useMotionValue } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import heroVideo from '@/assets/conv-v1.mp4';
+import heroVideo from '@/assets/ezgif-556e57c2a3bb0abe.mp4';
 import badge45Years from '@/assets/45-years-badge.png';
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';

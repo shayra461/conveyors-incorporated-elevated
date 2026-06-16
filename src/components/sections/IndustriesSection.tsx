@@ -16,10 +16,10 @@ import {
 // Import existing images
 import grainHandlingImg from '@/assets/industries/grain-handling.png';
 import agricultureImg from '@/assets/industries/agriculture-real.jpg';
-import chemicalImg from '@/assets/industries/chemical-industry.png';
-import foodImg from '@/assets/industries/food-industry.png';
-import powerImg from '@/assets/industries/power-industry.png';
-import oilGasImg from '@/assets/industries/oil-and-gas.png';
+import chemicalImg from '@/assets/industries/Chemicals.webp';
+import foodImg from '@/assets/industries/Food Products.jpeg';
+import powerImg from '@/assets/industries/Power.jpg';
+import oilGasImg from '@/assets/industries/Oil & Gas.jpg';
 import manufacturingImg from '@/assets/industries/manufacturing.png'; // Keeping original for now
 import energyImg from '@/assets/industries/energy-real.jpg';
 import warehousingImg from '@/assets/industries/warehousing-real.jpg';

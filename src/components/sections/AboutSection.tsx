@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { CheckCircle, Award, Users, Factory, ArrowRight, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import manufacturingImg from '@/assets/industries/manufacturing.png'; // Reusing for "Since 1974" visual
-import miningImg from '@/assets/industries/mining.png';
+import miningImg from '@/assets/industries/Metals & Mining.jpeg';
 
 export function AboutSection() {
   const ref = useRef(null);

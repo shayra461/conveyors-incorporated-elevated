@@ -16,17 +16,17 @@ import {
 } from 'lucide-react';
 
 import agricultureImg from '@/assets/industries/agriculture.png';
-import alternativeFuelsImg from '@/assets/industries/alternative-fuels.png';
-import chemicalsImg from '@/assets/industries/chemical-industry.png';
-import environmentalImg from '@/assets/industries/environmental.png';
-import foodProductsImg from '@/assets/industries/food-industry.png';
-import lumberWoodImg from '@/assets/industries/lumber-wood.png';
-import miningImg from '@/assets/industries/mining.png';
-import oilGasImg from '@/assets/industries/oil-and-gas.png';
-import powerImg from '@/assets/industries/power-industry.png';
-import pulpPaperImg from '@/assets/industries/pulp-paper.png';
+import alternativeFuelsImg from '@/assets/industries/Alternative Fuels.jpg';
+import chemicalsImg from '@/assets/industries/Chemicals.webp';
+import environmentalImg from '@/assets/industries/Environmental.jpg';
+import foodProductsImg from '@/assets/industries/Food Products.jpeg';
+import lumberWoodImg from '@/assets/industries/Lumber & Wood.jpg';
+import miningImg from '@/assets/industries/Metals & Mining.jpeg';
+import oilGasImg from '@/assets/industries/Oil & Gas.jpg';
+import powerImg from '@/assets/industries/Power.jpg';
+import pulpPaperImg from '@/assets/industries/Pulp & Paper.jpeg';
 import recyclingImg from '@/assets/industries/recycling-real.jpg';
-import stoneConcreteImg from '@/assets/industries/stone-concrete.png';
+import stoneConcreteImg from '@/assets/industries/Stone, Glass & Concrete.jpg';
 import refuseSystemsImg from '@/assets/industries/refuse-systems.png';
 
 export interface Industry {
