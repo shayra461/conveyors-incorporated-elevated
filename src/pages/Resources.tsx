@@ -38,6 +38,18 @@ import bookEngineering from '@/assets/literature/book-engineering.png';
 import bookLiterature from '@/assets/literature/book-literature.png';
 import bookDesign from '@/assets/literature/book-design.png';
 
+// Import worksheet cover images
+import bookScrewOnly from '@/assets/literature/book-screw-only.jpg';
+import bookScrewConveyor from '@/assets/literature/book-screw-conveyor.jpg';
+import bookScrewFeeder from '@/assets/literature/book-screw-feeder.jpg';
+import bookBucketElevator from '@/assets/literature/book-bucket-elevator.jpg';
+import bookDragConveyor from '@/assets/literature/book-drag-conveyor.jpg';
+import bookComponent from '@/assets/literature/book-component.jpg';
+import bookBeltConveyor from '@/assets/literature/book-belt-conveyor.jpg';
+import bookFolletoGeneral from '@/assets/literature/book-folleto-general.jpg';
+import bookHojaHelicoidal from '@/assets/literature/book-hoja-helicoidal.jpg';
+import bookHojaCangilon from '@/assets/literature/book-hoja-cangilon.jpg';
+
 // Design Guides & Literature Catalog
 const designBooks = [
   {
@@ -105,6 +117,7 @@ const worksheets = [
     title: 'Screw Conveyor Design Worksheet',
     description: 'Record specific parameters required to size and engineer a Screw Conveyor.',
     icon: Sliders,
+    image: bookScrewConveyor,
     pdfUrl: 'https://www.conveyorsinc.net/portals/0/docs/ScrewConv_DWS_2020.pdf',
     fields: [
       { id: 'length', label: 'Conveyor Length (feet)', type: 'number', placeholder: 'e.g. 20', required: true },
@@ -120,6 +133,7 @@ const worksheets = [
     title: 'Screw Only Design Worksheet',
     description: 'Specify standard helicoid or sectional screw sections, pipe/shaft connections, and flight details.',
     icon: Sliders,
+    image: bookScrewOnly,
     pdfUrl: 'https://www.conveyorsinc.net/portals/0/docs/ScrewOnly_DWS_2020.pdf',
     fields: [
       { id: 'screwDiameter', label: 'Screw Diameter (inches)', type: 'number', placeholder: 'e.g. 9', required: true },
@@ -134,6 +148,7 @@ const worksheets = [
     title: 'Screw Feeder Design Worksheet',
     description: 'Size and design screw feeders with shroud covers, variable pitch, or tapered flights for bin withdrawal.',
     icon: Sliders,
+    image: bookScrewFeeder,
     pdfUrl: 'https://www.conveyorsinc.net/portals/0/docs/ScrewFeeder_DWS_2020.pdf',
     fields: [
       { id: 'inletLength', label: 'Inlet Opening Length (inches)', type: 'number', placeholder: 'e.g. 48', required: true },
@@ -148,6 +163,7 @@ const worksheets = [
     title: 'Belt Conveyor Design Worksheet',
     description: 'Specify belt width, speed, idler configuration, and structural requirements for a Belt Conveyor.',
     icon: BookOpen,
+    image: bookBeltConveyor,
     pdfUrl: 'https://www.conveyorsinc.net/portals/0/docs/BeltConveyor_DWS_2020.pdf',
     fields: [
       { id: 'length', label: 'Conveyor Center-to-Center Length (feet)', type: 'number', placeholder: 'e.g. 120', required: true },
@@ -163,6 +179,7 @@ const worksheets = [
     title: 'Bucket Elevator Design Worksheet',
     description: 'Provide spacing, height, casing, and bucket details to outline a Bucket Elevator design.',
     icon: Database,
+    image: bookBucketElevator,
     pdfUrl: 'https://www.conveyorsinc.net/portals/0/docs/BucketElevator_DWS_2020.pdf',
     fields: [
       { id: 'height', label: 'Discharge Height (feet)', type: 'number', placeholder: 'e.g. 60', required: true },
@@ -178,6 +195,7 @@ const worksheets = [
     title: 'Drag Conveyor Design Worksheet',
     description: 'Capture parameters for sizing En-Masse Drag Conveyors or Flat Bottom Drag Conveyors.',
     icon: FileText,
+    image: bookDragConveyor,
     pdfUrl: 'https://www.conveyorsinc.net/portals/0/docs/DragConv_DWS_2020.pdf',
     fields: [
       { id: 'length', label: 'Conveyor Length (feet)', type: 'number', placeholder: 'e.g. 50', required: true },
@@ -192,6 +210,7 @@ const worksheets = [
     title: 'Component Order Worksheet',
     description: 'Specify standard CEMA replacement parts like hanger bearings, troughs, couplings, covers, or spouts.',
     icon: FileText,
+    image: bookComponent,
     pdfUrl: 'https://www.conveyorsinc.net/portals/0/docs/Components_DWS_2020.pdf',
     fields: [
       { id: 'componentName', label: 'Component / Part Description', type: 'text', placeholder: 'e.g. Hanger Bearing Woodflex 2"', required: true },
@@ -205,6 +224,7 @@ const worksheets = [
     title: 'Folleto General (Catálogo)',
     description: 'Folleto general de productos y componentes en español para la manipulación de materiales a granel.',
     icon: FileText,
+    image: bookFolletoGeneral,
     pdfUrl: 'https://www.conveyorsinc.net/portals/0/docs/Folleto_General_2020.pdf',
     fields: [],
   },
@@ -213,6 +233,7 @@ const worksheets = [
     title: 'Hoja Técnica - Transportador Helicoidal',
     description: 'Formulario técnico de diseño y especificaciones para transportadores helicoidales de tornillo en español.',
     icon: Sliders,
+    image: bookHojaHelicoidal,
     pdfUrl: 'https://www.conveyorsinc.net/portals/0/docs/Hoja_Tecnica_para_Transportador_Helicoidal.pdf',
     fields: [],
   },
@@ -221,6 +242,7 @@ const worksheets = [
     title: 'Hoja Técnica - Elevador de Cangilón',
     description: 'Formulario técnico de diseño y especificaciones para elevadores de cangilones (elevación de granos) en español.',
     icon: Database,
+    image: bookHojaCangilon,
     pdfUrl: 'https://www.conveyorsinc.net/portals/0/docs/Hoja_Tecnica_para_Elevador_de_Cangilon.pdf',
     fields: [],
   },
@@ -494,80 +516,115 @@ export default function Resources() {
                   <p className="text-muted-foreground">
                     Record your design load, material bulk, incline angles, and structural options online to submit them directly to our design office.
                   </p>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                 <div className="grid grid-cols-1 gap-8 max-w-5xl mx-auto">
                   {worksheets.map((worksheet) => {
                     const IconComp = worksheet.icon;
                     return (
-                      <Card key={worksheet.id} className="bg-card border-border hover:border-accent/40 transition-colors duration-300 flex flex-col">
-                        <CardHeader className="flex flex-row items-start gap-4 p-6">
-                          <div className="p-3 rounded-lg bg-accent/10 text-accent">
-                            <IconComp className="w-6 h-6" />
-                          </div>
+                      <div 
+                        key={worksheet.id} 
+                        className="flex flex-col lg:flex-row w-full bg-card border border-border hover:border-accent/40 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 group"
+                      >
+                        {/* Left Side: Cover Image Preview */}
+                        <div className="w-full lg:w-2/5 bg-gradient-to-br from-slate-900 to-slate-950 p-6 flex flex-col items-center justify-center relative border-b lg:border-b-0 lg:border-r border-border/40 overflow-hidden min-h-[220px]">
+                          {/* Grid Overlay */}
+                          <div className="absolute inset-0 opacity-5" style={{
+                            backgroundImage: `radial-gradient(circle at 25% 25%, hsl(var(--accent)) 1px, transparent 1px)`,
+                            backgroundSize: '15px 15px',
+                          }} />
+                          
+                          {/* Glow behind book */}
+                          <div className="absolute w-32 h-44 bg-accent/10 rounded-full blur-2xl group-hover:bg-accent/20 transition-all duration-500" />
+                          
+                          {/* Book cover image */}
+                          <img 
+                            src={worksheet.image} 
+                            alt={worksheet.title} 
+                            className="h-40 w-auto object-contain relative z-10 rounded-md shadow-2xl border border-white/5 transform group-hover:scale-105 group-hover:-rotate-1 transition-all duration-500"
+                          />
+                          
+                          <span className="absolute bottom-4 left-4 z-20 text-[10px] font-bold tracking-wider uppercase bg-accent/20 backdrop-blur border border-accent/40 text-accent px-2 py-0.5 rounded">
+                            PDF Document
+                          </span>
+                        </div>
+
+                        {/* Right Side: Content Details */}
+                        <div className="w-full lg:w-3/5 p-6 flex flex-col justify-between">
                           <div>
-                            <CardTitle className="text-xl font-bold">{worksheet.title}</CardTitle>
-                            <CardDescription className="mt-1">{worksheet.description}</CardDescription>
-                          </div>
-                        </CardHeader>
-                        <CardContent className="px-6 pb-6 flex-grow">
-                          {worksheet.fields && worksheet.fields.length > 0 ? (
-                            <>
-                              <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">Parameters captured:</h4>
-                              <ul className="grid grid-cols-2 gap-2 text-sm text-foreground/80">
-                                {worksheet.fields.map((field) => (
-                                  <li key={field.id} className="flex items-center gap-2">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-                                    {field.label.split('(')[0].trim()}
-                                  </li>
-                                ))}
-                                <li className="flex items-center gap-2">
-                                  <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-                                  Client details
-                                </li>
-                              </ul>
-                            </>
-                          ) : (
-                            <div className="flex flex-col items-center justify-center h-full text-center p-4 bg-muted/10 rounded-lg border border-dashed border-border/80 min-h-[120px]">
-                              <FileText className="w-8 h-8 text-muted-foreground mb-2" />
-                              <p className="text-sm text-muted-foreground leading-relaxed">
-                                Technical document in PDF format. Download the official form to specify your requirements.
-                              </p>
+                            <div className="flex items-center gap-3 mb-3">
+                              <div className="p-2 rounded-lg bg-accent/10 text-accent">
+                                <IconComp className="w-5 h-5" />
+                              </div>
+                              <h3 className="text-xl font-heading font-bold text-foreground group-hover:text-accent transition-colors">
+                                {worksheet.title}
+                              </h3>
                             </div>
-                          )}
-                        </CardContent>
-                        <CardFooter className="p-6 pt-0 border-t border-border/50 bg-muted/20 flex flex-col sm:flex-row gap-4 mt-auto">
-                          {worksheet.fields && worksheet.fields.length > 0 && (
-                            <Button 
-                              variant="default" 
-                              className="w-full font-bold group"
-                              onClick={() => {
-                                setActiveWorksheet(worksheet);
-                                setIsSubmitted(false);
-                              }}
+                            
+                            <p className="text-sm text-muted-foreground leading-relaxed mb-5 font-medium">
+                              {worksheet.description}
+                            </p>
+
+                            {worksheet.fields && worksheet.fields.length > 0 ? (
+                              <div>
+                                <h4 className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground mb-2.5">Captured Specifications:</h4>
+                                <div className="flex flex-wrap gap-1.5">
+                                  {worksheet.fields.map((field) => (
+                                    <span 
+                                      key={field.id} 
+                                      className="inline-flex items-center text-xs font-semibold bg-muted/65 text-foreground/80 px-2.5 py-1 rounded-md border border-border/40"
+                                    >
+                                      {field.label.split('(')[0].trim()}
+                                    </span>
+                                  ))}
+                                  <span className="inline-flex items-center text-xs font-semibold bg-muted/65 text-foreground/80 px-2.5 py-1 rounded-md border border-border/40">
+                                    Client Details
+                                  </span>
+                                </div>
+                              </div>
+                            ) : (
+                              <div className="flex items-center gap-2.5 p-3 rounded-lg bg-muted/20 border border-border/40">
+                                <Info className="w-4.5 h-4.5 text-accent" />
+                                <span className="text-xs text-muted-foreground font-medium">
+                                  Technical catalog form. Download to fill out offline.
+                                </span>
+                              </div>
+                            )}
+                          </div>
+
+                          {/* Footer Actions */}
+                          <div className="flex flex-col sm:flex-row gap-3 pt-6 border-t border-border/30 mt-6">
+                            {worksheet.fields && worksheet.fields.length > 0 && (
+                              <Button 
+                                variant="default" 
+                                className="w-full font-bold group"
+                                onClick={() => {
+                                  setActiveWorksheet(worksheet);
+                                  setIsSubmitted(false);
+                                }}
+                              >
+                                Fill Online
+                                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                              </Button>
+                            )}
+                            <a 
+                              href={worksheet.pdfUrl} 
+                              target="_blank" 
+                              rel="noopener noreferrer" 
+                              className="w-full"
                             >
-                              Fill Online
-                              <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                            </Button>
-                          )}
-                          <a 
-                            href={worksheet.pdfUrl} 
-                            target="_blank" 
-                            rel="noopener noreferrer" 
-                            className="w-full"
-                          >
-                            <Button 
-                              variant="outline" 
-                              className="w-full font-bold border-accent/60 text-accent hover:bg-accent/10"
-                            >
-                              <FileDown className="w-4 h-4 mr-2" />
-                              Download PDF
-                            </Button>
-                          </a>
-                        </CardFooter>
-                      </Card>
+                              <Button 
+                                variant="outline" 
+                                className="w-full font-bold border-accent/60 text-accent hover:bg-accent/10"
+                              >
+                                <FileDown className="w-4 h-4 mr-2" />
+                                Download PDF
+                              </Button>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
                     );
                   })}
+                </div>
                 </div>
               </TabsContent>
 
