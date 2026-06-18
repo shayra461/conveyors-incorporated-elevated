@@ -4,32 +4,40 @@ import { Download, ExternalLink, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
-// Import book images
-import bookEngineering from '@/assets/literature/book-engineering.png';
-import bookLiterature from '@/assets/literature/book-literature.png';
-import bookDesign from '@/assets/literature/book-design.png';
+// Import flyer images
+import beltFlyer from '@/assets/literature/Belt_Conveyor_Flyer_new-01.jpg';
+import bucketFlyer from '@/assets/literature/Bucket_Elevator_Flyer_new-01.jpg';
+import dragFlyer from '@/assets/literature/DRAG_CONVEYORS_Flyer_new-01.jpg';
+import screwFlyer from '@/assets/literature/Screw_Conveyors_Flyer_new-01.jpg';
 
 const literatureItems = [
   {
     id: 1,
-    title: 'Custom Guides',
-    description: 'Booklets that contain in-depth details of custom specifications for Screw Conveyors and Bucket Elevators.',
-    image: bookEngineering,
-    type: 'guide',
+    title: 'Screw Conveyor Flyer',
+    description: 'Technical details, casing options, screw flight configurations, and standard dimensions for Screw Conveyors.',
+    image: screwFlyer,
+    type: 'flyer',
   },
   {
     id: 2,
-    title: 'Product Literature',
-    description: 'A collection of single page or multifold brochures of equipment and component pictures and descriptions. Perfect for handouts to customers!',
-    image: bookLiterature,
-    type: 'brochure',
+    title: 'Belt Conveyor Flyer',
+    description: 'Troughing idler details, belt width selections, drive configurations, and general specifications for Belt Conveyors.',
+    image: beltFlyer,
+    type: 'flyer',
   },
   {
     id: 3,
-    title: 'Design Worksheets',
-    description: 'Bulk Material Handling equipment specific documents to help record the necessary information needed to receive a quote.',
-    image: bookDesign,
-    type: 'worksheet',
+    title: 'Drag Conveyors Flyer',
+    description: 'Drag chain options, flight styles, casing thickness, and layout arrangements for Drag Conveyors.',
+    image: dragFlyer,
+    type: 'flyer',
+  },
+  {
+    id: 4,
+    title: 'Bucket Elevator Flyer',
+    description: 'Centrifugal vs. continuous discharge models, bucket casing arrangements, belt/chain options, and capacity guides.',
+    image: bucketFlyer,
+    type: 'flyer',
   },
 ];
 
@@ -126,7 +134,7 @@ function LiteratureCard({ item, index }: { item: typeof literatureItems[0]; inde
           >
             <BookOpen className="w-5 h-5 text-accent" />
             <span className="text-xs font-semibold uppercase tracking-wider text-accent">
-              {item.type === 'guide' ? 'Technical Guide' : item.type === 'brochure' ? 'Brochure' : 'Worksheet'}
+              {item.type === 'flyer' ? 'Product Flyer' : item.type === 'guide' ? 'Technical Guide' : item.type === 'brochure' ? 'Brochure' : 'Worksheet'}
             </span>
           </motion.div>
           <h3 className="font-heading text-xl font-bold text-foreground mb-2 group-hover:text-accent transition-colors duration-300">
@@ -205,7 +213,7 @@ export function LiteratureSection() {
 
         {/* Literature Grid */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto"
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}

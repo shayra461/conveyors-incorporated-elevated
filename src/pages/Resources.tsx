@@ -33,6 +33,39 @@ import bucketFlyer from '@/assets/literature/Bucket_Elevator_Flyer_new-01.jpg';
 import dragFlyer from '@/assets/literature/DRAG_CONVEYORS_Flyer_new-01.jpg';
 import screwFlyer from '@/assets/literature/Screw_Conveyors_Flyer_new-01.jpg';
 
+// Import book images
+import bookEngineering from '@/assets/literature/book-engineering.png';
+import bookLiterature from '@/assets/literature/book-literature.png';
+import bookDesign from '@/assets/literature/book-design.png';
+
+// Design Guides & Literature Catalog
+const designBooks = [
+  {
+    id: 'custom-guides',
+    title: 'Custom Engineering & Specifications Guide',
+    description: 'Detailed booklets and guides containing engineering specifications and component designs for custom Screw Conveyors and Bucket Elevators.',
+    image: bookEngineering,
+    type: 'guide',
+    fileName: 'book-engineering.png',
+  },
+  {
+    id: 'product-literature',
+    title: 'Corporate Product Catalog & Brochure',
+    description: 'A comprehensive collection of brochures, component pictures, and equipment descriptions designed for material handling solutions.',
+    image: bookLiterature,
+    type: 'brochure',
+    fileName: 'book-literature.png',
+  },
+  {
+    id: 'design-reference',
+    title: 'Engineering Reference Worksheets Book',
+    description: 'Reference design worksheets and calculation support templates to help capture conveyor design specifications.',
+    image: bookDesign,
+    type: 'worksheet',
+    fileName: 'book-design.png',
+  },
+];
+
 // Flyer specifications
 const flyers = [
   {
@@ -144,7 +177,7 @@ const materials = [
 ];
 
 export default function Resources() {
-  const [activeFlyer, setActiveFlyer] = useState<typeof flyers[0] | null>(null);
+  const [activeFlyer, setActiveFlyer] = useState<any | null>(null);
   const [activeWorksheet, setActiveWorksheet] = useState<typeof worksheets[0] | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedMaterial, setSelectedMaterial] = useState<typeof materials[0] | null>(null);
@@ -302,6 +335,82 @@ export default function Resources() {
                         >
                           <Download className="w-4 h-4 mr-1.5" />
                           Download JPG
+                        </Button>
+                      </CardFooter>
+                    </Card>
+                  ))}
+                </div>
+
+                {/* Divider */}
+                <div className="h-px bg-border my-16 max-w-5xl mx-auto" />
+
+                {/* Section 2: Catalog & Engineering Manuals */}
+                <div className="text-center max-w-2xl mx-auto mb-12">
+                  <h2 className="font-heading text-3xl font-bold mb-4">Engineering Guides & Literature</h2>
+                  <p className="text-muted-foreground">
+                    Detailed engineering manuals, corporate product catalogs, and design reference worksheets.
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                  {designBooks.map((book) => (
+                    <Card key={book.id} className="bg-card border-border overflow-hidden hover:shadow-2xl hover:border-accent/40 transition-all duration-300 flex flex-col group">
+                      <div className="relative h-64 bg-gradient-to-br from-muted to-secondary flex items-center justify-center p-8 overflow-hidden">
+                        {/* Background Pattern */}
+                        <div className="absolute inset-0 opacity-10" style={{
+                          backgroundImage: `radial-gradient(circle at 25% 25%, hsl(var(--accent)) 1px, transparent 1px)`,
+                          backgroundSize: '20px 20px',
+                        }} />
+                        
+                        <img 
+                          src={book.image} 
+                          alt={book.title} 
+                          className="h-48 w-auto object-contain relative z-10 drop-shadow-2xl group-hover:scale-110 group-hover:rotate-2 transition-all duration-500"
+                        />
+                        
+                        <div className="absolute inset-0 bg-slate-950/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
+                          <Button 
+                            variant="secondary" 
+                            size="sm" 
+                            className="font-semibold"
+                            onClick={() => setActiveFlyer(book)}
+                          >
+                            <Eye className="w-4 h-4 mr-2" />
+                            View Cover
+                          </Button>
+                          <Button 
+                            variant="accent" 
+                            size="sm" 
+                            className="font-semibold"
+                            onClick={() => handleDownload(book.image, book.fileName)}
+                          >
+                            <Download className="w-4 h-4 mr-2" />
+                            Download
+                          </Button>
+                        </div>
+                      </div>
+                      <CardHeader className="p-5 flex-grow">
+                        <CardTitle className="text-lg font-bold group-hover:text-accent transition-colors">{book.title}</CardTitle>
+                        <CardDescription className="text-xs text-muted-foreground leading-relaxed mt-2">{book.description}</CardDescription>
+                      </CardHeader>
+                      <CardFooter className="p-5 pt-0 border-t border-border/50 flex justify-between gap-3 bg-muted/20">
+                        <Button 
+                          variant="ghost" 
+                          size="sm" 
+                          className="text-xs w-full text-foreground/80 hover:text-accent font-semibold"
+                          onClick={() => setActiveFlyer(book)}
+                        >
+                          <Eye className="w-4 h-4 mr-1.5" />
+                          Open Lightbox
+                        </Button>
+                        <Button 
+                          variant="ghost" 
+                          size="sm" 
+                          className="text-xs w-full text-foreground/80 hover:text-accent font-semibold"
+                          onClick={() => handleDownload(book.image, book.fileName)}
+                        >
+                          <Download className="w-4 h-4 mr-1.5" />
+                          Download
                         </Button>
                       </CardFooter>
                     </Card>
