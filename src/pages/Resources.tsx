@@ -37,6 +37,8 @@ import screwFlyer from '@/assets/literature/Screw_Conveyors_Flyer_new-01.jpg';
 import bookEngineering from '@/assets/literature/book-engineering.png';
 import bookLiterature from '@/assets/literature/book-literature.png';
 import bookDesign from '@/assets/literature/book-design.png';
+import bookScrewConveyorGuide from '@/assets/literature/book-screw-conveyor-guide.jpg';
+import bookBucketElevatorGuide from '@/assets/literature/book-bucket-elevator-guide.jpg';
 
 // Import worksheet cover images
 import bookScrewOnly from '@/assets/literature/book-screw-only.jpg';
@@ -53,20 +55,31 @@ import bookHojaCangilon from '@/assets/literature/book-hoja-cangilon.jpg';
 // Design Guides & Literature Catalog
 const designBooks = [
   {
-    id: 'custom-guides',
-    title: 'Custom Engineering & Specifications Guide',
-    description: 'Detailed booklets and guides containing engineering specifications and component designs for custom Screw Conveyors and Bucket Elevators.',
-    image: bookEngineering,
+    id: 'screw-guide',
+    title: 'Screw Conveyor & Feeder Engineering Guide',
+    description: 'Detailed guide containing engineering specifications, CEMA capacity tables, flight options, horsepower calculations, and dimension metrics for Screw Conveyors.',
+    image: bookScrewConveyorGuide,
     type: 'guide',
-    fileName: 'book-engineering.png',
+    pdfUrl: '/docs/ScrewConveyorEngineeringGuide.pdf',
+    fileName: 'ScrewConveyorEngineeringGuide.pdf',
+  },
+  {
+    id: 'bucket-guide',
+    title: 'Bucket Elevator Engineering Guide',
+    description: 'Reference manual for bucket elevator design, including speed ratios, casing layouts, centrifugal vs continuous discharge charts, and component designs.',
+    image: bookBucketElevatorGuide,
+    type: 'guide',
+    pdfUrl: '/docs/BucketElevatorEngineeringGuide.pdf',
+    fileName: 'BucketElevatorEngineeringGuide.pdf',
   },
   {
     id: 'product-literature',
     title: 'Corporate Product Catalog & Brochure',
-    description: 'A comprehensive collection of brochures, component pictures, and equipment descriptions designed for material handling solutions.',
+    description: 'A comprehensive collection of corporate brochures, component photos, and layout descriptions designed for bulk material handling solutions.',
     image: bookLiterature,
     type: 'brochure',
-    fileName: 'book-literature.png',
+    pdfUrl: '/docs/OurProductsFlyer.pdf',
+    fileName: 'ConveyorsInc-CorporateCatalog.pdf',
   },
   {
     id: 'design-reference',
@@ -74,7 +87,8 @@ const designBooks = [
     description: 'Reference design worksheets and calculation support templates to help capture conveyor design specifications.',
     image: bookDesign,
     type: 'worksheet',
-    fileName: 'book-design.png',
+    pdfUrl: 'https://www.conveyorsinc.net/portals/0/docs/ScrewConv_DWS_2020.pdf',
+    fileName: 'ConveyorsInc-DesignWorksheetsBook.pdf',
   },
 ];
 
@@ -443,7 +457,7 @@ export default function Resources() {
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
                   {designBooks.map((book) => (
                     <Card key={book.id} className="bg-card border-border overflow-hidden hover:shadow-2xl hover:border-accent/40 transition-all duration-300 flex flex-col group">
                       <div className="relative h-64 bg-gradient-to-br from-muted to-secondary flex items-center justify-center p-8 overflow-hidden">
@@ -473,7 +487,7 @@ export default function Resources() {
                             variant="accent" 
                             size="sm" 
                             className="font-semibold"
-                            onClick={() => handleDownload(book.image, book.fileName)}
+                            onClick={() => handleDownload(book.pdfUrl || book.image, book.fileName)}
                           >
                             <Download className="w-4 h-4 mr-2" />
                             Download
@@ -481,10 +495,10 @@ export default function Resources() {
                         </div>
                       </div>
                       <CardHeader className="p-5 flex-grow">
-                        <CardTitle className="text-lg font-bold group-hover:text-accent transition-colors">{book.title}</CardTitle>
+                        <CardTitle className="text-lg font-bold group-hover:text-accent transition-colors leading-snug">{book.title}</CardTitle>
                         <CardDescription className="text-xs text-muted-foreground leading-relaxed mt-2">{book.description}</CardDescription>
                       </CardHeader>
-                      <CardFooter className="p-5 pt-0 border-t border-border/50 flex justify-between gap-3 bg-muted/20">
+                      <CardFooter className="p-5 pt-0 border-t border-border/50 flex justify-between gap-3 bg-muted/20 mt-auto">
                         <Button 
                           variant="ghost" 
                           size="sm" 
@@ -498,7 +512,7 @@ export default function Resources() {
                           variant="ghost" 
                           size="sm" 
                           className="text-xs w-full text-foreground/80 hover:text-accent font-semibold"
-                          onClick={() => handleDownload(book.image, book.fileName)}
+                          onClick={() => handleDownload(book.pdfUrl || book.image, book.fileName)}
                         >
                           <Download className="w-4 h-4 mr-1.5" />
                           Download
@@ -740,10 +754,10 @@ export default function Resources() {
                 </Button>
                 <Button 
                   variant="accent"
-                  onClick={() => handleDownload(activeFlyer.image, activeFlyer.fileName)}
+                  onClick={() => handleDownload(activeFlyer.pdfUrl || activeFlyer.image, activeFlyer.fileName)}
                 >
                   <Download className="w-4 h-4 mr-2" />
-                  Download Flyer (JPG)
+                  {activeFlyer.pdfUrl ? 'Download Document (PDF)' : 'Download Flyer (JPG)'}
                 </Button>
               </div>
             </div>
