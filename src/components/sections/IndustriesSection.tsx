@@ -13,9 +13,7 @@ import {
   Droplets
 } from 'lucide-react';
 
-// Import existing images
-import grainHandlingImg from '@/assets/industries/grain-handling.png';
-import agricultureImg from '@/assets/industries/agriculture-real.jpg';
+import agricultureImg from '@/assets/industries/agriculture.png';
 import chemicalImg from '@/assets/industries/Chemicals.webp';
 import foodImg from '@/assets/industries/Food Products.jpeg';
 import powerImg from '@/assets/industries/Power.jpg';
@@ -31,7 +29,7 @@ const industries = [
     icon: Wheat,
     name: 'Agriculture and Grain',
     description: 'Efficient grain handling solutions using food-grade materials and gentle handling mechanisms.',
-    image: grainHandlingImg,
+    image: agricultureImg,
     overlay: 'bg-stone-900/40 mix-blend-multiply'
   },
   {
