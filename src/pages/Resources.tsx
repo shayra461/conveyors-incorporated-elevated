@@ -34,9 +34,6 @@ import dragFlyer from '@/assets/literature/DRAG_CONVEYORS_Flyer_new-01.jpg';
 import screwFlyer from '@/assets/literature/Screw_Conveyors_Flyer_new-01.jpg';
 
 // Import book images
-import bookEngineering from '@/assets/literature/book-engineering.png';
-import bookLiterature from '@/assets/literature/book-literature.png';
-import bookDesign from '@/assets/literature/book-design.png';
 import bookScrewConveyorGuide from '@/assets/literature/book-screw-conveyor-guide.jpg';
 import bookBucketElevatorGuide from '@/assets/literature/book-bucket-elevator-guide.jpg';
 
@@ -71,24 +68,6 @@ const designBooks = [
     type: 'guide',
     pdfUrl: '/docs/BucketElevatorEngineeringGuide.pdf',
     fileName: 'BucketElevatorEngineeringGuide.pdf',
-  },
-  {
-    id: 'product-literature',
-    title: 'Corporate Product Catalog & Brochure',
-    description: 'A comprehensive collection of corporate brochures, component photos, and layout descriptions designed for bulk material handling solutions.',
-    image: bookLiterature,
-    type: 'brochure',
-    pdfUrl: '/docs/OurProductsFlyer.pdf',
-    fileName: 'ConveyorsInc-CorporateCatalog.pdf',
-  },
-  {
-    id: 'design-reference',
-    title: 'Engineering Reference Worksheets Book',
-    description: 'Reference design worksheets and calculation support templates to help capture conveyor design specifications.',
-    image: bookDesign,
-    type: 'worksheet',
-    pdfUrl: 'https://www.conveyorsinc.net/portals/0/docs/ScrewConv_DWS_2020.pdf',
-    fileName: 'ConveyorsInc-DesignWorksheetsBook.pdf',
   },
 ];
 
@@ -296,7 +275,13 @@ export default function Resources() {
   // Download flyer helper
   const handleDownload = async (imageUrl: string, filename: string) => {
     try {
-      const response = await fetch(imageUrl);
+      const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+      const resolvedUrl = imageUrl.startsWith('http') || imageUrl.startsWith('blob:') || imageUrl.startsWith('data:') || (baseUrl && imageUrl.startsWith(baseUrl))
+        ? imageUrl
+        : `${baseUrl}${imageUrl}`;
+
+      const response = await fetch(resolvedUrl);
+      if (!response.ok) throw new Error('Fetch failed');
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement('a');
@@ -309,7 +294,11 @@ export default function Resources() {
       toast.success(`Started download of ${filename}`);
     } catch (e) {
       // Fallback
-      window.open(imageUrl, '_blank');
+      const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+      const resolvedUrl = imageUrl.startsWith('http') || imageUrl.startsWith('blob:') || imageUrl.startsWith('data:') || (baseUrl && imageUrl.startsWith(baseUrl))
+        ? imageUrl
+        : `${baseUrl}${imageUrl}`;
+      window.open(resolvedUrl, '_blank');
     }
   };
 
@@ -457,7 +446,7 @@ export default function Resources() {
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                   {designBooks.map((book) => (
                     <Card key={book.id} className="bg-card border-border overflow-hidden hover:shadow-2xl hover:border-accent/40 transition-all duration-300 flex flex-col group">
                       <div className="relative h-64 bg-gradient-to-br from-muted to-secondary flex items-center justify-center p-8 overflow-hidden">
