@@ -386,7 +386,7 @@ export default function Resources() {
                           alt={flyer.title} 
                           className="w-full h-full object-contain drop-shadow-xl group-hover:scale-[1.03] transition-transform duration-500"
                         />
-                        <div className="absolute inset-0 bg-slate-950/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
+                        <div className="absolute inset-0 bg-slate-950/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3 z-20">
                           <Button 
                             variant="secondary" 
                             size="sm" 
@@ -415,7 +415,7 @@ export default function Resources() {
                         <Button 
                           variant="ghost" 
                           size="sm" 
-                          className="text-xs w-full text-foreground/80 hover:text-accent font-semibold"
+                          className="text-xs w-full text-foreground/80 hover:text-accent-foreground font-semibold"
                           onClick={() => setActiveFlyer(flyer)}
                         >
                           <Eye className="w-4 h-4 mr-1.5" />
@@ -424,7 +424,7 @@ export default function Resources() {
                         <Button 
                           variant="ghost" 
                           size="sm" 
-                          className="text-xs w-full text-foreground/80 hover:text-accent font-semibold"
+                          className="text-xs w-full text-foreground/80 hover:text-accent-foreground font-semibold"
                           onClick={() => handleDownload(flyer.image, flyer.fileName)}
                         >
                           <Download className="w-4 h-4 mr-1.5" />
@@ -462,7 +462,7 @@ export default function Resources() {
                           className="h-48 w-auto object-contain relative z-10 drop-shadow-2xl group-hover:scale-110 group-hover:rotate-2 transition-all duration-500"
                         />
                         
-                        <div className="absolute inset-0 bg-slate-950/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
+                        <div className="absolute inset-0 bg-slate-950/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3 z-20">
                           <Button 
                             variant="secondary" 
                             size="sm" 
@@ -491,7 +491,7 @@ export default function Resources() {
                         <Button 
                           variant="ghost" 
                           size="sm" 
-                          className="text-xs w-full text-foreground/80 hover:text-accent font-semibold"
+                          className="text-xs w-full text-foreground/80 hover:text-accent-foreground font-semibold"
                           onClick={() => setActiveFlyer(book)}
                         >
                           <Eye className="w-4 h-4 mr-1.5" />
@@ -500,7 +500,7 @@ export default function Resources() {
                         <Button 
                           variant="ghost" 
                           size="sm" 
-                          className="text-xs w-full text-foreground/80 hover:text-accent font-semibold"
+                          className="text-xs w-full text-foreground/80 hover:text-accent-foreground font-semibold"
                           onClick={() => handleDownload(book.pdfUrl || book.image, book.fileName)}
                         >
                           <Download className="w-4 h-4 mr-1.5" />
@@ -687,7 +687,7 @@ export default function Resources() {
                                 <Button 
                                   variant="ghost" 
                                   size="sm" 
-                                  className="text-xs hover:text-accent font-semibold"
+                                  className="text-xs hover:text-accent-foreground font-semibold"
                                   onClick={() => setSelectedMaterial(material)}
                                 >
                                   <Info className="w-4 h-4 mr-1" />
