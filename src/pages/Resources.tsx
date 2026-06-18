@@ -516,16 +516,18 @@ export default function Resources() {
                   <p className="text-muted-foreground">
                     Record your design load, material bulk, incline angles, and structural options online to submit them directly to our design office.
                   </p>
-                 <div className="grid grid-cols-1 gap-8 max-w-5xl mx-auto">
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
                   {worksheets.map((worksheet) => {
                     const IconComp = worksheet.icon;
                     return (
                       <div 
                         key={worksheet.id} 
-                        className="flex flex-col lg:flex-row w-full bg-card border border-border hover:border-accent/40 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 group"
+                        className="flex flex-col w-full bg-card border border-border hover:border-accent/40 rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 group"
                       >
-                        {/* Left Side: Cover Image Preview */}
-                        <div className="w-full lg:w-2/5 bg-gradient-to-br from-slate-900 to-slate-950 p-6 flex flex-col items-center justify-center relative border-b lg:border-b-0 lg:border-r border-border/40 overflow-hidden min-h-[220px]">
+                        {/* Top Side: Cover Image Preview */}
+                        <div className="w-full bg-gradient-to-br from-slate-900 to-slate-950 p-6 flex flex-col items-center justify-center relative border-b border-border/40 overflow-hidden min-h-[220px]">
                           {/* Grid Overlay */}
                           <div className="absolute inset-0 opacity-5" style={{
                             backgroundImage: `radial-gradient(circle at 25% 25%, hsl(var(--accent)) 1px, transparent 1px)`,
@@ -547,8 +549,8 @@ export default function Resources() {
                           </span>
                         </div>
 
-                        {/* Right Side: Content Details */}
-                        <div className="w-full lg:w-3/5 p-6 flex flex-col justify-between">
+                        {/* Bottom Side: Content Details */}
+                        <div className="w-full p-6 flex flex-col justify-between flex-grow">
                           <div>
                             <div className="flex items-center gap-3 mb-3">
                               <div className="p-2 rounded-lg bg-accent/10 text-accent">
@@ -624,7 +626,6 @@ export default function Resources() {
                       </div>
                     );
                   })}
-                </div>
                 </div>
               </TabsContent>
 
