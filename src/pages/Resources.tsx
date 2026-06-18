@@ -103,8 +103,9 @@ const worksheets = [
   {
     id: 'screw-worksheet',
     title: 'Screw Conveyor Design Worksheet',
-    description: 'Record specific parameters required to size and engineer a Screw Conveyor or Screw Feeder.',
+    description: 'Record specific parameters required to size and engineer a Screw Conveyor.',
     icon: Sliders,
+    pdfUrl: 'https://www.conveyorsinc.net/portals/0/docs/ScrewConv_DWS_2020.pdf',
     fields: [
       { id: 'length', label: 'Conveyor Length (feet)', type: 'number', placeholder: 'e.g. 20', required: true },
       { id: 'capacity', label: 'Required Capacity (TPH or CFH)', type: 'text', placeholder: 'e.g. 15 TPH', required: true },
@@ -115,10 +116,39 @@ const worksheets = [
     ],
   },
   {
+    id: 'screw-only-worksheet',
+    title: 'Screw Only Design Worksheet',
+    description: 'Specify standard helicoid or sectional screw sections, pipe/shaft connections, and flight details.',
+    icon: Sliders,
+    pdfUrl: 'https://www.conveyorsinc.net/portals/0/docs/ScrewOnly_DWS_2020.pdf',
+    fields: [
+      { id: 'screwDiameter', label: 'Screw Diameter (inches)', type: 'number', placeholder: 'e.g. 9', required: true },
+      { id: 'pitch', label: 'Screw Pitch (inches)', type: 'number', placeholder: 'e.g. 9', required: true },
+      { id: 'flightType', label: 'Flight Type', type: 'select', options: ['Helicoid (Continuous)', 'Sectional (Individual flights)'], required: true },
+      { id: 'shaftDiameter', label: 'Shaft/Pipe Size (inches)', type: 'select', options: ['2"', '2-7/16"', '3"', '3-7/16"', '4"'], required: true },
+      { id: 'quantity', label: 'Quantity Needed', type: 'number', placeholder: 'e.g. 3', required: true },
+    ],
+  },
+  {
+    id: 'screw-feeder-worksheet',
+    title: 'Screw Feeder Design Worksheet',
+    description: 'Size and design screw feeders with shroud covers, variable pitch, or tapered flights for bin withdrawal.',
+    icon: Sliders,
+    pdfUrl: 'https://www.conveyorsinc.net/portals/0/docs/ScrewFeeder_DWS_2020.pdf',
+    fields: [
+      { id: 'inletLength', label: 'Inlet Opening Length (inches)', type: 'number', placeholder: 'e.g. 48', required: true },
+      { id: 'capacity', label: 'Required Capacity (TPH or CFH)', type: 'text', placeholder: 'e.g. 35 TPH', required: true },
+      { id: 'material', label: 'Material to be Handled', type: 'text', placeholder: 'e.g. Coal', required: true },
+      { id: 'density', label: 'Material Bulk Density (lbs/cu ft)', type: 'number', placeholder: 'e.g. 50', required: true },
+      { id: 'feederType', label: 'Feeder Type', type: 'select', options: ['Variable Pitch', 'Tapered O.D.', 'Stepped Pitch'], required: true },
+    ],
+  },
+  {
     id: 'belt-worksheet',
     title: 'Belt Conveyor Design Worksheet',
     description: 'Specify belt width, speed, idler configuration, and structural requirements for a Belt Conveyor.',
     icon: BookOpen,
+    pdfUrl: 'https://www.conveyorsinc.net/portals/0/docs/BeltConveyor_DWS_2020.pdf',
     fields: [
       { id: 'length', label: 'Conveyor Center-to-Center Length (feet)', type: 'number', placeholder: 'e.g. 120', required: true },
       { id: 'beltWidth', label: 'Preferred Belt Width (inches)', type: 'select', options: ['18"', '24"', '30"', '36"', '42"', '48"', '60"'], required: true },
@@ -133,6 +163,7 @@ const worksheets = [
     title: 'Bucket Elevator Design Worksheet',
     description: 'Provide spacing, height, casing, and bucket details to outline a Bucket Elevator design.',
     icon: Database,
+    pdfUrl: 'https://www.conveyorsinc.net/portals/0/docs/BucketElevator_DWS_2020.pdf',
     fields: [
       { id: 'height', label: 'Discharge Height (feet)', type: 'number', placeholder: 'e.g. 60', required: true },
       { id: 'capacity', label: 'Required Capacity (TPH)', type: 'number', placeholder: 'e.g. 80', required: true },
@@ -147,6 +178,7 @@ const worksheets = [
     title: 'Drag Conveyor Design Worksheet',
     description: 'Capture parameters for sizing En-Masse Drag Conveyors or Flat Bottom Drag Conveyors.',
     icon: FileText,
+    pdfUrl: 'https://www.conveyorsinc.net/portals/0/docs/DragConv_DWS_2020.pdf',
     fields: [
       { id: 'length', label: 'Conveyor Length (feet)', type: 'number', placeholder: 'e.g. 50', required: true },
       { id: 'capacity', label: 'Required Capacity (TPH or CFH)', type: 'text', placeholder: 'e.g. 100 TPH', required: true },
@@ -154,6 +186,43 @@ const worksheets = [
       { id: 'layout', label: 'Conveyor Layout / Path', type: 'select', options: ['Horizontal', 'Inclined (0-15°)', 'L-Path (Horizontal + Incline)', 'Z-Path'], required: true },
       { id: 'width', label: 'Casing Width Preferred (inches)', type: 'select', options: ['9"', '12"', '16"', '20"', '24"', '32"'], required: false },
     ],
+  },
+  {
+    id: 'component-worksheet',
+    title: 'Component Order Worksheet',
+    description: 'Specify standard CEMA replacement parts like hanger bearings, troughs, couplings, covers, or spouts.',
+    icon: FileText,
+    pdfUrl: 'https://www.conveyorsinc.net/portals/0/docs/Components_DWS_2020.pdf',
+    fields: [
+      { id: 'componentName', label: 'Component / Part Description', type: 'text', placeholder: 'e.g. Hanger Bearing Woodflex 2"', required: true },
+      { id: 'quantity', label: 'Quantity Needed', type: 'number', placeholder: 'e.g. 10', required: true },
+      { id: 'cemaSize', label: 'Conveyor size (inches)', type: 'select', options: ['6"', '9"', '12"', '14"', '16"', '18"', '20"', '24"'], required: true },
+      { id: 'material', label: 'Material Preference', type: 'select', options: ['Carbon Steel', 'Hot Dip Galvanized', '304 Stainless Steel', '316 Stainless Steel'], required: true },
+    ],
+  },
+  {
+    id: 'folleto-general',
+    title: 'Folleto General (Catálogo)',
+    description: 'Folleto general de productos y componentes en español para la manipulación de materiales a granel.',
+    icon: FileText,
+    pdfUrl: 'https://www.conveyorsinc.net/portals/0/docs/Folleto_General_2020.pdf',
+    fields: [],
+  },
+  {
+    id: 'transportador-helicoidal',
+    title: 'Hoja Técnica - Transportador Helicoidal',
+    description: 'Formulario técnico de diseño y especificaciones para transportadores helicoidales de tornillo en español.',
+    icon: Sliders,
+    pdfUrl: 'https://www.conveyorsinc.net/portals/0/docs/Hoja_Tecnica_para_Transportador_Helicoidal.pdf',
+    fields: [],
+  },
+  {
+    id: 'elevador-cangilon',
+    title: 'Hoja Técnica - Elevador de Cangilón',
+    description: 'Formulario técnico de diseño y especificaciones para elevadores de cangilones (elevación de granos) en español.',
+    icon: Database,
+    pdfUrl: 'https://www.conveyorsinc.net/portals/0/docs/Hoja_Tecnica_para_Elevador_de_Cangilon.pdf',
+    fields: [],
   },
 ];
 
@@ -442,32 +511,59 @@ export default function Resources() {
                           </div>
                         </CardHeader>
                         <CardContent className="px-6 pb-6 flex-grow">
-                          <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">Parameters captured:</h4>
-                          <ul className="grid grid-cols-2 gap-2 text-sm text-foreground/80">
-                            {worksheet.fields.map((field) => (
-                              <li key={field.id} className="flex items-center gap-2">
-                                <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-                                {field.label.split('(')[0].trim()}
-                              </li>
-                            ))}
-                            <li className="flex items-center gap-2">
-                              <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-                              Client details
-                            </li>
-                          </ul>
+                          {worksheet.fields && worksheet.fields.length > 0 ? (
+                            <>
+                              <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">Parameters captured:</h4>
+                              <ul className="grid grid-cols-2 gap-2 text-sm text-foreground/80">
+                                {worksheet.fields.map((field) => (
+                                  <li key={field.id} className="flex items-center gap-2">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+                                    {field.label.split('(')[0].trim()}
+                                  </li>
+                                ))}
+                                <li className="flex items-center gap-2">
+                                  <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+                                  Client details
+                                </li>
+                              </ul>
+                            </>
+                          ) : (
+                            <div className="flex flex-col items-center justify-center h-full text-center p-4 bg-muted/10 rounded-lg border border-dashed border-border/80 min-h-[120px]">
+                              <FileText className="w-8 h-8 text-muted-foreground mb-2" />
+                              <p className="text-sm text-muted-foreground leading-relaxed">
+                                Technical document in PDF format. Download the official form to specify your requirements.
+                              </p>
+                            </div>
+                          )}
                         </CardContent>
-                        <CardFooter className="p-6 pt-0 border-t border-border/50 bg-muted/20 flex gap-4">
-                          <Button 
-                            variant="default" 
-                            className="w-full font-bold group"
-                            onClick={() => {
-                              setActiveWorksheet(worksheet);
-                              setIsSubmitted(false);
-                            }}
+                        <CardFooter className="p-6 pt-0 border-t border-border/50 bg-muted/20 flex flex-col sm:flex-row gap-4 mt-auto">
+                          {worksheet.fields && worksheet.fields.length > 0 && (
+                            <Button 
+                              variant="default" 
+                              className="w-full font-bold group"
+                              onClick={() => {
+                                setActiveWorksheet(worksheet);
+                                setIsSubmitted(false);
+                              }}
+                            >
+                              Fill Online
+                              <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                            </Button>
+                          )}
+                          <a 
+                            href={worksheet.pdfUrl} 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className="w-full"
                           >
-                            Fill Design Details
-                            <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                          </Button>
+                            <Button 
+                              variant="outline" 
+                              className="w-full font-bold border-accent/60 text-accent hover:bg-accent/10"
+                            >
+                              <FileDown className="w-4 h-4 mr-2" />
+                              Download PDF
+                            </Button>
+                          </a>
                         </CardFooter>
                       </Card>
                     );
