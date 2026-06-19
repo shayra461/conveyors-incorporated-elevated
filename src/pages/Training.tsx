@@ -38,6 +38,12 @@ import { toast } from 'sonner';
 // Import downloaded training facility image
 import trainingFacility from '@/assets/training-facility.png';
 
+// Import compressed training videos
+import trainingLoop1 from '@/assets/training/training-loop-1.mp4';
+import trainingLoop2 from '@/assets/training/training-loop-2.mp4';
+import trainingLoop3 from '@/assets/training/training-loop-3.mp4';
+import trainingLoop4 from '@/assets/training/training-loop-4.mp4';
+
 // Features of the training course
 const trainingFeatures = [
   {
@@ -282,16 +288,59 @@ export default function Training() {
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
-                  className="relative group rounded-2xl overflow-hidden shadow-2xl border border-white/5 bg-slate-900 p-2"
+                  className="grid grid-cols-2 gap-3 h-[380px] md:h-[440px]"
                 >
-                  <img 
-                    src={trainingFacility} 
-                    alt="Conveyors Inc Training Lab" 
-                    className="w-full h-auto object-cover rounded-xl group-hover:scale-[1.02] transition-transform duration-700" 
-                  />
-                  <div className="absolute bottom-4 left-4 right-4 bg-slate-950/80 backdrop-blur-md border border-white/10 p-3 rounded-lg">
-                    <p className="text-[10px] text-accent font-bold uppercase tracking-wider mb-0.5">Mansfield, TX Facility</p>
-                    <p className="text-xs text-white font-semibold">Active training lab featuring full-scale conveyor components.</p>
+                  <div className="relative rounded-2xl overflow-hidden shadow-lg border border-white/10 bg-slate-900 group">
+                    <video 
+                      src={trainingLoop3} 
+                      autoPlay 
+                      loop 
+                      muted 
+                      playsInline 
+                      className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500" 
+                    />
+                    <div className="absolute bottom-2 left-2 bg-slate-950/80 backdrop-blur-sm border border-white/10 px-2 py-0.5 rounded text-[8px] font-bold text-accent uppercase">
+                      Lab Tour
+                    </div>
+                  </div>
+                  <div className="relative rounded-2xl overflow-hidden shadow-lg border border-white/10 bg-slate-900 group">
+                    <video 
+                      src={trainingLoop1} 
+                      autoPlay 
+                      loop 
+                      muted 
+                      playsInline 
+                      className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500" 
+                    />
+                    <div className="absolute bottom-2 left-2 bg-slate-950/80 backdrop-blur-sm border border-white/10 px-2 py-0.5 rounded text-[8px] font-bold text-white/80 uppercase">
+                      3D Model
+                    </div>
+                  </div>
+                  <div className="relative rounded-2xl overflow-hidden shadow-lg border border-white/10 bg-slate-900 group">
+                    <video 
+                      src={trainingLoop2} 
+                      autoPlay 
+                      loop 
+                      muted 
+                      playsInline 
+                      className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500" 
+                    />
+                    <div className="absolute bottom-2 left-2 bg-slate-950/80 backdrop-blur-sm border border-white/10 px-2 py-0.5 rounded text-[8px] font-bold text-white/80 uppercase">
+                      Shop Tour
+                    </div>
+                  </div>
+                  <div className="relative rounded-2xl overflow-hidden shadow-lg border border-white/10 bg-slate-900 group">
+                    <video 
+                      src={trainingLoop4} 
+                      autoPlay 
+                      loop 
+                      muted 
+                      playsInline 
+                      className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500" 
+                    />
+                    <div className="absolute bottom-2 left-2 bg-slate-950/80 backdrop-blur-sm border border-white/10 px-2 py-0.5 rounded text-[8px] font-bold text-white/80 uppercase">
+                      Assembly
+                    </div>
                   </div>
                 </motion.div>
               </div>
@@ -358,6 +407,46 @@ export default function Training() {
                     </li>
                   ))}
                 </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Mansfield, TX Facility Tour Section */}
+        <section className="py-20 bg-muted/30 border-b border-border/40">
+          <div className="container mx-auto px-6">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+              <div className="lg:col-span-6">
+                <h2 className="font-heading text-4xl font-bold mb-6">Our Mansfield, Texas Facility</h2>
+                <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+                  Conveyors, Inc. houses a state-of-the-art manufacturing plant and dedicated training laboratory in Mansfield, Texas. This facility serves as the active testing ground for our custom screw, drag, and belt systems.
+                </p>
+                <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+                  Class participants receive a comprehensive tour of the production floor to understand our fabrication processes, precision tolerances, and quality control systems first-hand.
+                </p>
+                <div className="flex gap-4 items-center p-4 rounded-xl bg-card border border-border/60 shadow-sm max-w-lg">
+                  <div className="w-10 h-10 rounded-full bg-accent/15 flex items-center justify-center text-accent flex-shrink-0">
+                    <MapPin className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-sm text-foreground">Facility Location</h4>
+                    <p className="text-xs text-muted-foreground">Mansfield, Texas (near Dallas/Fort Worth airport)</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="lg:col-span-6">
+                <div className="relative rounded-2xl overflow-hidden shadow-xl border border-border p-2 bg-card">
+                  <img 
+                    src={trainingFacility} 
+                    alt="Conveyors Inc Mansfield Facility Tour" 
+                    className="w-full h-auto object-cover rounded-xl"
+                  />
+                  <div className="absolute bottom-4 left-4 right-4 bg-slate-950/80 backdrop-blur-md border border-white/10 p-3.5 rounded-lg text-white">
+                    <p className="text-[10px] text-accent font-bold uppercase tracking-wider mb-0.5">Mansfield, TX Plant</p>
+                    <p className="text-xs">Active training lab featuring full-scale conveyor components.</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
