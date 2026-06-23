@@ -39,10 +39,10 @@ import { toast } from 'sonner';
 import trainingFacility from '@/assets/training-facility.png';
 
 // Import compressed training videos
-import trainingLoop1 from '@/assets/training/training-loop-1.mp4';
 import trainingLoop2 from '@/assets/training/training-loop-2.mp4';
-import trainingLoop3 from '@/assets/training/training-loop-3.mp4';
 import trainingLoop4 from '@/assets/training/training-loop-4.mp4';
+import trainingLoop1New from '@/assets/training/training-loop-1-new.mp4';
+import trainingLoop2New from '@/assets/training/training-loop-2-new.mp4';
 
 // Features of the training course
 const trainingFeatures = [
@@ -292,7 +292,7 @@ export default function Training() {
                 >
                   <div className="relative rounded-2xl overflow-hidden shadow-lg border border-white/10 bg-slate-900 group">
                     <video 
-                      src={trainingLoop3} 
+                      src={trainingLoop1New} 
                       autoPlay 
                       loop 
                       muted 
@@ -300,12 +300,12 @@ export default function Training() {
                       className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500" 
                     />
                     <div className="absolute bottom-2 left-2 bg-slate-950/80 backdrop-blur-sm border border-white/10 px-2 py-0.5 rounded text-[8px] font-bold text-accent uppercase">
-                      Lab Tour
+                      Training Lab
                     </div>
                   </div>
                   <div className="relative rounded-2xl overflow-hidden shadow-lg border border-white/10 bg-slate-900 group">
                     <video 
-                      src={trainingLoop1} 
+                      src={trainingLoop2New} 
                       autoPlay 
                       loop 
                       muted 
@@ -313,7 +313,7 @@ export default function Training() {
                       className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500" 
                     />
                     <div className="absolute bottom-2 left-2 bg-slate-950/80 backdrop-blur-sm border border-white/10 px-2 py-0.5 rounded text-[8px] font-bold text-white/80 uppercase">
-                      3D Model
+                      Sizing & CAD
                     </div>
                   </div>
                   <div className="relative rounded-2xl overflow-hidden shadow-lg border border-white/10 bg-slate-900 group">
