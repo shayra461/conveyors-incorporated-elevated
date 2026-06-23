@@ -6,7 +6,6 @@ import { Button } from '@/components/ui/button';
 import { ImageSlider } from '@/components/ui/ImageSlider';
 
 // Import story comparison images
-import factory1974 from '@/assets/factory-1974.png';
 import factoryCurrent from '@/assets/factory-current.jpg';
 
 const values = [
@@ -143,7 +142,7 @@ const About = () => {
               >
                 <div className="p-2 bg-card border border-border/80 shadow-2xl rounded-2xl">
                   <ImageSlider 
-                    beforeImage={factory1974}
+                    beforeImage="/conveyors-incorporated-elevated/images/factory-aerial.jpg"
                     afterImage={factoryCurrent}
                     beforeLabel="1974 - Venus, TX"
                     afterLabel="Today - Mansfield, TX"
