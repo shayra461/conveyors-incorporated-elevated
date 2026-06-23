@@ -3,6 +3,11 @@ import { Footer } from '@/components/layout/Footer';
 import { motion } from 'framer-motion';
 import { CheckCircle, Target, Eye, Award } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { ImageSlider } from '@/components/ui/ImageSlider';
+
+// Import story comparison images
+import factory1974 from '@/assets/factory-1974.png';
+import factoryCurrent from '@/assets/factory-current.jpg';
 
 const values = [
   {
@@ -136,14 +141,17 @@ const About = () => {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="lg:col-span-5"
               >
-                <div className="relative group overflow-hidden rounded-2xl shadow-2xl border-4 border-white">
-                  <img 
-                    src="/conveyors-incorporated-elevated/images/factory-aerial.jpg" 
-                    alt="Conveyors Inc Factory Aerial View" 
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                <div className="p-2 bg-card border border-border/80 shadow-2xl rounded-2xl">
+                  <ImageSlider 
+                    beforeImage={factory1974}
+                    afterImage={factoryCurrent}
+                    beforeLabel="1974 - Venus, TX"
+                    afterLabel="Today - Mansfield, TX"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
-                    <p className="text-white font-medium text-lg text-balance">Aerial view of our manufacturing facility in Mansfield, Texas.</p>
+                  <div className="mt-4 px-2 pb-2 text-center">
+                    <p className="text-xs text-muted-foreground font-semibold">
+                      Drag the slider to compare our original 2,000 sq ft Venus tin shop with our modern Mansfield headquarters.
+                    </p>
                   </div>
                 </div>
               </motion.div>
