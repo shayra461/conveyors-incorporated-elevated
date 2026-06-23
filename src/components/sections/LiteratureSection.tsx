@@ -4,40 +4,29 @@ import { Download, ExternalLink, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
-// Import flyer images
-import beltFlyer from '@/assets/literature/Belt_Conveyor_Flyer_new-01.jpg';
-import bucketFlyer from '@/assets/literature/Bucket_Elevator_Flyer_new-01.jpg';
-import dragFlyer from '@/assets/literature/DRAG_CONVEYORS_Flyer_new-01.jpg';
-import screwFlyer from '@/assets/literature/Screw_Conveyors_Flyer_new-01.jpg';
+// Import book images & toast
+import bookScrewConveyorGuide from '@/assets/literature/book-screw-conveyor-guide.jpg';
+import bookBucketElevatorGuide from '@/assets/literature/book-bucket-elevator-guide.jpg';
+import { toast } from 'sonner';
 
 const literatureItems = [
   {
     id: 1,
-    title: 'Screw Conveyor Flyer',
-    description: 'Technical details, casing options, screw flight configurations, and standard dimensions for Screw Conveyors.',
-    image: screwFlyer,
-    type: 'flyer',
+    title: 'Screw Conveyor & Feeder Engineering Guide',
+    description: 'Detailed guide containing engineering specifications, CEMA capacity tables, flight options, horsepower calculations, and dimension metrics for Screw Conveyors.',
+    image: bookScrewConveyorGuide,
+    type: 'guide',
+    pdfUrl: '/docs/ScrewConveyorEngineeringGuide.pdf',
+    fileName: 'ScrewConveyorEngineeringGuide.pdf',
   },
   {
     id: 2,
-    title: 'Belt Conveyor Flyer',
-    description: 'Troughing idler details, belt width selections, drive configurations, and general specifications for Belt Conveyors.',
-    image: beltFlyer,
-    type: 'flyer',
-  },
-  {
-    id: 3,
-    title: 'Drag Conveyors Flyer',
-    description: 'Drag chain options, flight styles, casing thickness, and layout arrangements for Drag Conveyors.',
-    image: dragFlyer,
-    type: 'flyer',
-  },
-  {
-    id: 4,
-    title: 'Bucket Elevator Flyer',
-    description: 'Centrifugal vs. continuous discharge models, bucket casing arrangements, belt/chain options, and capacity guides.',
-    image: bucketFlyer,
-    type: 'flyer',
+    title: 'Bucket Elevator Engineering Guide',
+    description: 'Reference manual for bucket elevator design, including speed ratios, casing layouts, centrifugal vs continuous discharge charts, and component designs.',
+    image: bookBucketElevatorGuide,
+    type: 'guide',
+    pdfUrl: '/docs/BucketElevatorEngineeringGuide.pdf',
+    fileName: 'BucketElevatorEngineeringGuide.pdf',
   },
 ];
 
@@ -62,7 +51,15 @@ const cardVariants = {
   },
 };
 
-function LiteratureCard({ item, index }: { item: typeof literatureItems[0]; index: number }) {
+function LiteratureCard({ 
+  item, 
+  index, 
+  onDownload 
+}: { 
+  item: typeof literatureItems[0]; 
+  index: number; 
+  onDownload: (pdfUrl: string, fileName: string) => void;
+}) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -74,9 +71,9 @@ function LiteratureCard({ item, index }: { item: typeof literatureItems[0]; inde
       whileHover={{ y: -10 }}
       transition={{ duration: 0.3 }}
     >
-      <div className="bg-card rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-border hover:border-accent/50">
+      <div className="bg-card rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-border hover:border-accent/50 flex flex-col h-full">
         {/* Book Image Container */}
-        <div className="relative h-64 bg-gradient-to-br from-muted to-secondary flex items-center justify-center p-8 overflow-hidden">
+        <div className="relative h-72 bg-gradient-to-br from-muted to-secondary flex items-center justify-center p-6 overflow-hidden">
           {/* Background Pattern */}
           <motion.div
             className="absolute inset-0 opacity-10"
@@ -93,39 +90,60 @@ function LiteratureCard({ item, index }: { item: typeof literatureItems[0]; inde
           <motion.img
             src={item.image}
             alt={item.title}
-            className="h-48 w-auto object-contain relative z-10 drop-shadow-2xl"
+            className="h-56 w-auto object-contain relative z-10 drop-shadow-2xl"
             animate={{
-              scale: isHovered ? 1.1 : 1,
-              y: isHovered ? -8 : 0,
-              rotate: isHovered ? 3 : 0,
+              scale: isHovered ? 1.05 : 1,
+              y: isHovered ? -5 : 0,
+              rotate: isHovered ? 2 : 0,
             }}
             transition={{ duration: 0.4, ease: 'easeOut' }}
           />
 
-          {/* Hover Overlay with Button */}
+          {/* Hover Overlay with Buttons */}
           <motion.div
-            className="absolute inset-0 bg-primary/95 flex items-center justify-center z-20"
+            className="absolute inset-0 bg-primary/95 flex flex-col gap-3 items-center justify-center z-20 p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: isHovered ? 1 : 0 }}
             transition={{ duration: 0.3 }}
           >
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: isHovered ? 1 : 0, scale: isHovered ? 1 : 0.8 }}
+              className="flex flex-col gap-3 w-full max-w-[180px]"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 10 }}
               transition={{ duration: 0.3, delay: 0.1 }}
             >
-              <Link to="/resources">
-                <Button variant="heroOutline" size="default" className="group/btn">
-                  <Download className="w-4 h-4 mr-2 group-hover/btn:animate-bounce" />
-                  View Resources
-                </Button>
-              </Link>
+              <Button 
+                variant="heroOutline" 
+                size="default" 
+                className="w-full group/btn text-white border-white hover:bg-white hover:text-primary transition-all duration-300"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onDownload(item.pdfUrl, item.fileName);
+                }}
+              >
+                <Download className="w-4 h-4 mr-2 group-hover/btn:animate-bounce" />
+                Download PDF
+              </Button>
+              <Button 
+                variant="heroOutline" 
+                size="default" 
+                className="w-full text-white border-white/40 hover:border-white hover:bg-white/10 transition-all duration-300"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+                  const resolvedUrl = item.pdfUrl.startsWith('http') ? item.pdfUrl : `${baseUrl}${item.pdfUrl}`;
+                  window.open(resolvedUrl, '_blank');
+                }}
+              >
+                <ExternalLink className="w-4 h-4 mr-2" />
+                View Online
+              </Button>
             </motion.div>
           </motion.div>
         </div>
 
         {/* Content */}
-        <div className="p-6">
+        <div className="p-6 flex flex-col flex-grow">
           <motion.div
             className="flex items-center gap-2 mb-3"
             initial={{ opacity: 0, x: -10 }}
@@ -140,7 +158,7 @@ function LiteratureCard({ item, index }: { item: typeof literatureItems[0]; inde
           <h3 className="font-heading text-xl font-bold text-foreground mb-2 group-hover:text-accent transition-colors duration-300">
             {item.title}
           </h3>
-          <p className="text-muted-foreground text-sm leading-relaxed">
+          <p className="text-muted-foreground text-sm leading-relaxed flex-grow">
             {item.description}
           </p>
         </div>
@@ -152,6 +170,35 @@ function LiteratureCard({ item, index }: { item: typeof literatureItems[0]; inde
 export function LiteratureSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+
+  const handleDownload = async (imageUrl: string, filename: string) => {
+    try {
+      const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+      const resolvedUrl = imageUrl.startsWith('http') || imageUrl.startsWith('blob:') || imageUrl.startsWith('data:') || (baseUrl && imageUrl.startsWith(baseUrl))
+        ? imageUrl
+        : `${baseUrl}${imageUrl}`;
+
+      const response = await fetch(resolvedUrl);
+      if (!response.ok) throw new Error('Fetch failed');
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+      toast.success(`Started download of ${filename}`);
+    } catch (e) {
+      // Fallback
+      const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+      const resolvedUrl = imageUrl.startsWith('http') || imageUrl.startsWith('blob:') || imageUrl.startsWith('data:') || (baseUrl && imageUrl.startsWith(baseUrl))
+        ? imageUrl
+        : `${baseUrl}${imageUrl}`;
+      window.open(resolvedUrl, '_blank');
+    }
+  };
 
   return (
     <section className="pt-12 pb-24 lg:pb-32 bg-background relative overflow-hidden" ref={ref}>
@@ -213,13 +260,13 @@ export function LiteratureSection() {
 
         {/* Literature Grid */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto"
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
           {literatureItems.map((item, index) => (
-            <LiteratureCard key={item.id} item={item} index={index} />
+            <LiteratureCard key={item.id} item={item} index={index} onDownload={handleDownload} />
           ))}
         </motion.div>
 
