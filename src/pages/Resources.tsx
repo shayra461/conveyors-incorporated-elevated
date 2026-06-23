@@ -14,7 +14,9 @@ import {
   Database, 
   BookOpen, 
   Eye,
-  Info
+  Info,
+  Paperclip,
+  Trash2
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
@@ -269,6 +271,7 @@ export default function Resources() {
   // Worksheet form state
   const [clientInfo, setClientInfo] = useState({ name: '', company: '', email: '', phone: '', comments: '' });
   const [worksheetParams, setWorksheetParams] = useState<Record<string, string>>({});
+  const [attachment, setAttachment] = useState<File | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -315,6 +318,7 @@ export default function Resources() {
   const handleResetForm = () => {
     setClientInfo({ name: '', company: '', email: '', phone: '', comments: '' });
     setWorksheetParams({});
+    setAttachment(null);
     setIsSubmitted(false);
     setActiveWorksheet(null);
   };
@@ -793,6 +797,12 @@ export default function Resources() {
                       <span className="font-semibold">{clientInfo.email}</span>
                       <span className="text-muted-foreground">Phone:</span>
                       <span className="font-semibold">{clientInfo.phone}</span>
+                      {attachment && (
+                        <>
+                          <span className="text-muted-foreground">Attachment:</span>
+                          <span className="font-semibold text-accent truncate">{attachment.name}</span>
+                        </>
+                      )}
                     </div>
                     <div className="grid grid-cols-2 gap-y-2 pt-2">
                       {activeWorksheet.fields.map((field) => (
@@ -912,6 +922,52 @@ export default function Resources() {
                       value={clientInfo.comments}
                       onChange={(e) => setClientInfo(prev => ({ ...prev, comments: e.target.value }))}
                     />
+                  </div>
+
+                  {/* File Attachment Section */}
+                  <div className="space-y-2">
+                    <Label className="text-xs font-bold uppercase tracking-wider">Attachments (Optional)</Label>
+                    
+                    {!attachment ? (
+                      <div className="border border-dashed border-border hover:border-accent/50 rounded-lg p-4 transition-colors duration-300 flex flex-col items-center justify-center bg-accent/5 hover:bg-accent/10 cursor-pointer relative group min-h-[100px]">
+                        <input 
+                          type="file" 
+                          id="file-upload" 
+                          className="absolute inset-0 opacity-0 cursor-pointer z-10" 
+                          onChange={(e) => {
+                            if (e.target.files && e.target.files.length > 0) {
+                              setAttachment(e.target.files[0]);
+                            }
+                          }}
+                        />
+                        <Paperclip className="w-6 h-6 text-muted-foreground group-hover:text-accent transition-colors duration-300 mb-1.5" />
+                        <span className="text-sm font-semibold text-muted-foreground group-hover:text-accent transition-colors duration-300">
+                          Click to select a file or drawing
+                        </span>
+                        <span className="text-xs text-muted-foreground/60 mt-0.5">
+                          Supports PDF, DXF, DWG, PNG, JPG (Max 25MB)
+                        </span>
+                      </div>
+                    ) : (
+                      <div className="flex items-center justify-between p-3 border border-border bg-accent/5 rounded-lg">
+                        <div className="flex items-center gap-3 overflow-hidden">
+                          <FileText className="w-8 h-8 text-accent flex-shrink-0" />
+                          <div className="overflow-hidden">
+                            <p className="text-sm font-semibold truncate text-foreground">{attachment.name}</p>
+                            <p className="text-xs text-muted-foreground">{(attachment.size / (1024 * 1024)).toFixed(2)} MB</p>
+                          </div>
+                        </div>
+                        <Button 
+                          variant="ghost" 
+                          size="icon" 
+                          className="text-muted-foreground hover:text-destructive flex-shrink-0"
+                          onClick={() => setAttachment(null)}
+                          type="button"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </Button>
+                      </div>
+                    )}
                   </div>
 
                   {/* Action Buttons */}
