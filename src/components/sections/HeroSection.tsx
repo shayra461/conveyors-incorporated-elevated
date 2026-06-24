@@ -5,6 +5,7 @@ import heroVideo from '@/assets/ezgif-556e57c2a3bb0abe.mp4';
 import badge45Years from '@/assets/45-years-badge.png';
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '@/context/LanguageContext';
 
 function Counter({ value, label }: { value: string; label: string }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -50,6 +51,7 @@ function DisplayValue({ value }: { value: import("framer-motion").MotionValue<nu
 }
 
 export function HeroSection() {
+  const { t } = useLanguage();
   return (
     <section className="relative min-h-screen md:min-h-[110vh] md:pb-20 flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
@@ -105,7 +107,7 @@ export function HeroSection() {
           >
             <span className="h-px w-8 md:w-12 bg-yellow-400/80 shadow-[0_0_10px_rgba(250,204,21,0.5)]" />
             <span className="text-yellow-400 font-bold uppercase tracking-widest text-xs md:text-sm drop-shadow-md">
-              Industry Leaders Since 1974
+              {t('home.hero.badge')}
             </span>
           </motion.div>
 
@@ -116,9 +118,9 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-primary-foreground leading-tight mb-4 md:mb-6"
           >
-            Custom Excellence in{' '}
+            {t('home.hero.title').split(' ').slice(0, 3).join(' ')}{' '}
             <span className="text-gradient bg-gradient-to-r from-accent to-crimson-dark bg-clip-text text-transparent">
-              Bulk Material Handling
+              {t('home.hero.title').split(' ').slice(3).join(' ')}
             </span>
           </motion.h1>
 
@@ -129,8 +131,7 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-base md:text-xl lg:text-2xl text-primary-foreground/80 leading-relaxed mb-6 md:mb-10 max-w-2xl"
           >
-            Premium conveyor systems designed and manufactured to move your
-            business forward. Trusted by industry leaders worldwide.
+            {t('home.hero.desc')}
           </motion.p>
 
           {/* CTAs */}
@@ -142,13 +143,13 @@ export function HeroSection() {
           >
             <Button asChild variant="hero" size="xl" className="group w-full sm:w-auto">
               <Link to="/products">
-                Explore Products
+                {t('nav.exploreSolutions')}
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
             <Button asChild variant="heroOutline" size="xl" className="group w-full sm:w-auto">
               <Link to="/quote">
-                Get A Quote
+                {t('nav.requestQuote')}
               </Link>
             </Button>
           </motion.div>
@@ -161,9 +162,9 @@ export function HeroSection() {
             className="flex flex-wrap gap-4 sm:gap-6 md:gap-8 lg:gap-16 mt-8 md:mt-16 p-4 md:p-6 lg:p-8 bg-slate-950/40 backdrop-blur-md rounded-xl md:rounded-2xl border border-white/10"
           >
             {[
-              { value: '45+', label: 'Years Experience' },
-              { value: '2,500+', label: 'Projects Completed' },
-              { value: '100+', label: 'Industries Served' },
+              { value: '45+', label: t('home.about.statExperience') },
+              { value: '2,500+', label: t('footer.copyright') ? (t('footer.copyright').includes('reservados') ? 'Proyectos Completados' : 'Projects Completed') : 'Projects Completed' },
+              { value: '100+', label: t('footer.copyright') ? (t('footer.copyright').includes('reservados') ? 'Industrias Servidas' : 'Industries Served') : 'Industries Served' },
             ].map((stat, index) => (
               <motion.div
                 key={stat.label}
