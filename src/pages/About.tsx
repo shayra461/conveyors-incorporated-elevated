@@ -144,14 +144,9 @@ const About = () => {
                   <ImageSlider 
                     beforeImage="/conveyors-incorporated-elevated/images/factory-aerial.jpg"
                     afterImage={factoryCurrent}
-                    beforeLabel="1974 - Venus, TX"
+                    beforeLabel="Then - Mansfield, TX"
                     afterLabel="Today - Mansfield, TX"
                   />
-                  <div className="mt-4 px-2 pb-2 text-center">
-                    <p className="text-xs text-muted-foreground font-semibold">
-                      Drag the slider to compare our original 2,000 sq ft Venus tin shop with our modern Mansfield headquarters.
-                    </p>
-                  </div>
                 </div>
               </motion.div>
             </div>
