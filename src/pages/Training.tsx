@@ -119,7 +119,7 @@ export default function Training() {
   });
   
   const [attendees, setAttendees] = useState([
-    { id: 1, name: '', phone: '', poloSize: 'L', travelChoice: 'Driving', flightInfo: '' }
+    { id: 1, name: '', email: '', phone: '', poloSize: 'L', travelChoice: 'Driving', flightInfo: '' }
   ]);
 
   // Submission/Success UI states
@@ -142,7 +142,7 @@ export default function Training() {
   // Add/remove attendee fields (Company Mode)
   const addAttendee = () => {
     const nextId = attendees.length > 0 ? Math.max(...attendees.map(a => a.id)) + 1 : 1;
-    setAttendees([...attendees, { id: nextId, name: '', phone: '', poloSize: 'L', travelChoice: 'Driving', flightInfo: '' }]);
+    setAttendees([...attendees, { id: nextId, name: '', email: '', phone: '', poloSize: 'L', travelChoice: 'Driving', flightInfo: '' }]);
     toast.success('Added new attendee slot');
   };
 
@@ -175,9 +175,9 @@ export default function Training() {
         return;
       }
       
-      const emptyAttendee = attendees.find(a => !a.name || !a.phone);
+      const emptyAttendee = attendees.find(a => !a.name || !a.phone || !a.email);
       if (emptyAttendee) {
-        toast.error('Please provide name and phone number for all attendees');
+        toast.error('Please provide name, email, and phone number for all attendees');
         return;
       }
     }
@@ -215,7 +215,7 @@ export default function Training() {
       branchLocation: '',
       companyEmail: ''
     });
-    setAttendees([{ id: 1, name: '', phone: '', poloSize: 'L', travelChoice: 'Driving', flightInfo: '' }]);
+    setAttendees([{ id: 1, name: '', email: '', phone: '', poloSize: 'L', travelChoice: 'Driving', flightInfo: '' }]);
     setIsSubmitted(false);
   };
 
@@ -860,7 +860,7 @@ export default function Training() {
                                   )}
                                 </div>
 
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                   <div>
                                     <Label htmlFor={`att-name-${attendee.id}`} className="text-xs">Student Name *</Label>
                                     <Input 
@@ -869,6 +869,18 @@ export default function Training() {
                                       placeholder="e.g. John Doe"
                                       value={attendee.name}
                                       onChange={(e) => updateAttendee(attendee.id, 'name', e.target.value)}
+                                      className="mt-1 text-xs h-9"
+                                    />
+                                  </div>
+                                  <div>
+                                    <Label htmlFor={`att-email-${attendee.id}`} className="text-xs">Email *</Label>
+                                    <Input 
+                                      id={`att-email-${attendee.id}`} 
+                                      type="email"
+                                      required
+                                      placeholder="e.g. john@company.com"
+                                      value={attendee.email || ''}
+                                      onChange={(e) => updateAttendee(attendee.id, 'email', e.target.value)}
                                       className="mt-1 text-xs h-9"
                                     />
                                   </div>
@@ -1032,7 +1044,7 @@ export default function Training() {
                             <div className="grid grid-cols-1 gap-1.5 font-mono text-[10px] text-muted-foreground">
                               {attendees.map((a, idx) => (
                                 <p key={a.id}>
-                                  {idx + 1}. {a.name} (Polo: {a.poloSize}, Travel: {a.travelChoice}) - Phone: {a.phone}
+                                  {idx + 1}. {a.name} ({a.email}) (Polo: {a.poloSize}, Travel: {a.travelChoice}) - Phone: {a.phone}
                                 </p>
                               ))}
                             </div>
