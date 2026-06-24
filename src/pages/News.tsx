@@ -15,7 +15,7 @@ const newsArticles = [
   {
     title: "6 Advantages of Heavy-Duty Belt Conveyors for Material Handling",
     date: "February 5, 2025",
-    author: "IBT Editorial",
+    author: "Featured In IBT Editorial",
     category: "Bulk Handling",
     image: heavyDutyBeltImg,
     excerpt: "Heavy-duty belt conveyors are vital for high-volume bulk material handling in mining, manufacturing, and agriculture. Explore the six key advantages they offer.",
@@ -24,7 +24,7 @@ const newsArticles = [
   {
     title: "Plastic or Steel? How to Choose the Right Conveyor Bucket",
     date: "March 21, 2024",
-    author: "IBT Editorial",
+    author: "Featured In IBT Editorial",
     category: "Product Design",
     image: conveyorBucketImg,
     excerpt: "Conveyor buckets are highly versatile components in material handling. Read our guide on selecting between plastic and steel elevator buckets to optimize your bulk handling system.",
@@ -33,7 +33,7 @@ const newsArticles = [
   {
     title: "Unlocking Efficiency: The Core Components of Conveyor Belt Systems",
     date: "October 6, 2023",
-    author: "IBT Editorial",
+    author: "Featured In IBT Editorial",
     category: "Technical Guide",
     image: coreComponentsImg,
     excerpt: "Delve into the fundamental components and functions of conveyor belt systems. Learn how custom configurations and core parts work together to optimize bulk material transport.",
@@ -42,7 +42,7 @@ const newsArticles = [
   {
     title: "Optimize Your Bulk Material Handling with Custom Screw Conveyor Solutions",
     date: "February 21, 2023",
-    author: "IBT Editorial",
+    author: "Featured In IBT Editorial",
     category: "Technical Guide",
     image: customScrewImg,
     excerpt: "Learn how custom screw conveyor solutions optimize productivity, maximize conveyor component life, and protect your equipment from material wear to reduce unplanned downtime.",
@@ -51,7 +51,7 @@ const newsArticles = [
   {
     title: "Screw Conveyors: Helicoid Flighting vs. Sectional Flighting",
     date: "July 25, 2022",
-    author: "IBT Editorial",
+    author: "Featured In IBT Editorial",
     category: "Technical Guide",
     image: helicoidSectionalImg,
     excerpt: "Understand the key differences between helicoid and sectional flighting for screw conveyors. Learn when to use continuous rolled vs. segmented plate flighting to maximize system life.",
