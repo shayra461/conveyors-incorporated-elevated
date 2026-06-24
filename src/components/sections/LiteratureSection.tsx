@@ -1,12 +1,13 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { Download, ExternalLink, BookOpen } from 'lucide-react';
+import { Download, ExternalLink, BookOpen, Eye, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
 // Import book images & toast
 import bookScrewConveyorGuide from '@/assets/literature/book-screw-conveyor-guide.jpg';
 import bookBucketElevatorGuide from '@/assets/literature/book-bucket-elevator-guide.jpg';
+import screwFlyer from '@/assets/literature/Screw_Conveyors_Flyer_new-01.jpg';
 import { toast } from 'sonner';
 
 const literatureItems = [
@@ -27,6 +28,15 @@ const literatureItems = [
     type: 'guide',
     pdfUrl: '/docs/BucketElevatorEngineeringGuide.pdf',
     fileName: 'BucketElevatorEngineeringGuide.pdf',
+  },
+  {
+    id: 3,
+    title: 'Screw Conveyors Technical Flyer',
+    description: 'Technical details, casing options, screw flight configurations, and standard dimensions for Screw Conveyors.',
+    image: screwFlyer,
+    type: 'flyer',
+    pdfUrl: screwFlyer,
+    fileName: 'Screw_Conveyors_Flyer_new-01.jpg',
   },
 ];
 
@@ -122,7 +132,7 @@ function LiteratureCard({
                 }}
               >
                 <Download className="w-4 h-4 mr-2 group-hover/btn:animate-bounce" />
-                Download PDF
+                {item.type === 'flyer' ? 'Download JPG' : 'Download PDF'}
               </Button>
               <Button 
                 variant="heroOutline" 
@@ -131,12 +141,14 @@ function LiteratureCard({
                 onClick={(e) => {
                   e.preventDefault();
                   const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
-                  const resolvedUrl = item.pdfUrl.startsWith('http') ? item.pdfUrl : `${baseUrl}${item.pdfUrl}`;
+                  const resolvedUrl = item.pdfUrl.startsWith('http') || item.pdfUrl.startsWith('data:') || item.pdfUrl.startsWith('/conveyors') || item.pdfUrl.startsWith('/src')
+                    ? item.pdfUrl
+                    : `${baseUrl}${item.pdfUrl}`;
                   window.open(resolvedUrl, '_blank');
                 }}
               >
-                <ExternalLink className="w-4 h-4 mr-2" />
-                View Online
+                {item.type === 'flyer' ? <Eye className="w-4 h-4 mr-2" /> : <ExternalLink className="w-4 h-4 mr-2" />}
+                {item.type === 'flyer' ? 'Open Lightbox' : 'View Online'}
               </Button>
             </motion.div>
           </motion.div>
@@ -150,7 +162,7 @@ function LiteratureCard({
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: index * 0.1 + 0.3 }}
           >
-            <BookOpen className="w-5 h-5 text-accent" />
+            {item.type === 'flyer' ? <FileText className="w-5 h-5 text-accent" /> : <BookOpen className="w-5 h-5 text-accent" />}
             <span className="text-xs font-semibold uppercase tracking-wider text-accent">
               {item.type === 'flyer' ? 'Product Flyer' : item.type === 'guide' ? 'Technical Guide' : item.type === 'brochure' ? 'Brochure' : 'Worksheet'}
             </span>
@@ -260,7 +272,7 @@ export function LiteratureSection() {
 
         {/* Literature Grid */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto"
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto"
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
