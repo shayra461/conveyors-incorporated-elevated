@@ -2,7 +2,23 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Phone, Mail, MapPin, Linkedin, Facebook, Twitter, Youtube, ArrowRight } from 'lucide-react';
 import logo from '@/assets/logo.png';
-import { useLanguage } from '@/context/LanguageContext';
+
+const quickLinks = [
+  { label: 'About Us', path: '/about' },
+  { label: 'Products', path: '/products' },
+  { label: 'Industries', path: '/industries' },
+  { label: 'Resources & Literature', path: '/resources' },
+  { label: 'Training', path: '/training' },
+  { label: 'Find A Rep', path: '/find-a-rep' },
+  { label: 'Contact', path: '/contact' },
+];
+
+const productLinks = [
+  { label: 'Screw Conveyor / Feeder', path: '/products' },
+  { label: 'Bucket Elevator & Buckets', path: '/products' },
+  { label: 'Drag Conveyors', path: '/products' },
+  { label: 'Custom Fabrication', path: '/products' },
+];
 
 const socialLinks = [
   { icon: Linkedin, href: '#', label: 'LinkedIn' },
@@ -12,24 +28,6 @@ const socialLinks = [
 ];
 
 export function Footer() {
-  const { t } = useLanguage();
-
-  const quickLinks = [
-    { label: t('nav.about'), path: '/about' },
-    { label: t('nav.products'), path: '/products' },
-    { label: t('nav.industries'), path: '/industries' },
-    { label: t('footer.resourcesLink'), path: '/resources' },
-    { label: t('nav.training'), path: '/training' },
-    { label: t('nav.findRep'), path: '/find-a-rep' },
-    { label: t('nav.contact'), path: '/contact' },
-  ];
-
-  const productLinks = [
-    { label: t('productsPage.conveyors'), path: '/products' },
-    { label: t('productsPage.feedersMixers'), path: '/products' },
-    { label: t('productsPage.components'), path: '/products' }
-  ];
-
   return (
     <footer className="bg-gradient-dark text-primary-foreground">
       {/* Main Footer */}
@@ -39,7 +37,8 @@ export function Footer() {
           <div className="space-y-4 md:space-y-6">
             <img src={logo} alt="Conveyors Incorporated" className="h-12 md:h-14 lg:h-16 w-auto" />
             <p className="text-primary-foreground/70 text-xs md:text-sm leading-relaxed">
-              {t('footer.companyDesc')}
+              Industry leaders in bulk material handling and conveyor systems manufacturing.
+              Custom excellence since 1974.
             </p>
             <div className="flex gap-2 md:gap-3">
               {socialLinks.map((social) => (
@@ -59,7 +58,7 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-heading text-base md:text-lg font-bold mb-4 md:mb-6 uppercase tracking-wider">{t('footer.quickLinks')}</h4>
+            <h4 className="font-heading text-base md:text-lg font-bold mb-4 md:mb-6 uppercase tracking-wider">Quick Links</h4>
             <ul className="space-y-2 md:space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.path}>
@@ -77,7 +76,7 @@ export function Footer() {
 
           {/* Products */}
           <div>
-            <h4 className="font-heading text-base md:text-lg font-bold mb-4 md:mb-6 uppercase tracking-wider">{t('nav.products')}</h4>
+            <h4 className="font-heading text-base md:text-lg font-bold mb-4 md:mb-6 uppercase tracking-wider">Products</h4>
             <ul className="space-y-2 md:space-y-3">
               {productLinks.map((link) => (
                 <li key={link.label}>
@@ -95,7 +94,7 @@ export function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h4 className="font-heading text-base md:text-lg font-bold mb-4 md:mb-6 uppercase tracking-wider">{t('footer.contactUs')}</h4>
+            <h4 className="font-heading text-base md:text-lg font-bold mb-4 md:mb-6 uppercase tracking-wider">Contact Us</h4>
             <ul className="space-y-3 md:space-y-4">
               <li>
                 <a
@@ -119,7 +118,8 @@ export function Footer() {
                 <div className="flex items-start gap-2 md:gap-3 text-primary-foreground/70 text-xs md:text-sm">
                   <MapPin className="w-4 h-4 md:w-5 md:h-5 mt-0.5 text-accent flex-shrink-0" />
                   <span>
-                    {t('footer.address')}
+                    123 Industrial Parkway<br />
+                    Manufacturing City, TX 75001
                   </span>
                 </div>
               </li>
@@ -132,7 +132,7 @@ export function Footer() {
       <div className="border-t border-primary-foreground/10">
         <div className="container mx-auto px-4 md:px-6 py-4 md:py-6 flex flex-col md:flex-row items-center justify-between gap-3 md:gap-4">
           <p className="text-primary-foreground/50 text-xs md:text-sm text-center md:text-left">
-            © {new Date().getFullYear()} Conveyors Incorporated. {t('footer.copyright')}
+            © {new Date().getFullYear()} Conveyors Incorporated. All rights reserved.
           </p>
           <div className="flex gap-4 md:gap-6 text-xs md:text-sm">
             <a href="#" className="text-primary-foreground/50 hover:text-accent transition-colors">
