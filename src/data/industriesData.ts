@@ -12,13 +12,16 @@ import {
   Recycle, 
   Layers, 
   Trash2,
+  HardHat,
+  Bone,
+  Factory,
   LucideIcon
 } from 'lucide-react';
 
 import agricultureImg from '@/assets/industries/agriculture.png';
 import alternativeFuelsImg from '@/assets/industries/Alternative Fuels.jpg';
 import chemicalsImg from '@/assets/industries/Chemicals.webp';
-import environmentalImg from '@/assets/industries/Environmental.jpg';
+import wastewaterImg from '@/assets/industries/Environmental.jpg';
 import foodProductsImg from '@/assets/industries/Food Products.jpeg';
 import lumberWoodImg from '@/assets/industries/Lumber & Wood.jpg';
 import miningImg from '@/assets/industries/Metals & Mining.jpeg';
@@ -28,6 +31,9 @@ import pulpPaperImg from '@/assets/industries/Pulp & Paper.jpeg';
 import recyclingImg from '@/assets/industries/recycling-real.jpg';
 import stoneConcreteImg from '@/assets/industries/Stone, Glass & Concrete.jpg';
 import refuseSystemsImg from '@/assets/industries/refuse-systems.png';
+import aggregateImg from '@/assets/industries/aggregate.png';
+import petFoodImg from '@/assets/industries/pet-food.png';
+import renderingImg from '@/assets/industries/rendering.png';
 
 export interface Industry {
   id: string;
@@ -115,10 +121,10 @@ export const industriesData: Industry[] = [
     ]
   },
   {
-    id: 'environmental',
-    name: 'Environmental',
+    id: 'wastewater',
+    name: 'Wastewater',
     icon: Droplets,
-    image: environmentalImg,
+    image: wastewaterImg,
     shortDescription: 'Premium municipal grit classifiers, dewatered biosolids shaftless conveyors, and odor-tight sludge load-out systems.',
     description: 'Clean water continues to become a more precious commodity each day. The treatment of water and wastewater requires separation of solids from liquids. These solids are grit, screenings, sludge or bio-solids. Conveyors, Inc. Grit Classifiers and Shaftless Conveyors can be found at hundreds of municipalities handling these bulk materials. Centrifuges and belt filter presses are most commonly used to dewater the wastewater. The sludge or bio-solids are conveyed with Conveyors, Inc. Shaftless Conveyors to drying, load-out or incineration. Our unique designs work great for the wet, sticky products. Also, our vapor-tight construction reduces the odors produced by these products and the chance for explosion.',
     materials: [
@@ -350,6 +356,75 @@ export const industriesData: Industry[] = [
       'Belt Conveyors',
       'Drag Conveyors',
       'Slide Gates'
+    ]
+  },
+  {
+    id: 'aggregate',
+    name: 'Aggregate',
+    icon: HardHat,
+    image: aggregateImg,
+    shortDescription: 'Heavy-duty aggregate conveyors, sand & gravel feeders, and rock-duty bucket elevators built for high-capacity abrasion resistance.',
+    description: 'The aggregate industry processes stone, sand, gravel, and slag into essential materials for construction, roadbuilding, and concrete production. Handling these highly abrasive, heavy bulk materials requires conveyor systems that are engineered for maximum durability and continuous uptime. Conveyors, Inc. designs and manufactures heavy-duty screw conveyors, belt feeders, and bucket elevators specifically constructed with abrasion-resistant alloys and reinforced components to withstand the severe wear of aggregate handling. Our systems ensure reliable, high-capacity material flow from quarries and crushing plants to storage and load-out facilities.',
+    materials: [
+      'Crushed Stone',
+      'Gravel',
+      'Sand',
+      'Slag',
+      'Granite Chips',
+      'Riprap'
+    ],
+    equipment: [
+      'Heavy Duty Screw Conveyors',
+      'Belt Feeders',
+      'Bucket Elevators',
+      'Drag Conveyors',
+      'Slide Gates'
+    ]
+  },
+  {
+    id: 'pet-food',
+    name: 'Pet Food',
+    icon: Bone,
+    image: petFoodImg,
+    shortDescription: 'Sanitary stainless steel conveyor systems, gentle-handling elevators, and custom batch mixers for dry kibble and wet pet food processing.',
+    description: 'The production of premium pet food for dogs, cats, and other animals requires high standards of hygiene, accuracy in ingredient batching, and gentle handling to prevent product degradation. From raw meat slurry and dry meal rendering to the final packaging of kibble and treats, Conveyors, Inc. supplies custom bulk material handling systems designed for sanitary operations. We construct our pet food conveyors using polished stainless steel, ensuring smooth surfaces that eliminate bacteria-harboring crevices. Our gentle-handling bucket elevators and continuous mixers preserve kibble integrity while maintaining high-throughput efficiency, meeting the strict quality requirements of modern pet food manufacturers.',
+    materials: [
+      'Dry Kibble',
+      'Meat Meal',
+      'Bone Meal',
+      'Grains and Seeds',
+      'Vitamin Additives',
+      'Wet Slurry'
+    ],
+    equipment: [
+      'Stainless Steel Screw Conveyors',
+      'Continuous Blenders',
+      'Bucket Elevators',
+      'Drag Conveyors',
+      'Slide Gates'
+    ]
+  },
+  {
+    id: 'rendering',
+    name: 'Rendering',
+    icon: Factory,
+    image: renderingImg,
+    shortDescription: 'Ultra-heavy-duty screw conveyors, high-torque cookers, and fat-tight drag conveyors built to process animal byproducts and recycled proteins.',
+    description: 'Rendering is the process of converting animal byproducts—such as meat scraps, fat, and bone—into purified fats (tallow, lard) and protein meals (meat and bone meal, poultry meal). This critical recycling process operates in extremely harsh, wet, hot, and corrosive environments. Conveyors, Inc. provides ultra-heavy-duty screw conveyors, continuous mixers, and drag conveyors specifically engineered to withstand the severe conditions of rendering plants. We construct our systems with heavy-gauge carbon steel or corrosion-resistant stainless steel, utilizing severe-duty seals, high-torque drives, and fat-tight enclosures to contain liquids and odors while maintaining continuous, high-capacity operation.',
+    materials: [
+      'Animal Scraps',
+      'Bones',
+      'Feathers',
+      'Poultry Byproducts',
+      'Meat and Bone Meal',
+      'Tallow and Fats'
+    ],
+    equipment: [
+      'Ultra-Heavy-Duty Screw Conveyors',
+      'Continuous Mixers',
+      'Drag Conveyors',
+      'Fat-Tight Slide Gates',
+      'Thermal Processing Screws'
     ]
   }
 ];
