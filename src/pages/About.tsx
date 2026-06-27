@@ -27,12 +27,12 @@ const values = [
 ];
 
 const timeline = [
-  { year: '1974', event: 'Founded in Texas as a small conveyor component supplier' },
-  { year: '1985', event: 'Expanded manufacturing capabilities with new 50,000 sq ft facility' },
-  { year: '1995', event: 'Achieved ISO 9001 certification' },
-  { year: '2005', event: 'Launched comprehensive training program' },
-  { year: '2015', event: 'Expanded to 200,000+ sq ft of manufacturing space' },
-  { year: '2024', event: 'Celebrating 45+ years of industry leadership' },
+  { year: '1974', event: 'Founded in Venus, Texas, operating from a 2,000-square-foot facility.' },
+  { year: '1975', event: 'Relocated operations to Mansfield, Texas.' },
+  { year: '1977', event: 'Expanded manufacturing operations with a new 10,000-square-foot facility.' },
+  { year: '1979', event: 'Reached a major milestone by surpassing $5 million in annual shipments.' },
+  { year: '1987', event: 'Expanded our product offerings with the introduction of the Vertical Screw Conveyor product line.' },
+  { year: '2013', event: 'Launched our Bulk Material Handling Training Program, providing industry education and hands-on training for customers and professionals.' },
 ];
 
 const team = [
@@ -115,7 +115,7 @@ const About = () => {
                 </div>
                 
                 <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-8 leading-tight">
-                  Our <span className="text-accent">Story</span> & Evolution
+                  Our <span className="text-accent">Journey</span>
                 </h2>
 
                 <div className="space-y-6">

@@ -9,9 +9,9 @@ import { Link } from 'react-router-dom';
 const contactInfo = [
   {
     icon: Phone,
-    title: 'Phone',
-    value: '1-800-555-1234',
-    subvalue: 'Mon-Fri 8am-5pm CST',
+    title: 'Phone / Fax',
+    value: '(817) 473-4645',
+    subvalue: 'Fax: (817) 473-3024',
   },
   {
     icon: Mail,
@@ -22,8 +22,8 @@ const contactInfo = [
   {
     icon: MapPin,
     title: 'Address',
-    value: '123 Industrial Parkway',
-    subvalue: 'Manufacturing City, TX 75001',
+    value: '620 S. 4th Ave',
+    subvalue: 'Mansfield, Texas 76063',
   },
   {
     icon: Clock,

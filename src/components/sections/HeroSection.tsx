@@ -161,8 +161,8 @@ export function HeroSection() {
             className="flex flex-wrap gap-4 sm:gap-6 md:gap-8 lg:gap-16 mt-8 md:mt-16 p-4 md:p-6 lg:p-8 bg-slate-950/40 backdrop-blur-md rounded-xl md:rounded-2xl border border-white/10"
           >
             {[
-              { value: '45+', label: 'Years Experience' },
-              { value: '2,500+', label: 'Projects Completed' },
+              { value: '1,000+', label: 'Years of Accumulated Experience' },
+              { value: '250,000+', label: 'Projects Completed' },
               { value: '100+', label: 'Industries Served' },
             ].map((stat, index) => (
               <motion.div

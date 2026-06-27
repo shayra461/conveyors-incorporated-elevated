@@ -87,7 +87,7 @@ export function CTASection() {
             >
               <Button variant="outline" size="xl" className="group">
                 <Phone className="w-5 h-5" />
-                Call 1-800-555-1234
+                Call (817) 473-4645
               </Button>
             </motion.div>
           </motion.div>

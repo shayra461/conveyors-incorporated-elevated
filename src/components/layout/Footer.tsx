@@ -98,11 +98,11 @@ export function Footer() {
             <ul className="space-y-3 md:space-y-4">
               <li>
                 <a
-                  href="tel:+18005551234"
+                  href="tel:+18174734645"
                   className="flex items-start gap-2 md:gap-3 text-primary-foreground/70 hover:text-accent transition-colors duration-300 text-xs md:text-sm"
                 >
                   <Phone className="w-4 h-4 md:w-5 md:h-5 mt-0.5 text-accent flex-shrink-0" />
-                  <span>1-800-555-1234</span>
+                  <span>(817) 473-4645<br />Fax: (817) 473-3024</span>
                 </a>
               </li>
               <li>
@@ -118,8 +118,8 @@ export function Footer() {
                 <div className="flex items-start gap-2 md:gap-3 text-primary-foreground/70 text-xs md:text-sm">
                   <MapPin className="w-4 h-4 md:w-5 md:h-5 mt-0.5 text-accent flex-shrink-0" />
                   <span>
-                    123 Industrial Parkway<br />
-                    Manufacturing City, TX 75001
+                    620 S. 4th Ave<br />
+                    Mansfield, Texas 76063
                   </span>
                 </div>
               </li>

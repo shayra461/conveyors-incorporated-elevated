@@ -13,7 +13,7 @@ import { toast } from 'sonner';
 const literatureItems = [
   {
     id: 1,
-    title: 'Screw Conveyor & Feeder Engineering Guide',
+    title: 'Screw Conveyor Engineering Guide',
     description: 'Detailed guide containing engineering specifications, CEMA capacity tables, flight options, horsepower calculations, and dimension metrics for Screw Conveyors.',
     image: bookScrewConveyorGuide,
     type: 'guide',
@@ -31,8 +31,8 @@ const literatureItems = [
   },
   {
     id: 3,
-    title: 'Screw Conveyors Technical Flyer',
-    description: 'Technical details, casing options, screw flight configurations, and standard dimensions for Screw Conveyors.',
+    title: 'Product Overview Flyers',
+    description: 'Our Product Overview Flyers provide a concise introduction to each product, highlighting its purpose, key features, benefits, and available configurations. They offer an easy way to explore our equipment before reviewing detailed technical specifications.',
     image: screwFlyer,
     type: 'flyer',
     pdfUrl: screwFlyer,

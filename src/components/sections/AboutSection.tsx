@@ -65,7 +65,7 @@ export function AboutSection() {
                 <span className="text-white">Custom Mastery</span>
               </h3>
               <p className="text-slate-400 text-base md:text-lg leading-relaxed mb-6 md:mb-8">
-                Conveyors Inc. was founded in 1974, born out of a need for a reliable and trustworthy partner in the conveyor industry.
+                At Conveyors Inc., we design and manufacture custom bulk material handling solutions for a wide range of industries, providing equipment, service, and support for both new and existing operations. Our product offerings include screw conveyors, bucket elevators, drag conveyors, vertical screw lifts, mixers, blenders, and complete material handling systems designed to improve efficiency, reliability, and productivity. In addition, we manufacture metal-fabricated buckets and custom components built to withstand demanding industrial applications, delivering durable, high-quality solutions tailored to each customer’s specific needs.
               </p>
             </div>
 

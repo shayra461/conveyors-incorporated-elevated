@@ -55,7 +55,7 @@ import bookHojaCangilon from '@/assets/literature/book-hoja-cangilon.jpg';
 const designBooks = [
   {
     id: 'screw-guide',
-    title: 'Screw Conveyor & Feeder Engineering Guide',
+    title: 'Screw Conveyor Engineering Guide',
     description: 'Detailed guide containing engineering specifications, CEMA capacity tables, flight options, horsepower calculations, and dimension metrics for Screw Conveyors.',
     image: bookScrewConveyorGuide,
     type: 'guide',
@@ -77,8 +77,8 @@ const designBooks = [
 const flyers = [
   {
     id: 'screw',
-    title: 'Screw Conveyors Technical Flyer',
-    description: 'Technical details, casing options, screw flight configurations, and standard dimensions for Screw Conveyors.',
+    title: 'Product Overview Flyers',
+    description: 'Our Product Overview Flyers provide a concise introduction to each product, highlighting its purpose, key features, benefits, and available configurations. They offer an easy way to explore our equipment before reviewing detailed technical specifications.',
     image: screwFlyer,
     fileName: 'Screw_Conveyors_Flyer_new-01.jpg',
   },
@@ -377,7 +377,7 @@ export default function Resources() {
                 <div className="text-center max-w-2xl mx-auto mb-12">
                   <h2 className="font-heading text-3xl font-bold mb-4">Product Flyers</h2>
                   <p className="text-muted-foreground">
-                    Download or view detailed visual technical specs, idler arrangements, drive configurations, and dimension metrics.
+                    Get a quick overview of our products, highlighting their primary features.
                   </p>
                 </div>
 

@@ -7,6 +7,7 @@ import dragConveyorImg from '@/assets/products/drag-conveyor-new.png';
 import cemaComponentsImg from '@/assets/products/cema-components-new.png';
 import beltConveyorImg from '@/assets/products/belt-conveyor.png';
 import mixersBlendersImg from '@/assets/products/mixers-blenders.png';
+import customFabricationImg from '@/assets/products/custom-fabrication.png';
 
 export interface Product {
   id: string;
@@ -107,7 +108,7 @@ export const productsData: Product[] = [
     id: 'custom-fabrication',
     name: 'Custom Fabrication',
     category: 'Feeders & Mixers',
-    image: mixersBlendersImg,
+    image: customFabricationImg,
     shortDescription: 'Tailored components, double-ribbon blenders, and classifiers built to solve wear, layout, and performance problems.',
     description: 'Custom Fabrication at Conveyors Inc. leverages state-of-the-art metalworking and ASME-certified fabrication to manufacture high-performance components tailored precisely to customer drawings. This includes industrial mixers, double-ribbon blenders for uniform batch mixing, and classifier washers designed to separate sand or grit from liquid slurries. Every piece is built to solve specific system wear, layout compatibility, or capacity limitations.',
     features: [

@@ -245,12 +245,11 @@ export default function Training() {
                       Bulk Material Handling School
                     </span>
                   </div>
-                  <h1 className="font-heading text-5xl md:text-6xl font-bold text-primary-foreground leading-tight mb-6">
-                    BMH CLASS <br />
-                    <span className="text-accent">Come Learn with us</span>
+                  <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground leading-tight mb-6">
+                    Join Conveyors Inc. for our hands-on, three-day <span className="text-accent">Bulk Material Handling School</span> at our headquarters in Mansfield, Texas.
                   </h1>
                   <p className="text-primary-foreground/85 text-lg md:text-xl leading-relaxed mb-8">
-                    Conveyors, Inc. invites you and your engineering or sales team to join our intensive **3-day Bulk Material Handling school** in Mansfield, Texas.
+                    Learn from experienced professionals through interactive training, live equipment demonstrations, and practical applications that strengthen your knowledge and skills in bulk material handling.
                   </p>
                   
                   <div className="flex flex-col sm:flex-row gap-4 p-4 rounded-xl bg-slate-900/60 border border-white/10 backdrop-blur-md">
@@ -398,7 +397,7 @@ export default function Training() {
                   {[
                     'Deep understanding of different BMH systems and application constraints.',
                     'Identify business opportunities & learn how to sell custom designs.',
-                    'Critical specifications to collect for precise engineering quotes.',
+                    'Critical specifications to collect for accurate equipment quotations.',
                     'Troubleshooting drive breakdowns and bulk materials flow issues.'
                   ].map((item, idx) => (
                     <li key={idx} className="flex items-start gap-2.5 text-sm text-muted-foreground font-medium">
@@ -430,7 +429,7 @@ export default function Training() {
                   </div>
                   <div>
                     <h4 className="font-bold text-sm text-foreground">Facility Location</h4>
-                    <p className="text-xs text-muted-foreground">Mansfield, Texas (near Dallas/Fort Worth airport)</p>
+                    <p className="text-xs text-muted-foreground">Mansfield, Texas</p>
                   </div>
                 </div>
               </div>
