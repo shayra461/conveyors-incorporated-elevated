@@ -56,7 +56,7 @@ const designBooks = [
   {
     id: 'screw-guide',
     title: 'Screw Conveyor Engineering Guide',
-    description: 'Detailed guide containing engineering specifications, CEMA capacity tables, flight options, horsepower calculations, and dimension metrics for Screw Conveyors.',
+    description: 'Our Product Overview Flyers provide a concise introduction to each product, highlighting its purpose, key features, benefits, and available configurations. They offer an easy way to explore our equipment before reviewing detailed technical specifications.',
     image: bookScrewConveyorGuide,
     type: 'guide',
     pdfUrl: '/docs/ScrewConveyorEngineeringGuide.pdf',
